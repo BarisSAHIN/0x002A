@@ -1,9 +1,15 @@
 package sample;
 
-import java.util.HashMap;
-import java.util.Scanner;
 import javafx.util.Pair;
 
+import java.util.HashMap;
+import java.util.Scanner;
+
+
+/**
+ *
+ * muaz yazdı
+ */
 public class Answer extends Node {
     public Question next;
     String answerText;
