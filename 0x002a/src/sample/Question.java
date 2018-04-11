@@ -23,6 +23,13 @@ public class Question extends Node {
         QuestionText = text;
     }
 
+    public boolean isEnd(){
+        if(Answers.size() == 0)
+            return true;
+        else
+            return false;
+    }
+
     public ArrayList<Answer> GetAnswers(){
         return Answers;
     }
