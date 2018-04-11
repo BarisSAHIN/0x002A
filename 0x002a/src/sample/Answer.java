@@ -2,26 +2,38 @@ package sample;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import javafx.util.Pair;
 
 public class Answer extends Node {
     public Question next;
     String answerText;
-    HashMap<String, Integer> statsToBeChanged;
+    HashMap<String, Pair<Character, Integer>> statsToBeChanged;
     Answer(){
-        int useStat;
         next = null;
         writeAnswer();
+        initPair();
+    }
+
+    private void initPair(){
+        Character statOp;
+        int useStat;
         System.out.println("Do you wanna use stats? 1 for yes any key for no");
         Scanner sc = new Scanner(System.in);
         useStat = sc.nextInt();
         if(useStat == 1){
             String name;
-            int stat;
-            System.out.println("Enter Stat Name and Stat Value");
+            int changeValue;
+            System.out.println("Enter Stat Name");
             name = sc.next();
-            stat = sc.nextInt();
-            statsToBeChanged = new HashMap<String, Integer>();
-            statsToBeChanged.put(name,stat);
+            System.out.println("Enter Stat Change Operation '+','-','/','*'");
+            statOp = sc.next().charAt(0);
+            System.out.println("Enter Stat Change Value");
+            changeValue = sc.nextInt();
+
+            statsToBeChanged = new HashMap<>();
+            Pair<Character, Integer> pairStat = new Pair<>(statOp,changeValue);
+            statsToBeChanged.put(name,pairStat);
+
         }
     }
 
@@ -51,7 +63,7 @@ public class Answer extends Node {
         }
     }
 
-    public HashMap<String, Integer> changeStats(){
+    public HashMap<String, Pair<Character, Integer>> changeStats(){
         return statsToBeChanged;
     }
 
