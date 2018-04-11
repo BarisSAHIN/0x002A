@@ -17,6 +17,12 @@ public class Question extends Node {
         setText();
     }
 
+    //for maker
+    public Question(String text, ArrayList<Answer> a){
+        setAnswers(a);
+        QuestionText = text;
+    }
+
     public ArrayList<Answer> GetAnswers(){
         return Answers;
     }
@@ -46,7 +52,7 @@ public class Question extends Node {
     public void showQuestionAndAnswer(){
         System.out.println(QuestionText);
         for(int i=0; i < Answers.size(); ++i){
-            Answers[i].showAnswer();
+            Answers.get(i).showAnswer();
         }
     }
 
