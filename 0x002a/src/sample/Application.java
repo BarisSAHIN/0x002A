@@ -5,7 +5,7 @@ public class Application {
     public Node startNode;
 
     public void getCharacterStats(){
-    String a;
+    String abcd;
     }
     public void movetoNext(){
 
