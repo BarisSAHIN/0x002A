@@ -17,6 +17,12 @@ public class Question extends Node {
         setText();
     }
 
+    //for maker
+    public Question(String text, ArrayList<Answer> a){
+        setAnswers(a);
+        QuestionText = text;
+    }
+
     public ArrayList<Answer> GetAnswers(){
         return Answers;
     }
