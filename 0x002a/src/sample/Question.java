@@ -46,7 +46,7 @@ public class Question extends Node {
     public void showQuestionAndAnswer(){
         System.out.println(QuestionText);
         for(int i=0; i < Answers.size(); ++i){
-            Answers[i].showAnswer();
+            Answers.get(i).showAnswer();
         }
     }
 
