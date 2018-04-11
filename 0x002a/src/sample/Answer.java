@@ -2,15 +2,27 @@ package sample;
 
 import java.util.HashMap;
 import java.util.Scanner;
-import javafx.util.Pair;
 
 public class Answer extends Node {
     public Question next;
     String answerText;
-    HashMap<String, Pair<Character, Integer>> statsToBeChanged;
+    HashMap<String, Integer> statsToBeChanged;
     Answer(){
+        int useStat;
         next = null;
         writeAnswer();
+        System.out.println("Do you wanna use stats? 1 for yes any key for no");
+        Scanner sc = new Scanner(System.in);
+        useStat = sc.nextInt();
+        if(useStat == 1){
+            String name;
+            int stat;
+            System.out.println("Enter Stat Name and Stat Value");
+            name = sc.next();
+            stat = sc.nextInt();
+            statsToBeChanged = new HashMap<String, Integer>();
+            statsToBeChanged.put(name,stat);
+        }
     }
 
     private void writeAnswer(){
@@ -39,7 +51,7 @@ public class Answer extends Node {
         }
     }
 
-    public HashMap<String, Pair<Character, Integer>> changeStats(){
+    public HashMap<String, Integer> changeStats(){
         return statsToBeChanged;
     }
 
