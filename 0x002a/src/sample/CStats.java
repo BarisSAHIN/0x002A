@@ -1,17 +1,30 @@
 package sample;
 
 import javafx.util.Pair;
-
-import java.security.InvalidParameterException;
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class CStats
 {
     private HashMap<String, Integer> status;
+    static final int MAX_VALUE = 4;
+    static final int DEFAULT = 0;
 
-    public boolean changeAllStats(HashMap<String, Pair<Character, Integer>> input)
+    public CStats()
+    {
+        this(new HashMap<String, Integer>());
+    }
+
+    public CStats(HashMap<String, Integer> input)
+    {
+        status = new HashMap<>();
+        Set<String> other = input.keySet();
+        for(String temp : other)
+            addParam(temp, input.get(temp));
+    }
+
+
+    public boolean updateAllStats(HashMap<String, Pair<Character, Integer>> input)
     {
         boolean ret_val = true;
         if(input.size() > status.size())
@@ -20,13 +33,13 @@ public class CStats
         {
             Set<String> temp = input.keySet();
             for(String search : temp)
-                if(!(ret_val = changeStats(new Pair<>(search, input.get(search)))))
+                if(!(ret_val = updateStats(new Pair<>(search, input.get(search)))))
                     break;
         }
         return ret_val;
     }
 
-    private boolean changeStats(Pair<String, Pair<Character, Integer>> input)
+    private boolean updateStats(Pair<String, Pair<Character, Integer>> input)
     {
         boolean ret_val = true;
         if(status.containsKey(input.getKey()))
@@ -57,15 +70,23 @@ public class CStats
     }
 
 
-
     public boolean addParam(String key)
     {
-        return this.addParam(key, 0);
+        return this.addParam(key, DEFAULT);
     }
 
     public boolean addParam(String key, Integer Value)
     {
         boolean ret_val = true;
+        if(status.size() < MAX_VALUE)
+        {
+            if(status.containsKey(key))
+                System.err.println("This key is already exist. It assigned to default value");
+            status.put(key, Value);
+        }
+        else
+            ret_val = false;
+        return ret_val;
     }
 
 
