@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javafx.util.Pair;
 
 public class Answer extends Node {
+    //test!!
     public Question next;
     String answerText;
     HashMap<String, Pair<Character, Integer>> statsToBeChanged;
