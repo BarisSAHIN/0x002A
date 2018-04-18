@@ -3,7 +3,7 @@ package sample;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Question extends Node {
+public class Question extends Node implements Comparable {
     private int id;
     private ArrayList<Answer> Answers;
     private String QuestionText;
@@ -30,6 +30,8 @@ public class Question extends Node {
         setAnswers(a);
         QuestionText = text;
     }
+
+    public int getId(){ return id; }
 
     public boolean isEnd(){
         if(Answers.size() == 0)
@@ -71,4 +73,8 @@ public class Question extends Node {
         }
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return (this.id == ((Question) o).getId()) ? 1 : 0;
+    }
 }
