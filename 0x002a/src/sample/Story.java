@@ -2,7 +2,7 @@ package sample;
 
 public class Story {
 
-    private BinarySearchTree<Question> rootForSearch = null;//For binary search tree
+    private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
     private Question firtQuestion = null;//For flow of story
     private CStats GameChar = null;
     private Question currQuestion = null;
@@ -30,5 +30,20 @@ public class Story {
     public boolean isAnswerLegal(String Answer){
         return false;
     }
+    public void addQuestion(){
 
+
+
+    }
+
+    public Question getCurrQuestion() {
+        return currQuestion;
+    }
+
+    public Question getFirtQuestion() {
+        return firtQuestion;
+    }
+    public Question getByID(int ıd){
+        return currQuestion;//bu geçici düzeltecem bunu
+    }
 }
