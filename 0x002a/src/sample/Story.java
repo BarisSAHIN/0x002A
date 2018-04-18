@@ -2,8 +2,9 @@ package sample;
 
 public class Story {
 
-    private Question firtQuestion=null;
-    private CStats GameChar=null;
+    private Question rootForSearch = null;
+    private Question firtQuestion = null;
+    private CStats GameChar = null;
     private Question currQuestion = null;
     public Story(String fileName){
 
