@@ -2,7 +2,7 @@ package sample;
 
 public class Story {
 
-    private Question rootForSearch = null;//For binary search tree
+    private BinarySearchTree<Question> rootForSearch = null;//For binary search tree
     private Question firtQuestion = null;//For flow of story
     private CStats GameChar = null;
     private Question currQuestion = null;
