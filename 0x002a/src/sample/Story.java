@@ -27,7 +27,7 @@ public class Story {
         currQuestion.showQuestion();
 
     }
-    public boolean ifLegalGetNextQuestion(String Answer){
+    public boolean isAnswerLegal(String Answer){
         return false;
     }
 
