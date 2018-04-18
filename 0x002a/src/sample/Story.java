@@ -2,8 +2,9 @@ package sample;
 
 public class Story {
 
-    private Question firtQuestion=null;
-    private CStats GameChar=null;
+    private BinarySearchTree<Question> rootForSearch = null;//For binary search tree
+    private Question firtQuestion = null;//For flow of story
+    private CStats GameChar = null;
     private Question currQuestion = null;
     public Story(String fileName){
 
