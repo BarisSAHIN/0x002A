@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Question extends Node {
+    private int id;
     private ArrayList<Answer> Answers;
     private String QuestionText;
 
     public Question(){
         setAnswers(null);
         setText();
+        this.id = 0;
+    }
+
+    public Question(int id){
+        setAnswers(null);
+        setText();
+        this.id = id;
     }
 
     public Question(ArrayList<Answer> a){
