@@ -1,7 +1,7 @@
 package sample;
 
 public abstract class User {
-    public Character Personality;
+    public CStats Personality;
 
     public void makeSelection(){
 
