@@ -70,19 +70,20 @@ public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTr
 
     @Override
     public E search(E target){
-        return search(root, target);
+        return search(root, target).data;
     }
 
-    private E search(Node<E> localRoot, E target){
+    private Node<E> search(Node<E> localRoot, E target){
         if(localRoot == null)
             return null;
         int compareResult = target.compareTo(localRoot.data);
+
         if(compareResult == 0)
-            return localRoot.data;
-        else {
-            search(localRoot.left, target);
-            search(localRoot.right, target);
-        }
+            return localRoot;
+        else if(compareResult< 0)
+            return search(localRoot.left, target);
+        else
+            return search(localRoot.right, target);
     }
 
 
