@@ -25,6 +25,11 @@ public class Question extends Node implements Comparable {
         setText();
     }
 
+    public Question(String line){
+        Answers = new ArrayList<Answer>();
+        parseLine(line);
+    }
+
     //for maker
     public Question(String text, ArrayList<Answer> a){
         setAnswers(a);
@@ -80,5 +85,16 @@ public class Question extends Node implements Comparable {
 
     public String toString(){
         return id+" "+QuestionText;
+    }
+
+    private void parseLine(String line){
+        String[] temp = line.split("\\)");
+        id = Integer.parseInt(temp[0]);
+        temp = temp[1].split("-");
+        QuestionText = temp[0];
+        temp = temp[1].split("/");
+        for(String k : temp){
+            Answers.add(new Answer(k));
+        }
     }
 }
