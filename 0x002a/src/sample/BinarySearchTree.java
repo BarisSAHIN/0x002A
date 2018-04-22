@@ -79,10 +79,10 @@ public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTr
         int compareResult = target.compareTo(localRoot.data);
         if(compareResult == 0)
             return localRoot.data;
-        else if(compareResult < 0)
-            return search(localRoot.left, target);
-        else
-            return search(localRoot.right, target);
+        else {
+            search(localRoot.left, target);
+            search(localRoot.right, target);
+        }
     }
 
 
