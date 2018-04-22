@@ -84,7 +84,13 @@ public class Question extends Node implements Comparable {
     }
 
     public String toString(){
-        return id+" "+QuestionText;
+        String ret = id+"\\)"+QuestionText;
+        for(Answer k: Answers){
+            ret = ret + k;
+            ret += "/";
+        }
+        ret += ".";
+        return ret;
     }
 
     private void parseLine(String line){
