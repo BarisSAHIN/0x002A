@@ -6,6 +6,8 @@ public class Player extends User {
 
     private Story theStory;
 
+
+
     public Player(){
         theStory=new Story(pickGame());
     }
@@ -33,5 +35,6 @@ public class Player extends User {
     }
 
     public void finish(){
+
     }
 }
