@@ -33,6 +33,5 @@ public class Player extends User {
     }
 
     public void finish(){
-+
     }
 }
