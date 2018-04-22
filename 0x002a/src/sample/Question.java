@@ -79,6 +79,11 @@ public class Question extends Node implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return (this.id == ((Question) o).getId()) ? 1 : 0;
+         if(this.id == ((Question) o).getId())
+             return 0;
+         else if(this.id > ((Question) o).getId())
+            return 1;
+         else return -1;
+
     }
 }
