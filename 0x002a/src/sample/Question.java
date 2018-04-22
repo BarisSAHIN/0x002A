@@ -77,4 +77,8 @@ public class Question extends Node implements Comparable {
     public int compareTo(Object o) {
         return (this.id == ((Question) o).getId()) ? 1 : 0;
     }
+
+    public String toString(){
+        return id+" "+QuestionText;
+    }
 }
