@@ -1,8 +1,28 @@
 package sample;
 
-import java.util.TreeSet;
-
 public class Story {
+/*
+sadasdasdas
+dsa
+da
+das
+d
+sad
+asd
+as
+das
+das
+d
+asd
+as
+das
+da
+ss
+d
+ */
+
+
+
 
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
     private Question firtQuestion = null;//For flow of story
@@ -21,6 +41,7 @@ public class Story {
     public void saveStory(){
 
     }
+
     public boolean isEnd(){
         return currQuestion.isEnd();
     }
@@ -42,10 +63,10 @@ public class Story {
         return currQuestion;
     }
 
-    /*public Question getFirtQuestion() {
+    public Question getFirtQuestion() {
         return firtQuestion;
-    }*/
+    }
     public Question getByID(int ıd){
-        return QuestionSearchTree.search(id);
+        return currQuestion;//bu geçici düzeltecem bunu
     }
 }
