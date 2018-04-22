@@ -39,6 +39,11 @@ public class CStats
         return ret_val;
     }
 
+    public boolean updateStats(String name, Character opt, Integer number)
+    {
+        return updateStats(new Pair<>(name, new Pair<>(opt, number)));
+    }
+
     private boolean updateStats(Pair<String, Pair<Character, Integer>> input)
     {
         boolean ret_val = true;
@@ -68,7 +73,6 @@ public class CStats
             ret_val = false;
         return ret_val;
     }
-
 
     public boolean addParam(String key)
     {
