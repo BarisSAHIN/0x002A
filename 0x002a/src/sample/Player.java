@@ -28,7 +28,7 @@ public class Player extends User {
     public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
-        if(!(theStory.ifLegalGetNextQuestion(scanner.nextLine())))
+        if(!(theStory.isAnswerLegal(scanner.nextLine())))
             giveAnswer();
     }
 
