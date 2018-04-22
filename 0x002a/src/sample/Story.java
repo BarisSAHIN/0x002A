@@ -19,7 +19,8 @@ public class Story {
     public void saveStory(){
 
     }
-    public boolean isFinish(){
+
+    public boolean isEnd(){
         return currQuestion.isEnd();
     }
     public void showQuestion(){
