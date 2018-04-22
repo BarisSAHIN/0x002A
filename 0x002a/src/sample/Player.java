@@ -12,7 +12,7 @@ public class Player extends User {
 
     public void play(){
         while(theStory.isEnd())
-            giveAnswer();
+            giveAnswer(theStory.nextQuestion());
         finish();
     }
 
@@ -25,14 +25,15 @@ public class Player extends User {
         return scanner.nextLine();
     }
 
-    public void giveAnswer(){
+    public void giveAnswer(String question){
+        System.out.println(question);
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
         if(!(theStory.isAnswerLegal(scanner.nextLine())))
-            giveAnswer();
+            giveAnswer(question);
     }
 
     public void finish(){
-+
+        
     }
 }
