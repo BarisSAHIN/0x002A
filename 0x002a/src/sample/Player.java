@@ -6,13 +6,15 @@ public class Player extends User {
 
     private Story theStory;
 
+
+
     public Player(){
         theStory=new Story(pickGame());
     }
 
     public void play(){
         while(theStory.isEnd())
-            giveAnswer(theStory.nextQuestion());
+            giveAnswer();
         finish();
     }
 
@@ -25,15 +27,14 @@ public class Player extends User {
         return scanner.nextLine();
     }
 
-    public void giveAnswer(String question){
-        System.out.println(question);
+    public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
         if(!(theStory.isAnswerLegal(scanner.nextLine())))
-            giveAnswer(question);
+            giveAnswer();
     }
 
     public void finish(){
-        
+
     }
 }

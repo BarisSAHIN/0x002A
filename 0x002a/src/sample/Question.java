@@ -30,7 +30,11 @@ public class Question extends Node implements Comparable {
         setAnswers(a);
         QuestionText = text;
     }
-
+    public Question(String text, ArrayList<Answer> a,int ID){
+        setAnswers(a);
+        QuestionText = text;
+        id = ID;
+    }
     public int getId(){ return id; }
 
     public boolean isEnd(){
@@ -75,6 +79,11 @@ public class Question extends Node implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return (this.id == ((Question) o).getId()) ? 1 : 0;
+         if(this.id == ((Question) o).getId())
+             return 0;
+         else if(this.id > ((Question) o).getId())
+            return 1;
+         else return -1;
+
     }
 }
