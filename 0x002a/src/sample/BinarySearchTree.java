@@ -32,6 +32,10 @@ public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTr
         this.root = null;
     }
 
+    BinarySearchTree(E data){
+        this.root = new Node<E>(data);
+    }
+
     BinarySearchTree(Node<E> root){
         this.root = root;
     }
