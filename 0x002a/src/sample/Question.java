@@ -30,7 +30,11 @@ public class Question extends Node implements Comparable {
         setAnswers(a);
         QuestionText = text;
     }
-
+    public Question(String text, ArrayList<Answer> a,int ID){
+        setAnswers(a);
+        QuestionText = text;
+        id = ID;
+    }
     public int getId(){ return id; }
 
     public boolean isEnd(){

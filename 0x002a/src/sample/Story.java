@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.TreeSet;
+
 public class Story {
 
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
@@ -19,7 +21,7 @@ public class Story {
     public void saveStory(){
 
     }
-    public boolean isFinish(){
+    public boolean isEnd(){
         return currQuestion.isEnd();
     }
     public void showQuestion(){
@@ -40,10 +42,10 @@ public class Story {
         return currQuestion;
     }
 
-    public Question getFirtQuestion() {
+    /*public Question getFirtQuestion() {
         return firtQuestion;
-    }
+    }*/
     public Question getByID(int ıd){
-        return currQuestion;//bu geçici düzeltecem bunu
+        return QuestionSearchTree.search(id);
     }
 }
