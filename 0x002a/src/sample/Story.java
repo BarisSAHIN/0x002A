@@ -1,33 +1,13 @@
 package sample;
 
 public class Story {
-/*
-sadasdasdas
-dsa
-da
-das
-d
-sad
-asd
-as
-das
-das
-d
-asd
-as
-das
-da
-ss
-d
- */
-
-
 
 
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
     private Question firtQuestion = null;//For flow of story
     private CStats GameChar = null;
     private Question currQuestion = null;
+
     public Story(String fileName){
 
         initializeStory(fileName);
@@ -50,9 +30,24 @@ d
         currQuestion.showQuestion();
 
     }
+    public void showQuestionAndAnswer(){
+        currQuestion.showQuestionAndAnswer();
+    }
     public boolean isAnswerLegal(String Answer){
+
         return false;
     }
+
+    /**
+     * Oyun içerisinde soruların erişim için ön şartları olabiliyor. Bu ön şartların karşılanıp karşılanmadığını kontrol eden method
+     * @param currQuestion Test edilecek soru objesi
+     * @return  Erişilebiliyorsa True, erişilemiyorsa False
+     */
+    public boolean isQuestionReachable(Question currQuestion){
+       return  GameChar.canAccess(currQuestion.getPreRequisite());
+    }
+
+
     public void addQuestion(){
 
 
@@ -66,6 +61,7 @@ d
     public Question getFirtQuestion() {
         return firtQuestion;
     }
+
     public Question getByID(int ıd){
         return currQuestion;//bu geçici düzeltecem bunu
     }

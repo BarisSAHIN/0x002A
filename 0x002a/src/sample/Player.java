@@ -6,16 +6,19 @@ public class Player extends User {
 
     private Story theStory;
 
-
-
     public Player(){
         theStory=new Story(pickGame());
     }
 
+    /**
+     * The main function that follows from first question to last question -answer by answer- till questions end.
+     */
     public void play(){
-        while(theStory.isEnd())
-            giveAnswer();
-        finish();
+        while(theStory.isEnd()) {
+            theStory.showQuestionAndAnswer();   //soru-cevapların basılması
+            giveAnswer();       //playerın cevabını ekrandan okuma ve storynin sonraki soruya geçişi
+        }
+        finish();   //ulaşılan sonun ekrana basılması
     }
 
     /**
@@ -27,6 +30,9 @@ public class Player extends User {
         return scanner.nextLine();
     }
 
+    /**
+     * Gets answer from terminal till the answer is legal.
+     */
     public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +40,10 @@ public class Player extends User {
             giveAnswer();
     }
 
+    /**
+     * Prints the text in 'last question' as result of answer path.
+     */
     public void finish(){
-
+        theStory.showQuestion();
     }
 }
