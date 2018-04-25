@@ -1,10 +1,10 @@
 package sample;
 
-public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTreeInterface<E> {
+public class BinarySearchTree<E extends Comparable> implements BinarySearchTreeInterface<E> {
     private Node<E> root;
     private boolean addReturn;
 
-    private static class Node<E extends Comparable<E>>{
+    private static class Node<E extends Comparable>{
         private E data;
         private Node<E> left;
         private Node<E> right;
