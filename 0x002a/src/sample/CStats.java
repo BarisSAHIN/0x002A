@@ -7,12 +7,29 @@ import java.util.Set;
 public class CStats
 {
     private HashMap<String, Integer> status;
-    static final int MAX_VALUE = 4;
-    static final int DEFAULT = 0;
+    private static final int MAX_VALUE = 4;
+    private static final int DEFAULT = 0;
 
     public CStats()
     {
-        this(new HashMap<String, Integer>());
+        this(new HashMap<>());
+    }
+    public CStats(String input)
+    {
+        status = new HashMap<>();
+        String[] array = input.split("<");
+        array = array[1].split(">");
+        if(!array[1].isEmpty())
+        {
+            array = array[1].split(",");
+            for (String parser : array)
+                status.put(parser.split(":")[0], Integer.valueOf(parser.split(":")[1]));
+        }
+    }
+
+    public CStats(CStats other)
+    {
+        this(other.status);
     }
 
     public CStats(HashMap<String, Integer> input)
@@ -102,22 +119,25 @@ public class CStats
     public boolean canAccess(HashMap<String, Pair<Character, Integer>> preRequisite){
         Set<String> keyVal = preRequisite.keySet();
 
-        Integer currStat = status.get(keyVal);
-        Pair statsNeeded = preRequisite.get(keyVal);
-
-        switch ((char)statsNeeded.getKey()){
-            case '<' :
-                        if(currStat < (Integer)statsNeeded.getValue()) return true;
+        for(String cpr : keyVal) {
+            if(status.containsKey(cpr)) {
+                Integer currStat = status.get(cpr);
+                switch (preRequisite.get(cpr).getKey()) {
+                    case '<':
+                        if (currStat < preRequisite.get(cpr).getValue());
                         else return false;
-            case '>' :
-                        if(currStat > (Integer)statsNeeded.getValue()) return true;
+                    case '>':
+                        if (currStat > preRequisite.get(cpr).getValue());
                         else return false;
-            case '=' :
-                        if(currStat == (Integer)statsNeeded.getValue()) return true;
+                    case '=':
+                        if (currStat.equals(preRequisite.get(cpr).getValue()));
                         else return false;
+                }
+            }
+            else return false;
         }
 
-        return false;
+        return true;
     }
 
     public Set<String> getStats()
@@ -134,12 +154,25 @@ public class CStats
             for(String outp : keyV)
                 ret_val += outp + ": " + status.get(outp).toString();
         }
-        return super.toString();
+        return ret_val;
     }
 
     @Override
     public boolean equals(Object other)
     {
         return ((CStats) other).getStats().containsAll(this.getStats());
+    }
+
+    public String toSave()
+    {
+        String ret_val = "<";
+        if(!status.isEmpty())
+        {
+            Set<String> keyV = status.keySet();
+            for(String outp : keyV)
+                ret_val += outp + ":" + status.get(outp).toString() + ",";
+        }
+        ret_val += ">";
+        return ret_val;
     }
 }
