@@ -4,7 +4,7 @@ public class Story {
 
 
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
-    private Question firtQuestion = null;//For flow of story
+    private Question firstQuestion = null;//For flow of story
     private CStats GameChar = null;
     private Question currQuestion = null;
 
@@ -50,16 +50,14 @@ public class Story {
 
     public void addQuestion(){
 
-
-
     }
 
     public Question getCurrQuestion() {
         return currQuestion;
     }
 
-    public Question getFirtQuestion() {
-        return firtQuestion;
+    public Question getFirstQuestion() {
+        return firstQuestion;
     }
 
     public Question getByID(int ıd){
