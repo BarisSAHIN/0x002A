@@ -93,6 +93,32 @@ public class CStats
         return ret_val;
     }
 
+    /**
+     * Oyuncu karakteri verilen ön şartı karşılayıp, bir sonraki node'a erişebiliyor mu diye kontrol eder.
+     * Eğer gerekli ön şartları sağlıyorsa true, sağlamıyorsa false döner.
+     * @param preRequisite Ön şart
+     * @return  Ön şart sağlanıyorsa true, sağlanmıyorsa false
+     */
+    public boolean canAccess(HashMap<String, Pair<Character, Integer>> preRequisite){
+        Set<String> keyVal = preRequisite.keySet();
+
+        Integer currStat = status.get(keyVal);
+        Pair statsNeeded = preRequisite.get(keyVal);
+
+        switch ((char)statsNeeded.getKey()){
+            case '<' :
+                        if(currStat < (Integer)statsNeeded.getValue()) return true;
+                        else return false;
+            case '>' :
+                        if(currStat > (Integer)statsNeeded.getValue()) return true;
+                        else return false;
+            case '=' :
+                        if(currStat == (Integer)statsNeeded.getValue()) return true;
+                        else return false;
+        }
+
+        return false;
+    }
 
     public Set<String> getStats()
     {
