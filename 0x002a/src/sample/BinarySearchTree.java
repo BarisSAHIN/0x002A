@@ -1,10 +1,10 @@
 package sample;
 
-public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTreeInterface<E> {
+public class BinarySearchTree<E extends Comparable> implements BinarySearchTreeInterface<E> {
     private Node<E> root;
     private boolean addReturn;
 
-    private static class Node<E extends Comparable<E>>{
+    private static class Node<E extends Comparable>{
         private E data;
         private Node<E> left;
         private Node<E> right;
@@ -30,6 +30,10 @@ public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTr
 
     BinarySearchTree(){
         this.root = null;
+    }
+
+    BinarySearchTree(E data){
+        this.root = new Node<E>(data);
     }
 
     BinarySearchTree(Node<E> root){
@@ -70,19 +74,20 @@ public class BinarySearchTree<E extends Comparable<E>> implements BinarySearchTr
 
     @Override
     public E search(E target){
-        return search(root, target);
+        return search(root, target).data;
     }
 
-    private E search(Node<E> localRoot, E target){
+    private Node<E> search(Node<E> localRoot, E target){
         if(localRoot == null)
             return null;
         int compareResult = target.compareTo(localRoot.data);
+
         if(compareResult == 0)
-            return localRoot.data;
-        else {
-            search(localRoot.left, target);
-            search(localRoot.right, target);
-        }
+            return localRoot;
+        else if(compareResult< 0)
+            return search(localRoot.left, target);
+        else
+            return search(localRoot.right, target);
     }
 
 

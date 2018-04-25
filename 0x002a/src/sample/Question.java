@@ -1,17 +1,22 @@
 package sample;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Question extends Node implements Comparable {
     private int id;
     private ArrayList<Answer> Answers;
     private String QuestionText;
+    HashMap<String, Pair<Character, Integer>> preRequisite;
 
     public Question(){
         setAnswers(null);
         setText();
         this.id = 0;
+        preRequisite = new HashMap<>();
     }
 
     public Question(int id){
@@ -35,7 +40,11 @@ public class Question extends Node implements Comparable {
         setAnswers(a);
         QuestionText = text;
     }
-
+    public Question(String text, ArrayList<Answer> a,int ID){
+        setAnswers(a);
+        QuestionText = text;
+        id = ID;
+    }
     public int getId(){ return id; }
 
     public boolean isEnd(){
@@ -56,6 +65,14 @@ public class Question extends Node implements Comparable {
 
     private void setAnswers(ArrayList<Answer> a){
         Answers = a;
+    }
+
+    public HashMap<String, Pair<Character, Integer>> getPreRequisite() {
+        return preRequisite;
+    }
+
+    public void setPreRequisite(HashMap<String, Pair<Character, Integer>> preRequisite) {
+        this.preRequisite = preRequisite;
     }
 
     public void AddAnswer(Answer a){
@@ -80,7 +97,12 @@ public class Question extends Node implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return (this.id == ((Question) o).getId()) ? 1 : 0;
+         if(this.id == ((Question) o).getId())
+             return 0;
+         else if(this.id > ((Question) o).getId())
+            return 1;
+         else return -1;
+
     }
 
     public String toString(){

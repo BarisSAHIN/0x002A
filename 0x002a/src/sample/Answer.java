@@ -12,10 +12,21 @@ import java.util.Scanner;
  */
 public class Answer extends Node {
     //test!!
+    private static final String SPLITTER = "//*";
     public Question next;
+    int nextQuestionID;
     String answerText;
     HashMap<String, Pair<Character, Integer>> statsToBeChanged;
+
+    Answer(String input){
+        String[] tokens = input.split(SPLITTER );
+        answerText = tokens[0];
+        nextQuestionID = Integer.parseInt(tokens[1]);
+
+    }
+
     Answer(){
+
         next = null;
         writeAnswer();
         initPair();
