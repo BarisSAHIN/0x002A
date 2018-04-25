@@ -30,6 +30,9 @@ public class Story {
         currQuestion.showQuestion();
 
     }
+    public void showQuestionAndAnswer(){
+        currQuestion.showQuestionAndAnswer();
+    }
     public boolean isAnswerLegal(String Answer){
 
         return false;
