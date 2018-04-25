@@ -1,17 +1,22 @@
 package sample;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Question extends Node implements Comparable {
     private int id;
     private ArrayList<Answer> Answers;
     private String QuestionText;
+    HashMap<String, Pair<Character, Integer>> preRequisite;
 
     public Question(){
         setAnswers(null);
         setText();
         this.id = 0;
+        preRequisite = new HashMap<>();
     }
 
     public Question(int id){
@@ -55,6 +60,14 @@ public class Question extends Node implements Comparable {
 
     private void setAnswers(ArrayList<Answer> a){
         Answers = a;
+    }
+
+    public HashMap<String, Pair<Character, Integer>> getPreRequisite() {
+        return preRequisite;
+    }
+
+    public void setPreRequisite(HashMap<String, Pair<Character, Integer>> preRequisite) {
+        this.preRequisite = preRequisite;
     }
 
     public void AddAnswer(Answer a){
