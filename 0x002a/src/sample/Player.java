@@ -11,7 +11,8 @@ public class Player extends User {
 
     public Player() throws IOException, IDNotAllowed {
         try {
-            theStory=new Story(pickGame());
+            String a = pickGame();
+            theStory=new Story(a);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IDNotAllowed ıdNotAllowed) {
@@ -52,6 +53,7 @@ public class Player extends User {
     public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
+
         if(!(theStory.isAnswerLegal(scanner.nextLine())))
             giveAnswer();
     }

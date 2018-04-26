@@ -57,8 +57,7 @@ public class Story {
         int i = 0;
         if(answers.isEmpty())
             return;
-        /*if(!answers.get(0).hasNextQuestion())
-            return;*/
+
             while(i<answers.size()){
             Integer  a = connection.GetAnswers().get(i).nextQuestionID;
             Question searchQuestion = new Question(a);
