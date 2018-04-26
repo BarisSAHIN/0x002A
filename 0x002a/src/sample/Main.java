@@ -17,24 +17,18 @@ public class Main extends Application {
 
     }
 
-
+    /*driver*/
     public static void main(String[] args) {
-        // sample.Application a = new sample.Application();
-
-
         //launch(args); //TODO JAVAFX
         try {
-            Story temp = new Story("test1");
-/*            Scanner file = new Scanner(new FileInputStream("./saved/test1"));
-            while (file.hasNextLine()) {
-                String k = file.nextLine();
-                System.out.println(k);
-            }*/
+            sample.Application app = new sample.Application();
+            app.mainMenu();
             System.out.println("fin");
         } catch (Exception a) {
             System.err.println(a.toString());
             System.err.println(a.getMessage());
         }
-            System.exit(0);
+
+        System.exit(0);
     }
 }
