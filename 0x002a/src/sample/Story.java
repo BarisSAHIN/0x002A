@@ -1,6 +1,5 @@
 package sample;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,14 +14,14 @@ public class Story {
     private Question currQuestion = null;
 
     public Story(String fileName) throws IOException, IDNotAllowed {
-
+        QuestionSearchTree = new BinarySearchTree<>();
         initializeStory(fileName);
 
     }
 
     public void initializeStory(String fileName) throws IOException, IDNotAllowed {
 
-        FileReader readStory = new FileReader(fileName);
+        FileReader readStory = new FileReader("./saved/"+fileName);
         String bufferString;
         boolean firstFlag = true;
 
@@ -33,8 +32,8 @@ public class Story {
         while((bufferString = readerStory.readLine()) != null){
             parsedString.append(bufferString);
             if(bufferString.contains("(")){
-
-                Question localCurrQuestion = new Question(parsedString.toString());
+                bufferString = parsedString.toString();
+                Question localCurrQuestion = new Question(bufferString.split("\\(")[0]);
                 parsedString = new StringBuilder();
                 if(!firstFlag)
                 QuestionSearchTree.add(localCurrQuestion);
@@ -84,14 +83,16 @@ public class Story {
         return false;
     }
 
-    /**
-     * Oyun içerisinde soruların erişim için ön şartları olabiliyor. Bu ön şartların karşılanıp karşılanmadığını kontrol eden method
-     * @param currQuestion Test edilecek soru objesi
-     * @return  Erişilebiliyorsa True, erişilemiyorsa False
-     */
-    public boolean isQuestionReachable(Question currQuestion){
-       return  GameChar.canAccess(currQuestion.getPreRequisite());
-    }
+
+    // SOON
+//    /**
+//     * Oyun içerisinde soruların erişim için ön şartları olabiliyor. Bu ön şartların karşılanıp karşılanmadığını kontrol eden method
+//     * @param currQuestion Test edilecek soru objesi
+//     * @return  Erişilebiliyorsa True, erişilemiyorsa False
+//     */
+//    public boolean isQuestionReachable(Question currQuestion){
+//       return  GameChar.canAccess(currQuestion.getPreRequisite());
+//    }
 
 
     public void addQuestion(){
