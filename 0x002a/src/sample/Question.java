@@ -9,6 +9,8 @@ import java.util.Scanner;
  *      This class is needed for game's/application's Questions.
  *      A question is a Node.
  *      Implements Comparable to do ID comparisions.
+ *
+ *      Each Question has 1 to 4 answers and Question with no Answer considered as Story End.
  */
 public class Question extends Node implements Comparable {
     /**
