@@ -32,8 +32,8 @@ public class Story {
         while((bufferString = readerStory.readLine()) != null){
             parsedString.append(bufferString);
             if(bufferString.contains("(")){
-
-                Question localCurrQuestion = new Question(parsedString.toString());
+                bufferString = parsedString.toString();
+                Question localCurrQuestion = new Question(bufferString.split("\\(")[0]);
                 parsedString = new StringBuilder();
                 if(!firstFlag)
                 QuestionSearchTree.add(localCurrQuestion);
