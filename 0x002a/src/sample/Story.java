@@ -52,7 +52,7 @@ public class Story {
 
         return;
     }
-    public void connector(Question connection) throws IDNotAllowed {
+    private void connector(Question connection) throws IDNotAllowed {
         ArrayList<Answer> answers= connection.GetAnswers();
         int i = 0;
         if(answers==null)
@@ -106,7 +106,8 @@ public class Story {
         return firstQuestion;
     }
 
-    public Question getByID(int ıd){
-        return currQuestion;//bu geçici düzeltecem bunu
+    public Question getByID(int ıd) throws IDNotAllowed {
+        Question searchQuestion = new Question(ıd);
+        return QuestionSearchTree.search(searchQuestion);
     }
 }
