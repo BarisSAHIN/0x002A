@@ -1,4 +1,10 @@
 package sample;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class Story {
 
@@ -8,15 +14,55 @@ public class Story {
     private CStats GameChar = null;
     private Question currQuestion = null;
 
-    public Story(String fileName){
+    public Story(String fileName) throws IOException {
 
         initializeStory(fileName);
 
     }
 
-    public void initializeStory(String fileName){
-        //Verilen file'dan initialize et
+    public void initializeStory(String fileName) throws IOException {
+
+        FileReader readStory = new FileReader(fileName);
+        String bufferString;
+        boolean firstFlag = true;
+        StringBuilder reset = new StringBuilder();
+        StringBuilder parsedString = new StringBuilder();
+
+        BufferedReader readerStory = new BufferedReader(readStory);
+
+        while((bufferString = readerStory.readLine()) != null){
+            parsedString.append(bufferString);
+            if(bufferString.contains("(")){
+
+                Question localCurrQuestion = new Question(parsedString.toString());
+                parsedString = reset;
+                if(!firstFlag)
+                QuestionSearchTree.add(localCurrQuestion);
+                else{
+                    firstQuestion = localCurrQuestion;
+                    firstFlag=false;
+                }
+            }
+            else
+                parsedString.append("\n");
+        }
+
+
+
+
         return;
+    }
+    public void connector(Question connection) throws IDNotAllowed {
+        ArrayList<Answer> answers= connection.GetAnswers();
+        int i = 0;
+        if(answers==null)
+            return;
+        while(i<answers.size()){
+            Integer  a = connection.GetAnswers().get(i).nextQuestionID;
+            Question searchQuestion = new Question(a);
+            answers.get(i).setNextQuestion(QuestionSearchTree.search(searchQuestion));
+            connector(answers.get(i).GetNextQuestion());
+        }
     }
     public void saveStory(){
 
