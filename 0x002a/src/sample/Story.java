@@ -85,11 +85,11 @@ public class Story {
     }
     public boolean isAnswerLegal(String Answer){
         boolean flag=false;
-        if(currQuestion.GetAnswers().size()==0)
-            return flag;
+
         for(int i=0;i<currQuestion.GetAnswers().size();i++){
             if((i+1)==Integer.parseInt(Answer)){
-                currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
+                if(currQuestion.GetAnswers().get(i).GetNextQuestion()!=null)
+                    currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
                 flag = true;
             }
         }
