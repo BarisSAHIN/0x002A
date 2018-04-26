@@ -16,7 +16,7 @@ public class Story {
     public Story(String fileName) throws IOException, IDNotAllowed {
         QuestionSearchTree = new BinarySearchTree<>();
         initializeStory(fileName);
-
+        currQuestion=firstQuestion;
     }
 
     public void initializeStory(String fileName) throws IOException, IDNotAllowed {
@@ -82,8 +82,14 @@ public class Story {
         currQuestion.showQuestionAndAnswer();
     }
     public boolean isAnswerLegal(String Answer){
-
-        return false;
+        boolean flag=false;
+        for(int i=0;i<currQuestion.GetAnswers().size();i++){
+            if(i==Integer.parseInt(Answer)){
+                currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
+                flag = true;
+            }
+        }
+        return flag;
     }
 
 
