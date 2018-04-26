@@ -129,7 +129,10 @@ public class BinarySearchTree<E extends Comparable> implements BinarySearchTreeI
      */
     @Override
     public E search(E target){
-        return search(root, target).data;
+        Node<E> ret_val = search(root, target);
+        if(ret_val == null)
+            return null;
+        return ret_val.data;
     }
 
     /**
