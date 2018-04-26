@@ -88,7 +88,7 @@ public class Story {
 
         for(int i=0;i<currQuestion.GetAnswers().size();i++){
             if((i+1)==Integer.parseInt(Answer)){
-                if(currQuestion.GetAnswers().get(i).GetNextQuestion()!=null)
+                if(currQuestion.GetAnswers().get(i).hasNextQuestion())//Degisen yer burasi
                     currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
                 flag = true;
             }
