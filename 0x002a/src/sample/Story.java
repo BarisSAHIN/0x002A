@@ -14,7 +14,7 @@ public class Story {
     private Question currQuestion = null;
 
     public Story(String fileName) throws IOException, IDNotAllowed {
-
+        QuestionSearchTree = new BinarySearchTree<>();
         initializeStory(fileName);
 
     }
@@ -83,14 +83,16 @@ public class Story {
         return false;
     }
 
-    /**
-     * Oyun içerisinde soruların erişim için ön şartları olabiliyor. Bu ön şartların karşılanıp karşılanmadığını kontrol eden method
-     * @param currQuestion Test edilecek soru objesi
-     * @return  Erişilebiliyorsa True, erişilemiyorsa False
-     */
-    public boolean isQuestionReachable(Question currQuestion){
-       return  GameChar.canAccess(currQuestion.getPreRequisite());
-    }
+
+    // SOON
+//    /**
+//     * Oyun içerisinde soruların erişim için ön şartları olabiliyor. Bu ön şartların karşılanıp karşılanmadığını kontrol eden method
+//     * @param currQuestion Test edilecek soru objesi
+//     * @return  Erişilebiliyorsa True, erişilemiyorsa False
+//     */
+//    public boolean isQuestionReachable(Question currQuestion){
+//       return  GameChar.canAccess(currQuestion.getPreRequisite());
+//    }
 
 
     public void addQuestion(){
