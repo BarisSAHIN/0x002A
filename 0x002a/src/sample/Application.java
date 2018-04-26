@@ -31,11 +31,13 @@ public class Application {
 
         }
         else if(user==2){
-            Maker gameMaker = new Maker();
-            gameMaker.createStory();
+
+            System.out.println("This is demo version of the 0X002A(This feature will coming soon!)");
+           /* Maker gameMaker = new Maker();
+            gameMaker.createStory();*/
 
         }
-        // take user from screen(some javafx  shit);
+        // take user from screen(some javafx magic);
     }
 
 
