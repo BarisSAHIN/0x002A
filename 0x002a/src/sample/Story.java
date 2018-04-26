@@ -52,6 +52,7 @@ public class Story {
         return;
     }
     private void connector(Question connection) throws IDNotAllowed {
+        if(connection == null) return;
         ArrayList<Answer> answers= connection.GetAnswers();
         int i = 0;
         if(answers.isEmpty())
@@ -66,6 +67,7 @@ public class Story {
             ++i;
         }
     }
+
     public void saveStory(){
 
     }

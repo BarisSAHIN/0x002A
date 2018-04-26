@@ -90,7 +90,6 @@ public class Answer extends Node {
      * This method will use for set next quest after the this answer.
      */
     public void setNextQuestion(Question nextQuestion){
-        System.out.println("don ");
         next = nextQuestion;
     }
     /**
