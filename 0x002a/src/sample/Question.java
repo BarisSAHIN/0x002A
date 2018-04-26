@@ -154,7 +154,7 @@ public class Question extends Node implements Comparable {
      *  Setter for Answers. Sets Question's anwers with given ArrayList.
      * @param a ArrayList of Answers.
      */
-    private void setAnswers(ArrayList<Answer> a){
+    public void setAnswers(ArrayList<Answer> a){
         Answers = a;
     }
 

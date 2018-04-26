@@ -23,7 +23,7 @@ public class Player extends User {
      * The main function that follows from first question to last question -answer by answer- till questions end.
      */
     public void play(){
-        while(theStory.isEnd()) {
+        while(!theStory.isEnd()) {
             theStory.showQuestionAndAnswer();   //soru-cevapların basılması
             giveAnswer();       //playerın cevabını ekrandan okuma ve storynin sonraki soruya geçişi
         }

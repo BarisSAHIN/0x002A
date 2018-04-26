@@ -57,8 +57,8 @@ public class Story {
         int i = 0;
         if(answers.isEmpty())
             return;
-        if(!answers.get(0).hasNextQuestion())
-            return;
+        /*if(!answers.get(0).hasNextQuestion())
+            return;*/
             while(i<answers.size()){
             Integer  a = connection.GetAnswers().get(i).nextQuestionID;
             Question searchQuestion = new Question(a);
@@ -66,6 +66,7 @@ public class Story {
             connector(answers.get(i).GetNextQuestion());
             ++i;
         }
+        connection.setAnswers(answers);
     }
 
     public void saveStory(){
@@ -86,7 +87,7 @@ public class Story {
     public boolean isAnswerLegal(String Answer){
         boolean flag=false;
         for(int i=0;i<currQuestion.GetAnswers().size();i++){
-            if(i==Integer.parseInt(Answer)){
+            if((i+1)==Integer.parseInt(Answer)){
                 currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
                 flag = true;
             }
