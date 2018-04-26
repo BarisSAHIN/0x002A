@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2dfa053-f9b4-451d-9431-d3a6ffe4e021" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/0x002A.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/0x002A.iml" afterDir="false" />
+    <list default="true" id="a2dfa053-f9b4-451d-9431-d3a6ffe4e021" name="Default" comment="Story update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0x002a/src/sample/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/0x002a/src/sample/Answer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/0x002a/src/sample/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/0x002a/src/sample/Story.java" afterDir="false" />
@@ -59,8 +58,8 @@
       <file leaf-file-name="Story.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="54" column="56" lean-forward="true" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
+            <state relative-caret-position="204">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1469#1470#0" expanded="true" />
@@ -71,8 +70,6 @@
                 <element signature="e#2275#2276#0" expanded="true" />
                 <element signature="e#2317#2318#0" expanded="true" />
                 <element signature="e#2353#2354#0" expanded="true" />
-                <element signature="e#2391#2392#0" expanded="true" />
-                <element signature="e#2453#2454#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -369,7 +366,7 @@
       <workItem from="1524680453136" duration="3868000" />
       <workItem from="1524686033288" duration="1669000" />
       <workItem from="1524734468330" duration="2044000" />
-      <workItem from="1524759938579" duration="3868000" />
+      <workItem from="1524759938579" duration="4311000" />
     </task>
     <task id="LOCAL-00001" summary="Application update">
       <created>1524414525570</created>
@@ -385,11 +382,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524418888085</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Story update">
+      <created>1524765584895</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524765584895</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Story update">
+      <created>1524765835246</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1524765835246</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19455000" />
+    <option name="totallyTimeSpent" value="19898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -432,7 +443,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Application update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Application update" />
+    <MESSAGE value="Story update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Story update" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
@@ -449,8 +461,6 @@
             <element signature="e#2275#2276#0" expanded="true" />
             <element signature="e#2317#2318#0" expanded="true" />
             <element signature="e#2353#2354#0" expanded="true" />
-            <element signature="e#2391#2392#0" expanded="true" />
-            <element signature="e#2453#2454#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -476,8 +486,6 @@
             <element signature="e#2275#2276#0" expanded="true" />
             <element signature="e#2317#2318#0" expanded="true" />
             <element signature="e#2353#2354#0" expanded="true" />
-            <element signature="e#2391#2392#0" expanded="true" />
-            <element signature="e#2453#2454#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -503,8 +511,6 @@
             <element signature="e#2275#2276#0" expanded="true" />
             <element signature="e#2317#2318#0" expanded="true" />
             <element signature="e#2353#2354#0" expanded="true" />
-            <element signature="e#2391#2392#0" expanded="true" />
-            <element signature="e#2453#2454#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -818,8 +824,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="54" column="56" lean-forward="true" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
+        <state relative-caret-position="204">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1469#1470#0" expanded="true" />
@@ -830,8 +836,6 @@
             <element signature="e#2275#2276#0" expanded="true" />
             <element signature="e#2317#2318#0" expanded="true" />
             <element signature="e#2353#2354#0" expanded="true" />
-            <element signature="e#2391#2392#0" expanded="true" />
-            <element signature="e#2453#2454#0" expanded="true" />
           </folding>
         </state>
       </provider>

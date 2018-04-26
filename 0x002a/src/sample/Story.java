@@ -14,18 +14,18 @@ public class Story {
     private CStats GameChar = null;
     private Question currQuestion = null;
 
-    public Story(String fileName) throws IOException {
+    public Story(String fileName) throws IOException, IDNotAllowed {
 
         initializeStory(fileName);
 
     }
 
-    public void initializeStory(String fileName) throws IOException {
+    public void initializeStory(String fileName) throws IOException, IDNotAllowed {
 
         FileReader readStory = new FileReader(fileName);
         String bufferString;
         boolean firstFlag = true;
-        StringBuilder reset = new StringBuilder();
+
         StringBuilder parsedString = new StringBuilder();
 
         BufferedReader readerStory = new BufferedReader(readStory);
@@ -35,7 +35,7 @@ public class Story {
             if(bufferString.contains("(")){
 
                 Question localCurrQuestion = new Question(parsedString.toString());
-                parsedString = reset;
+                parsedString = new StringBuilder();
                 if(!firstFlag)
                 QuestionSearchTree.add(localCurrQuestion);
                 else{
@@ -46,7 +46,7 @@ public class Story {
             else
                 parsedString.append("\n");
         }
-
+        connector(firstQuestion);
 
 
 
