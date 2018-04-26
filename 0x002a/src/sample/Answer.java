@@ -1,23 +1,37 @@
 package sample;
 
 import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 /**
- *
- * muaz yazdı
+ *  Answer class extended from Node.
+ *  Answer's object hold Answer text and result.
+ *  (result: Next Question, stats or End Game).
  */
 public class Answer extends Node {
-    //test!!
-    private static final String SPLITTER = "//*";
+
+    private static final String SPLITTER = "\\*";
     public Question next;
     int nextQuestionID;
     String answerText;
     HashMap<String, Pair<Character, Integer>> statsToBeChanged;
 
+
+    /**
+     * Non-parameter constructor.
+     */
+    Answer(){
+        next = null;
+        writeAnswer();
+        initPair();
+    }
+
+    /**
+     * Constructor with parameter.
+     * @param input type is string.
+     * İt's parse to string.After initialize answerText and nextQuestionID.
+     */
     Answer(String input){
         String[] tokens = input.split(SPLITTER );
         answerText = tokens[0];
@@ -25,13 +39,9 @@ public class Answer extends Node {
 
     }
 
-    Answer(){
-
-        next = null;
-        writeAnswer();
-        initPair();
-    }
-
+    /**
+     * Initialize pair for use "Character Stat" feature.
+     */
     private void initPair(){
         Character statOp;
         int useStat;
@@ -55,23 +65,36 @@ public class Answer extends Node {
         }
     }
 
+    /**
+     * This method take Answer Text from the user.
+     */
     private void writeAnswer(){
         Scanner sc = new Scanner(System.in);
         answerText = sc.next();
     }
-
+    /**
+     * This method show Answer Text to the user.
+     */
     public void showAnswer(){
         System.out.println(answerText);
     }
-
+    /**
+     * If this answer object selected by user in a game.
+     * This method will take user to next question.
+     */
     public Question GetNextQuestion(){
         return next;
     }
-
+    /**
+     * This method will use for set next quest after the this answer.
+     */
     public void setNextQuestion(Question nextQuestion){
         next = nextQuestion;
     }
-
+    /**
+     * This method will use for answer have a next question.
+     * If there is no next question, it's mean game is ended.
+     */
     public boolean hasNextQuestion(){
         if( next != null){
             return true;
@@ -80,7 +103,9 @@ public class Answer extends Node {
             return false;
         }
     }
-
+    /**
+     * This method will use for "Character Stats" feature.
+     */
     public HashMap<String, Pair<Character, Integer>> changeStats(){
         return statsToBeChanged;
     }
