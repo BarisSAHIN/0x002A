@@ -1,6 +1,5 @@
 package sample;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class Story {
 
     public void initializeStory(String fileName) throws IOException, IDNotAllowed {
 
-        FileReader readStory = new FileReader(fileName);
+        FileReader readStory = new FileReader("./saved/"+fileName);
         String bufferString;
         boolean firstFlag = true;
 
