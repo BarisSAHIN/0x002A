@@ -19,7 +19,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //launch(args); //TODO JAVAFX
+        sample.Application a = new sample.Application();
+
+
+        launch(args); //TODO JAVAFX
 
 
 
