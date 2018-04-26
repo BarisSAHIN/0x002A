@@ -32,8 +32,8 @@ public class Story {
         while((bufferString = readerStory.readLine()) != null){
             parsedString.append(bufferString);
             if(bufferString.contains("(")){
-
-                Question localCurrQuestion = new Question(parsedString.toString());
+                bufferString = parsedString.toString();
+                Question localCurrQuestion = new Question(bufferString.split("\\(")[0]);
                 parsedString = new StringBuilder();
                 if(!firstFlag)
                 QuestionSearchTree.add(localCurrQuestion);
@@ -54,7 +54,7 @@ public class Story {
     private void connector(Question connection) throws IDNotAllowed {
         ArrayList<Answer> answers= connection.GetAnswers();
         int i = 0;
-        if(answers==null)
+        if(answers.isEmpty())
             return;
         while(i<answers.size()){
             Integer  a = connection.GetAnswers().get(i).nextQuestionID;

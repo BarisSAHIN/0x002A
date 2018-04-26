@@ -10,7 +10,13 @@ public class Player extends User {
     private static final String pickedGame= "./saved";
 
     public Player() throws IOException, IDNotAllowed {
-        theStory=new Story(pickGame());
+        try {
+            theStory=new Story(pickGame());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IDNotAllowed ıdNotAllowed) {
+            ıdNotAllowed.printStackTrace();
+        }
     }
 
     /**
