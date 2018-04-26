@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Scanner;
+
 public class Main extends Application {
 
     @Override
@@ -19,13 +21,14 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        sample.Application a = new sample.Application();
+       // sample.Application a = new sample.Application();
 
 
         launch(args); //TODO JAVAFX
 
-
-
-
+        Scanner file = new Scanner("./saved/test");
+        String k = file.nextLine();
+        System.out.println(k);
+        System.exit(0);
     }
 }
