@@ -33,6 +33,7 @@ public class Main extends Application {
             System.out.println("fin");
         } catch (Exception a) {
             System.err.println(a.toString());
+            System.err.println(a.getMessage());
         }
             System.exit(0);
     }

@@ -1,9 +1,9 @@
 package sample;
 
 import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  *      This class is needed for game's/application's Questions.
@@ -40,7 +40,7 @@ public class Question extends Node implements Comparable {
     public Question() throws IDNotAllowed {
         Answers = new ArrayList<Answer>();
         setAnswers(null);
-        setText();
+        setText(" ");
         setId(0);
         preRequisite = new HashMap<>();
     }
@@ -52,7 +52,7 @@ public class Question extends Node implements Comparable {
     public Question(int id) throws IDNotAllowed {
         Answers = new ArrayList<Answer>();
         setAnswers(null);
-        setText();
+        setText(" ");
         setId(id);
         preRequisite = new HashMap<>();
     }
@@ -65,7 +65,7 @@ public class Question extends Node implements Comparable {
     public Question(ArrayList<Answer> a){
         Answers = new ArrayList<Answer>();
         setAnswers(a);
-        setText();
+        setText(" ");
         preRequisite = new HashMap<>();
     }
 
@@ -110,7 +110,7 @@ public class Question extends Node implements Comparable {
      *  Getter for Question ID.
      * @return Question ID as Integer.
      */
-    public int getId(){ return id; }
+    public Integer getId(){ return id; }
 
     /**
      *  Setter for ID. Throws exception if ID's value is negative.
@@ -146,9 +146,8 @@ public class Question extends Node implements Comparable {
     /**
      *  Setter for Question Text.
      */
-    private void setText(){
-        Scanner sc = new Scanner(System.in);
-        QuestionText = sc.next();
+    private void setText(String s){
+        QuestionText = s;
     }
 
     /**
@@ -212,7 +211,7 @@ public class Question extends Node implements Comparable {
      */
     @Override
     public int compareTo(Object o) {
-        return (this.getId() > ((Question) o).getId()) ? 1 : -1;
+        return getId().compareTo(((Question) o).getId());
     }
 
     /**
