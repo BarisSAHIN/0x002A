@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Player extends User {
@@ -8,7 +9,7 @@ public class Player extends User {
     private Story theStory;
     private static final String pickedGame= "./saved";
 
-    public Player(){
+    public Player() throws IOException, IDNotAllowed {
         theStory=new Story(pickGame());
     }
 
