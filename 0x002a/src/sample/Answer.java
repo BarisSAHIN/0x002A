@@ -81,6 +81,7 @@ public class Answer extends Node {
     /**
      * If this answer object selected by user in a game.
      * This method will take user to next question.
+     * @return next question address.
      */
     public Question GetNextQuestion(){
         return next;
@@ -94,6 +95,8 @@ public class Answer extends Node {
     /**
      * This method will use for answer have a next question.
      * If there is no next question, it's mean game is ended.
+     * @return boolean. İf next variable == null return  false.
+     * Otherwise return true.
      */
     public boolean hasNextQuestion(){
         if( next != null){
@@ -105,9 +108,18 @@ public class Answer extends Node {
     }
     /**
      * This method will use for "Character Stats" feature.
+     * @return statsToBeChanged variable.
      */
     public HashMap<String, Pair<Character, Integer>> changeStats(){
         return statsToBeChanged;
     }
 
+    /**
+     * Override toString method.
+     * @return answerText string variable.
+     */
+    @Override
+    public String toString() {
+        return " " + answerText + " ";
+    }
 }
