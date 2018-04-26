@@ -57,7 +57,8 @@ public class Story {
         int i = 0;
         if(answers.isEmpty())
             return;
-
+        /*if(!answers.get(0).hasNextQuestion())
+            return;*/
             while(i<answers.size()){
             Integer  a = connection.GetAnswers().get(i).nextQuestionID;
             Question searchQuestion = new Question(a);
@@ -85,11 +86,9 @@ public class Story {
     }
     public boolean isAnswerLegal(String Answer){
         boolean flag=false;
-
         for(int i=0;i<currQuestion.GetAnswers().size();i++){
             if((i+1)==Integer.parseInt(Answer)){
-                if(currQuestion.GetAnswers().get(i).hasNextQuestion())//Degisen yer burasi
-                    currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
+                currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
                 flag = true;
             }
         }

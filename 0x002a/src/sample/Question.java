@@ -110,7 +110,7 @@ public class Question extends Node implements Comparable {
      *  Getter for Question ID.
      * @return Question ID as Integer.
      */
-    public int getId(){ return id; }
+    public Integer getId(){ return id; }
 
     /**
      *  Setter for ID. Throws exception if ID's value is negative.
@@ -129,7 +129,7 @@ public class Question extends Node implements Comparable {
      * @return Returns true if Story is ended, false otherwise.
      */
     public boolean isEnd(){
-        if(Answers.size() == 0)
+        if( Answers == null ||Answers.size() == 0 )
             return true;
         else
             return false;
@@ -200,6 +200,7 @@ public class Question extends Node implements Comparable {
     public void showQuestionAndAnswer(){
         System.out.println(QuestionText);
         for(int i=0; i < Answers.size(); ++i){
+            System.out.printf("\t%d) ", i+1);
             Answers.get(i).showAnswer();
         }
     }
@@ -211,7 +212,7 @@ public class Question extends Node implements Comparable {
      */
     @Override
     public int compareTo(Object o) {
-        return (this.getId() > ((Question) o).getId()) ? 1 : -1;
+        return getId().compareTo(((Question) o).getId());
     }
 
     /**
