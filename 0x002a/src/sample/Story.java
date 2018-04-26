@@ -54,7 +54,7 @@ public class Story {
     private void connector(Question connection) throws IDNotAllowed {
         ArrayList<Answer> answers= connection.GetAnswers();
         int i = 0;
-        if(answers==null)
+        if(answers.isEmpty())
             return;
         while(i<answers.size()){
             Integer  a = connection.GetAnswers().get(i).nextQuestionID;

@@ -29,8 +29,9 @@ public class Main extends Application {
             while (file.hasNextLine()) {
                 String k = file.nextLine();
                 System.out.println(k);
-            }
- */       } catch (Exception a) {
+            }*/
+            System.out.println("fin");
+        } catch (Exception a) {
             System.err.println(a.toString());
         }
             System.exit(0);
