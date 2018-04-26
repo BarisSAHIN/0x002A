@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Application {
@@ -7,7 +8,7 @@ public class Application {
     int user=0;
     Story story;
 
-    public void mainMenu(){
+    public void mainMenu() throws IOException, IDNotAllowed {
 
         Scanner chooseScanner = new Scanner(System.in);
 

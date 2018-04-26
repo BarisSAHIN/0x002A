@@ -1,22 +1,68 @@
 package sample;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class Story {
 
 
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
-    private Question firtQuestion = null;//For flow of story
+    private Question firstQuestion = null;//For flow of story
     private CStats GameChar = null;
     private Question currQuestion = null;
 
-    public Story(String fileName){
+    public Story(String fileName) throws IOException, IDNotAllowed {
 
         initializeStory(fileName);
 
     }
 
-    public void initializeStory(String fileName){
-        //Verilen file'dan initialize et
+    public void initializeStory(String fileName) throws IOException, IDNotAllowed {
+
+        FileReader readStory = new FileReader(fileName);
+        String bufferString;
+        boolean firstFlag = true;
+
+        StringBuilder parsedString = new StringBuilder();
+
+        BufferedReader readerStory = new BufferedReader(readStory);
+
+        while((bufferString = readerStory.readLine()) != null){
+            parsedString.append(bufferString);
+            if(bufferString.contains("(")){
+
+                Question localCurrQuestion = new Question(parsedString.toString());
+                parsedString = new StringBuilder();
+                if(!firstFlag)
+                QuestionSearchTree.add(localCurrQuestion);
+                else{
+                    firstQuestion = localCurrQuestion;
+                    firstFlag=false;
+                }
+            }
+            else
+                parsedString.append("\n");
+        }
+        connector(firstQuestion);
+
+
+
         return;
+    }
+    private void connector(Question connection) throws IDNotAllowed {
+        ArrayList<Answer> answers= connection.GetAnswers();
+        int i = 0;
+        if(answers==null)
+            return;
+        while(i<answers.size()){
+            Integer  a = connection.GetAnswers().get(i).nextQuestionID;
+            Question searchQuestion = new Question(a);
+            answers.get(i).setNextQuestion(QuestionSearchTree.search(searchQuestion));
+            connector(answers.get(i).GetNextQuestion());
+        }
     }
     public void saveStory(){
 
@@ -50,19 +96,18 @@ public class Story {
 
     public void addQuestion(){
 
-
-
     }
 
     public Question getCurrQuestion() {
         return currQuestion;
     }
 
-    public Question getFirtQuestion() {
-        return firtQuestion;
+    public Question getFirstQuestion() {
+        return firstQuestion;
     }
 
-    public Question getByID(int ıd){
-        return currQuestion;//bu geçici düzeltecem bunu
+    public Question getByID(int ıd) throws IDNotAllowed {
+        Question searchQuestion = new Question(ıd);
+        return QuestionSearchTree.search(searchQuestion);
     }
 }

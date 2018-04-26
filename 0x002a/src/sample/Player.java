@@ -1,12 +1,15 @@
 package sample;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Player extends User {
 
     private Story theStory;
+    private static final String pickedGame= "./saved";
 
-    public Player(){
+    public Player() throws IOException, IDNotAllowed {
         theStory=new Story(pickGame());
     }
 
@@ -22,13 +25,20 @@ public class Player extends User {
     }
 
     /**
-     * Gets game file from user and returns informations to Application by filling a Story object.
+     * Prints saved game files at "saved" directory and gets the picked file name.
      */
-    public String pickGame(){
+    private String pickGame(){
+        System.out.println("Saved games: ");
+        File folder = new File(pickedGame);
+        File[] listOfFiles = folder.listFiles();
+        for (int i = 0; i < listOfFiles.length; ++i) {
+            if (listOfFiles[i].isFile())
+                System.out.printf("\t%s\n", listOfFiles[i].getName());
+        }
         System.out.println("Enter game file name you want to play: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
-    }
+   }
 
     /**
      * Gets answer from terminal till the answer is legal.
