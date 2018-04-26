@@ -56,11 +56,14 @@ public class Story {
         int i = 0;
         if(answers.isEmpty())
             return;
-        while(i<answers.size()){
+        if(!answers.get(0).hasNextQuestion())
+            return;
+            while(i<answers.size()){
             Integer  a = connection.GetAnswers().get(i).nextQuestionID;
             Question searchQuestion = new Question(a);
             answers.get(i).setNextQuestion(QuestionSearchTree.search(searchQuestion));
             connector(answers.get(i).GetNextQuestion());
+            ++i;
         }
     }
     public void saveStory(){
