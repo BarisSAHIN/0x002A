@@ -2,27 +2,28 @@ package sample;
 
 import java.util.HashMap;
 
-//Tüm methodlar JavaFX gerektirdiğinde kabaca doldurulmuş bulunmaktadır.
-// JavaFX ile doldurulmaya başlandığında daha mantıklı iş yapar hale gelecekler.
-
+//ÖNEMLİ NOT : UI ile ilgili metodları içermemektedir. Şu anlık sadece, yeni bir Question ve Answer yapımını sağlamaktadır.
+//Verilen Answer ve Questionlar ile bir Hashtable oluşturup, onları istenilen dosya moduna çekmedtedir.
 /**
  * This class is used by Application class to create a new story.
  * With this class you can add new questions, answers to your story and save your story for others to play.
  **/
 public class Maker extends User {
 
-    //Yaratılan oyunu kendi içerisinde tutarak, kaydetme işlemini kolaylaştırır
-    /**
-     * Components of the new story is stored in newStory. Used in save method to save the story.
-     */
-    private Story newStory;
 
-    //Karakter statlarının ismini ve başlangıç değerlerini tutar.
+    HashMap<Integer,Question> questions;
+    HashMap<Integer,Answer> answwers;
+
     /**
      * Stores character' name, stats and initial values of character's stats.
      */
     private HashMap<String, Integer> gameChar;
 
+
+    public Question createQuestion() throws IDNotAllowed{
+
+        return new Question();
+    }
 
     /**
      * Adds a new question to the answer given in parameter and returns the question.
@@ -39,6 +40,25 @@ public class Maker extends User {
             return null;
         }
     }
+
+    //Creates a new Answer
+    public Answer createAnswer(){
+
+        return new Answer();
+    }
+
+
+    //Takes an answer, creates a new and replaces new one with the old one
+    public Answer changeAnswer(Answer oldAns){
+        return oldAns;
+    }
+
+    public Question changeQuestion(Question oldQues){
+        return oldQues;
+    }
+
+
+
 
     /**
      * Adds an answer to the question given in parameter and returns the answer.
@@ -58,27 +78,8 @@ public class Maker extends User {
 
     }
 
-    /**
-     * General method for story creation mode.
-     */
-    //Tüm senaryo yaratma işlemlerinin gerçekleşeceği genel method
-    public void createStory(){
-        Question firstQuestion;
-
-        //Döngü içerisinde stat isimleri alınacak. Başlangıç değerleri girilecek
-
-        //Oyuna başlangıç sorusu oluşturulacak
 
 
-
-
-
-
-
-        //Kaydete basılırsa save methodunu çağır.
-        save();
-
-    }
 
 
 
