@@ -21,7 +21,7 @@ public class Question extends Node implements Comparable {
      *  Each question has Answers in itself. Answers are stored as ArrayList, size can be
      *   0,1,2,3 or 4.
      */
-    private ArrayList<Answer> Answers;
+    protected ArrayList<Answer> Answers;
     /**
      *  Question text to be showed to User. Text is stored as String.
      */
@@ -106,6 +106,14 @@ public class Question extends Node implements Comparable {
         preRequisite = new HashMap<>();
     }
 
+    public Question(String text, int _id, HashMap<String, Pair<Character,Integer>> _sideEff){
+        QuestionText = text;
+        id = _id;
+        preRequisite = _sideEff;
+        Answers = new ArrayList<Answer>();
+        Answers.clear();
+    }
+
     /**
      *  Getter for Question ID.
      * @return Question ID as Integer.
@@ -146,7 +154,7 @@ public class Question extends Node implements Comparable {
     /**
      *  Setter for Question Text.
      */
-    private void setText(String s){
+    public void setText(String s){
         QuestionText = s;
     }
 

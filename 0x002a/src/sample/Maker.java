@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.util.Pair;
+
 import java.util.HashMap;
 
 //ÖNEMLİ NOT : UI ile ilgili metodları içermemektedir. Şu anlık sadece, yeni bir Question ve Answer yapımını sağlamaktadır.
@@ -12,18 +14,61 @@ public class Maker extends User {
 
 
     HashMap<Integer,Question> questions;
-    HashMap<Integer,Answer> answwers;
+    HashMap<Integer,Answer> answers;
 
-    /**
-     * Stores character' name, stats and initial values of character's stats.
-     */
+    Question selectedQuestion;
+    Answer selectedAnswer;
+
+    int createdQuestionNum;
+    int createdAnswerNum;
+
+    /** Stores character' name, stats and initial values of character's stats.*/
     private HashMap<String, Integer> gameChar;
 
-
-    public Question createQuestion() throws IDNotAllowed{
-
-        return new Question();
+    public Maker(){
+        questions = new HashMap<Integer,Question>();
+        answers = new HashMap<Integer,Answer>();
+        selectedAnswer = null;
+        selectedQuestion = null;
+        createdAnswerNum = 0;
+        createdQuestionNum = 0;
     }
+
+    // Question Part
+
+    public void updateQuestion(String _text, HashMap<String, Pair<Character,Integer>> _sideEff, int numOfAnswers ) throws IDNotAllowed {
+
+        selectedQuestion.setPreRequisite( _sideEff);
+        selectedQuestion.setText(_text);
+        if(selectedQuestion.Answers.size() != numOfAnswers){
+            //TODO adjust size with default answers.
+        }
+    }
+
+    public void createNewQuestion()throws IDNotAllowed{
+        int id = ++createdQuestionNum;
+        Question newQ = new Question(id);
+        questions.put(newQ.getId(),newQ);
+        selectedQuestion = newQ;
+    }
+
+    public void selectQuestion (Question selected) throws IllegalArgumentException{
+
+        if(selected != null){
+            selectedQuestion = questions.get(selected.getId());
+        }else{
+            throw new IllegalArgumentException("Given question in selectQuestion method is null\n");
+        }
+    }
+
+
+
+
+
+
+    //Answer Part
+
+
 
     /**
      * Adds a new question to the answer given in parameter and returns the question.
