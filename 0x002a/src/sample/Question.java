@@ -39,8 +39,8 @@ public class Question extends Node implements Comparable {
      */
     public Question() throws IDNotAllowed {
         Answers = new ArrayList<Answer>();
-        setAnswers(null);
-        setText(" ");
+        Answers.clear();
+        setText("Put Your Question Text Here");
         setId(0);
         preRequisite = new HashMap<>();
     }
@@ -51,8 +51,8 @@ public class Question extends Node implements Comparable {
      */
     public Question(int id) throws IDNotAllowed {
         Answers = new ArrayList<Answer>();
-        setAnswers(null);
-        setText(" ");
+        Answers.clear();
+        setText("Put Your Question Text Here");
         setId(id);
         preRequisite = new HashMap<>();
     }
@@ -65,7 +65,7 @@ public class Question extends Node implements Comparable {
     public Question(ArrayList<Answer> a){
         Answers = new ArrayList<Answer>();
         setAnswers(a);
-        setText(" ");
+        setText("Put Your Question Text Here");
         preRequisite = new HashMap<>();
     }
 
