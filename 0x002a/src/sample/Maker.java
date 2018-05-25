@@ -2,6 +2,9 @@ package sample;
 
 import javafx.util.Pair;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,6 +22,8 @@ public class Maker extends User {
     CStats stats;
     Question selectedQuestion;
     Answer selectedAnswer;
+    String gameName;
+
 
     int createdQuestionNum;
     int createdAnswerNum;
@@ -195,12 +200,39 @@ public class Maker extends User {
         return endings;
     }
 
+    public void SetGameName(String _g){
+        gameName = _g;
+    }
+
+    public String GetGameName(){
+        return gameName;
+    }
 
     /**
      * Saves the created story in a file to share with players.
      */
     //Yaratılan oyun senaryosunu, daha sonra oynanabilmesi için dosya olarak kaydeder.
-    public void save(){
-        //TODO: Son belirlenen formata göre yazılmalı.
+    public void save() throws IOException {
+        //TODO: Son belirlenen formata göre kontrol edilmeli.
+
+        File saveFile = new File(gameName+".txt");
+
+        saveFile.delete();
+        saveFile.createNewFile();
+
+        FileWriter fileWriter = new FileWriter(saveFile);
+
+        //Cstat saving.
+        fileWriter.append(stats);
+        fileWriter.flush();
+
+        //Quesiton & Answer saving
+        Integer[] questionIDS = (Integer[]) questions.keySet().toArray();
+        for(Integer i : questionIDS){
+            fileWriter.append(questions.get(questionIDS[i]));
+            fileWriter.append("\n");
+            fileWriter.flush();
+        }
+
     }
 }
