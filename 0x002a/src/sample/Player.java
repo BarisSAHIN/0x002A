@@ -27,6 +27,7 @@ public class Player extends User {
             theStory.showQuestionAndAnswer();   //soru-cevapların basılması
             giveAnswer();       //playerın cevabını ekrandan okuma ve storynin sonraki soruya geçişi
         }
+        System.out.println("!!!");
         finish();   //ulaşılan sonun ekrana basılması
     }
 
@@ -52,14 +53,7 @@ public class Player extends User {
     public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
-        if(!(theStory.isAnswerLegal(scanner.nextLine())))
-            giveAnswer();
-        /*Scanner scanner = new Scanner(System.in);
-        String answered;
-        do{
-            System.out.println("Your Answer: ");
-            answered=scanner.nextLine();
-        }while(!theStory.isAnswerLegal(answered));*/
+        theStory.isAnswerLegal(scanner.nextLine());
     }
 
     /**
