@@ -53,11 +53,7 @@ public class Player extends User {
     public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
-
-        if(!(theStory.isAnswerLegal(scanner.nextLine()))) {
-
-            giveAnswer();
-        }
+        theStory.isAnswerLegal(scanner.nextLine());
     }
 
     /**

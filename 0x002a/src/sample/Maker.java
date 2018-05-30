@@ -2,10 +2,6 @@ package sample;
 
 import javafx.util.Pair;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 //ÖNEMLİ NOT : UI ile ilgili metodları içermemektedir. Şu anlık sadece, yeni bir Question ve Answer yapımını sağlamaktadır.
@@ -212,7 +208,7 @@ public class Maker extends User {
      * Saves the created story in a file to share with players.
      */
     //Yaratılan oyun senaryosunu, daha sonra oynanabilmesi için dosya olarak kaydeder.
-    public void save() throws IOException {
+   /* public void save() throws IOException {
         //TODO: Son belirlenen formata göre kontrol edilmeli.
 
         File saveFile = new File(gameName+".txt");
@@ -234,5 +230,5 @@ public class Maker extends User {
             fileWriter.flush();
         }
 
-    }
+    }*/
 }

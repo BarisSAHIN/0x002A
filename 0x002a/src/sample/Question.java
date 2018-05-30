@@ -137,7 +137,7 @@ public class Question extends Node implements Comparable {
      * @return Returns true if Story is ended, false otherwise.
      */
     public boolean isEnd(){
-        if( Answers == null ||Answers.size() == 0 )
+        if( Answers == null || Answers.size() == 0 )
             return true;
         else
             return false;
@@ -209,7 +209,7 @@ public class Question extends Node implements Comparable {
         System.out.println(QuestionText);
         for(int i=0; i < Answers.size(); ++i){
             System.out.printf("\t%d) ", i+1);
-            Answers.get(i).showAnswer();
+         //   Answers.get(i).showAnswer();
         }
     }
 

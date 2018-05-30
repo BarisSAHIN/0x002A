@@ -60,10 +60,10 @@ public class Story {
         /*if(!answers.get(0).hasNextQuestion())
             return;*/
             while(i<answers.size()){
-            Integer  a = connection.GetAnswers().get(i).nextQuestionID;
+          /*  Integer  a = connection.GetAnswers().get(i).nextQuestionID;
             Question searchQuestion = new Question(a);
             answers.get(i).setNextQuestion(QuestionSearchTree.search(searchQuestion));
-            connector(answers.get(i).GetNextQuestion());
+            connector(answers.get(i).GetNextQuestion());*/
             ++i;
         }
         connection.setAnswers(answers);
@@ -86,6 +86,8 @@ public class Story {
     }
     public boolean isAnswerLegal(String Answer){
         boolean flag=false;
+        ArrayList<Answer> t =  currQuestion.GetAnswers();
+        if(t != null)
         for(int i=0;i<currQuestion.GetAnswers().size();i++){
             if((i+1)==Integer.parseInt(Answer)){
                 currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
