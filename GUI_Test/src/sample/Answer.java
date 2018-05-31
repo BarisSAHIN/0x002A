@@ -3,6 +3,7 @@ package sample;
 import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *  Answer class extended from Node.
@@ -11,8 +12,9 @@ import java.util.Scanner;
  */
 public class Answer extends Node {
 
-    private static final String SPLITTER = "\\*";
-    private static final String STATSPLITER = "\\^";
+    private static final String SPLITTER = "##";
+    private static final String STATSPLITER = "%%";
+
     private Question next;
     int destinationID;
     String answerText;
@@ -44,8 +46,10 @@ public class Answer extends Node {
         String[] tokens = input.split(SPLITTER );
         answerText = tokens[0];
         destinationID = Integer.parseInt(tokens[1]);
-        if(tokens[2].length() != 0){ //has preRequisite
-            String[] pre = tokens[2].split(STATSPLITER);
+        if(tokens.length != 2){ //has preRequisite
+            String prereqSplit = tokens[2];
+            String[] pre = prereqSplit.split(STATSPLITER);
+
             String statName = pre[2];
             Integer value = Integer.parseInt(pre[1]);
             Character symbol = pre[0].charAt(0);
@@ -53,7 +57,7 @@ public class Answer extends Node {
             statsToBeChanged = new HashMap<String, Pair<Character,Integer>>();
             statsToBeChanged.put(statName,p);
         }else{
-            statsToBeChanged = null;
+            statsToBeChanged = new HashMap<>();
         }
     }
 
@@ -152,14 +156,19 @@ public class Answer extends Node {
     public String saveFormat(){
         String save = "";
         save = answerText + SPLITTER + destinationID + SPLITTER;
-        if(statsToBeChanged == null){
+        if(statsToBeChanged.isEmpty()){
             save += SPLITTER;
         }else{
-            String statName = (String)statsToBeChanged.keySet().toArray()[0];
-            Character symbol = (statsToBeChanged.get(statName)).getKey();
-            Integer value = (statsToBeChanged.get(statName)).getValue();
-            save += symbol + STATSPLITER + value + STATSPLITER + statName + STATSPLITER;
+            Set<String> keyV = statsToBeChanged.keySet();
+            for(String outp : keyV){
+                String statName = outp;
+                Character symbol = (statsToBeChanged.get(statName)).getKey();
+                Integer value = (statsToBeChanged.get(statName)).getValue();
+                save += symbol + STATSPLITER + value + STATSPLITER + statName + STATSPLITER;
+            }
         }
+
+        save += SPLITTER;
 
         return save;
     }
@@ -170,6 +179,6 @@ public class Answer extends Node {
      */
     @Override
     public String toString() {
-        return " " + answerText + " ";
+        return " " + answerText + "\n->" + destinationID ;
     }
 }
