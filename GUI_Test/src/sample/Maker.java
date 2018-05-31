@@ -25,76 +25,158 @@ import java.util.ResourceBundle;
 public class Maker extends User implements Initializable {
 
     //Class Variables
+    /**
+     * HashMap of Question objects. Stores all created questions excluding deleted ones.
+     */
     HashMap<Integer, Question> questions;
+    /**
+     * HashMap of Answer objects. Stores all created answers excluding deleted ones.
+     */
     HashMap<Integer, Answer> answers;
+    /**
+     * Character Stats for the game. Max 3 stats allowed.
+     */
     CStats stats;
+    /**
+     * Selected Question via GUI.
+     */
     Question selectedQuestion;
+    /**
+     * Selected Answer Object via GUI
+     */
     Answer selectedAnswer;
+    /**
+     * Stores created games name.
+     */
     String gameName = "42";
+    /**
+     * Counts all created Questions for creating ID.
+     */
     int createdQuestionNum;
+    /**
+     * Counts all created Answers for creating ID.
+     */
     int createdAnswerNum;
-    private HashMap<String, Integer> gameChar;
 
     //FXML Variables
 
     //Panes
-    @FXML
-    AnchorPane questionListPanel;
-    @FXML
-    AnchorPane answerListPanel;
-    @FXML
-    AnchorPane selectedQuestionPanel;
-    @FXML
-    AnchorPane selectedAnswerPanel;
+    /**
+     * Panel for question list
+     */
+    @FXML AnchorPane questionListPanel;
+    /**
+     * Panel for answer list
+     */
+    @FXML AnchorPane answerListPanel;
+    /**
+     * Panel for Selected Question
+     */
+    @FXML AnchorPane selectedQuestionPanel;
+    /**
+     * Panel for Selected Answer
+     */
+    @FXML AnchorPane selectedAnswerPanel;
 
     //Lists
-    @FXML
-    ListView<Question> questionsListView;
-    @FXML
-    ListView<Answer> answersListView;
+    /**
+     * Question List of questions HashMap
+     */
+    @FXML ListView<Question> questionsListView;
+    /**
+     * Answer List of answers HashMap
+     */
+    @FXML ListView<Answer> answersListView;
 
     //Selected Question Parts
-    @FXML
-    Label fxmlSelectedQuestionID;
-    @FXML
-    TextArea fxmlSelectedQuestionText;
-    @FXML
-    TextField fxmlSelectedQuestionAnswerNum;
-    @FXML
-    ChoiceBox fxmlSelectedQuestionSideEffectBox;
-    @FXML
-    ChoiceBox fxmlSelectedQuestionSideEffectModifier;
-    @FXML
-    TextField fxmlSelectedQuestionSideEffectValue;
+    /**
+     * ID of SelectedQuestion via GUI
+     */
+    @FXML Label fxmlSelectedQuestionID;
+    /**
+     * Text of SelectedQuestion via GUI
+     */
+    @FXML TextArea fxmlSelectedQuestionText;
+    /**
+     * SelectedQuestions Number Of Answers. Max 4 Answers allowed
+     */
+    @FXML TextField fxmlSelectedQuestionAnswerNum;
+    /**
+     * Choice box of Character Stat Names for Selected Question via GUI
+     */
+    @FXML ChoiceBox fxmlSelectedQuestionSideEffectBox;
+    /**
+     * Choice box of CharacterStat Modifiers for Selected Question via GUI
+     */
+    @FXML ChoiceBox fxmlSelectedQuestionSideEffectModifier;
+    /**
+     * Text Field for Charactar Stat side Effect Value
+     */
+    @FXML TextField fxmlSelectedQuestionSideEffectValue;
 
 
     //Selected Answer Parts
-    @FXML
-    Label fxmlSelectedAnswerID;
-    @FXML
-    TextArea fxmlSelectedAnswerText;
-    @FXML
-    TextField fxmlSelectedAnswerTargetQuestionID;
-    @FXML
-    ChoiceBox fxmlSelectedAnswerPreReqBox;
-    @FXML
-    ChoiceBox fxmlSelectedAnswerPreReqModifier;
-    @FXML
-    TextField fxmlSelectedAnswerPreReqValue;
+    /**
+     * ID of Selected Answer via GUI
+     */
+    @FXML Label fxmlSelectedAnswerID;
+    /**
+     * Text of Selected Answer via GUI
+     */
+    @FXML TextArea fxmlSelectedAnswerText;
+    /**
+     * Target Question ID of Selected Answer via GUI
+     */
+    @FXML TextField fxmlSelectedAnswerTargetQuestionID;
+    /**
+     * Choice Box of Character Stat Names for Selected Answer via GUI
+     */
+    @FXML ChoiceBox fxmlSelectedAnswerPreReqBox;
+    /**
+     * Choice Box of Character Stat Modifier for Selected Answer via GUI
+     */
+    @FXML ChoiceBox fxmlSelectedAnswerPreReqModifier;
+    /**
+     * TextField for Character Stat prerequisite value
+     */
+    @FXML TextField fxmlSelectedAnswerPreReqValue;
 
 
     //CSTATS
+    /**
+     * Name of first Character Stat Name
+     */
     @FXML TextField fxmlStatName1;
+    /**
+     * Name of second Character Stat Name
+     */
     @FXML TextField fxmlStatName2;
+    /**
+     * Name of third Character Stat Name
+     */
     @FXML TextField fxmlStatName3;
+    /**
+     * Default Value of First Character Stat
+     */
     @FXML TextField fxmlStatDefault1;
+    /**
+     * Default Value of Second Character Stat
+     */
     @FXML TextField fxmlStatDefault2;
+    /**
+     * Default Value of Third Character Stat
+     */
     @FXML TextField fxmlStatDefault3;
 
     //Game Name
-    @FXML
-    TextField fxmlGameName;
+    /**
+     * Game Name Text Field for GUI
+     */
+    @FXML TextField fxmlGameName;
 
+    /**
+     * No Param Constructor. Creates a starting point for maker.
+     */
     public Maker() {
         questions = new HashMap<Integer, Question>();
         answers = new HashMap<Integer, Answer>();
@@ -108,16 +190,14 @@ public class Maker extends User implements Initializable {
     // Question Part
 
     /**
-     * Updates selectedQuestion with given parameters.
-     *
-     * @throws IDNotAllowed
+     * Updates selectedQuestion with FXML parameters. Giving NONE for sideEffect name, removes sideEffect from Question.
+     * @throws IDNotAllowed thrown when illegal ID is given to a question.
      * @caution fxmlSelectedQuestionAnswerNum must be smaller than 5
      */
     public void UpdateQuestion() throws IDNotAllowed {
         if (selectedQuestion != null) {
             Integer newNumOfAnswers = Integer.parseInt(fxmlSelectedQuestionAnswerNum.getText());
             if (newNumOfAnswers > 4) newNumOfAnswers = 4;
-            // selectedQuestion.setPreRequisite();
             selectedQuestion.setText(fxmlSelectedQuestionText.getText());
             while (selectedQuestion.Answers.size() > newNumOfAnswers) {
                 RemoveLastAnswer();
@@ -140,7 +220,6 @@ public class Maker extends User implements Initializable {
                 selectedQuestion.preRequisite = new HashMap<>();
             }
 
-
             questionsListView.refresh();
             answersListView.refresh();
             selectedQuestionPanel.requestLayout();
@@ -149,19 +228,15 @@ public class Maker extends User implements Initializable {
     }
 
     /**
-     * Creates a new Question with default text and 0 answers.
-     *
-     * @throws IDNotAllowed
+     * Creates a new Question with default text, no sideEffect and 0 answers.
+     * @throws IDNotAllowed thrown when illegal ID is passed to a question.
      */
     public void CreateNewQuestion() throws IDNotAllowed {
         int id = ++createdQuestionNum;
         Question newQ = new Question(id);
         questions.put(newQ.getId(), newQ);
         newQ.Answers.clear();
-
         questionsListView.getItems().add(newQ);
-
-
     }
 
     /**
@@ -172,6 +247,9 @@ public class Maker extends User implements Initializable {
         SelectQuestion(selectedQuestion);
     }
 
+    /**
+     * Updates selectedAnswer on a Answer Click from Answer List
+     */
     public void AnswerListButtonPressed() {
         Answer selectedAnswer = answersListView.getSelectionModel().getSelectedItem();
         SelectAnswer(selectedAnswer);
@@ -179,10 +257,8 @@ public class Maker extends User implements Initializable {
 
 
     /**
-     * Method for GUI usage. Changes selectedQuestion according to the mouse click
-     *
+     * Method for GUI usage. Updates selectedQuestion panel according to the mouse click on a Question from Question List.
      * @param selected Question that has been clicked on
-     * @throws IllegalArgumentException happens only if clicked question is null
      */
     public void SelectQuestion(Question selected){
         if (selected != null) {
@@ -196,7 +272,6 @@ public class Maker extends User implements Initializable {
 
             //SideEffect section
             if(!selectedQuestion.preRequisite.isEmpty()) {
-                System.out.println("Selection -> " + selectedQuestion.preRequisite);
 
                 String key = "";
                 if(selectedQuestion.preRequisite.get(fxmlStatName1.getText()) != null){
@@ -208,10 +283,7 @@ public class Maker extends User implements Initializable {
                 }
 
                 fxmlSelectedQuestionSideEffectBox.setValue(key);
-
                 Pair<Character, Integer> qPair = selectedQuestion.getPreRequisite().get(key);
-                System.out.println("Pair -> " + qPair + " Key -> " + key);
-
                 fxmlSelectedQuestionSideEffectModifier.setValue(qPair.getKey().toString());
                 fxmlSelectedQuestionSideEffectValue.setText(qPair.getValue().toString());
             }else{
@@ -232,7 +304,7 @@ public class Maker extends User implements Initializable {
     }
 
     /**
-     * Deletes selected question.
+     * Deletes selected question. Makes selectedQuestion null and removes selectedQuestion from QuestionList
      */
     public void DeleteQuestion() {
         if (selectedQuestion != null) {
@@ -254,20 +326,16 @@ public class Maker extends User implements Initializable {
     //Answer Part
 
     /**
-     * Updates answer with given parameters.
+     * Updates selectedAnswer with FXML parameters. Giving NONE for prerequisite name, removes prerequisite from selectedAnswer.
      */
     public void UpdateAnswer() {
         if (selectedAnswer != null) {
             Integer targetQuestionID = Integer.parseInt(fxmlSelectedAnswerTargetQuestionID.getText());
-            //TODO: Check for valid ID
-            //TODO: Update sideEff / preReq
-            // selectedQuestion.setPreRequisite();
             selectedAnswer.setAnswerText(fxmlSelectedAnswerText.getText());
             selectedAnswer.setDestinationID(targetQuestionID);
 
 
-            //preReq
-            //SideEffect section
+            //prerequisite section
             if(!fxmlSelectedAnswerPreReqBox.getValue().toString().equals("None")) {
                 HashMap<String,Pair<Character,Integer>> newSide = new HashMap<String, Pair<Character,Integer>>();
                 Pair<Character,Integer> newPair = new Pair<Character,Integer>(fxmlSelectedAnswerPreReqModifier.getValue().toString().charAt(0), Integer.parseInt(fxmlSelectedAnswerPreReqValue.getText().toString()) );
@@ -289,8 +357,8 @@ public class Maker extends User implements Initializable {
 
 
     /**
-     * Creates new answer with default text, special ID and null destionation for selectedQuestion.
-     * Max Answer for a Question is 4.
+     * Creates new answer with default text, special ID, no prerequisite, and no destination.
+     * For a given Quesiton, can not create more than 4 answer
      */
     public void CreateNewAnswer() {
         if (selectedQuestion != null && selectedQuestion.Answers.size() != 4) {
@@ -300,27 +368,26 @@ public class Maker extends User implements Initializable {
             selectedQuestion.AddAnswer(newA);
             answersListView.getItems().add(newA);
         }
+        fxmlSelectedQuestionAnswerNum.setText(Integer.toString(selectedQuestion.Answers.size()));
         answersListView.refresh();
-
-        //TODO : Answer List
+        questionsListView.refresh();
     }
 
+    /**
+     * Method for GUI usage. Updates selectedAnswer panel according to the mouse click on a Answer from Answer List.
+     * @param selected Answer that has been clicked on
+     */
     public void SelectAnswer(Answer selected) {
         if (selected != null) {
             selectedAnswer = selected;
-            System.out.println("Selected Answer -> " + selectedAnswer);
             Integer numID = selectedAnswer.getId();
-            //System.out.println("Answer ID -> " + numID);
             fxmlSelectedAnswerID.setText(numID.toString());
             fxmlSelectedAnswerText.setText(selectedAnswer.getAnswerText());
             numID = selectedAnswer.getDestinationID();
             fxmlSelectedAnswerTargetQuestionID.setText(numID.toString());
 
-            //preReq Stuff
-            //SideEffect section
+            //prerequisite section
             if(!selectedAnswer.statsToBeChanged.isEmpty()) {
-                System.out.println("Selection -> " + selectedAnswer.statsToBeChanged);
-
                 String key = "";
                 if(selectedAnswer.statsToBeChanged.get(fxmlStatName1.getText()) != null){
                     key = fxmlStatName1.getText();
@@ -329,12 +396,8 @@ public class Maker extends User implements Initializable {
                 }else{
                     key = fxmlStatName3.getText();
                 }
-
                 fxmlSelectedAnswerPreReqBox.setValue(key);
-
                 Pair<Character, Integer> qPair = selectedAnswer.getStatsToBeChanged().get(key);
-                System.out.println("Pair -> " + qPair + " Key -> " + key);
-
                 fxmlSelectedAnswerPreReqModifier.setValue(qPair.getKey().toString());
                 fxmlSelectedAnswerPreReqValue.setText(qPair.getValue().toString());
             }else{
@@ -344,15 +407,11 @@ public class Maker extends User implements Initializable {
             }
 
         }
-
-        //TODO : Update CSTATS
-
     }
 
 
     /**
-     * Deletes selectedAnswer from the selectedQuestion
-     *
+     * Deletes selected asnwer. Makes selectedAnswer null and removes selectedAnswer from Answer List
      * @post selectedAnswer becomes null
      */
     public void DeleteAnswer() {
@@ -364,18 +423,16 @@ public class Maker extends User implements Initializable {
     }
 
     /**
-     * Removes lastAnswer from the selectedQuestion
-     *
+     * Removes lastAnswer from the selectedQuestion. Updates AnswerList accordingly
      * @return removed answer
      */
     private Answer RemoveLastAnswer() {
-
         answersListView.getItems().remove(selectedQuestion.Answers.size()-1);
         return selectedQuestion.Answers.remove(selectedQuestion.Answers.size() - 1);
     }
 
     /**
-     * Removes all answers from the selectedQuestion
+     * Removes all answers from the selectedQuestion. Clears Answer List for SelectedQuestion.
      */
     private void RemoveAllAnswers() {
         while (selectedQuestion.Answers.size() != 0) {
@@ -388,12 +445,9 @@ public class Maker extends User implements Initializable {
     //CStats
 
     /**
-     * Updates CStats for game Character.
-
+     * Updates CStats for Game Character. Giving nothing for Character Stat name removes that stat from the game.
      */
     public void UpdateCStats() {
-        //TODO : need clear method
-
         fxmlSelectedQuestionSideEffectBox.getItems().clear();
         fxmlSelectedAnswerPreReqBox.getItems().clear();
 
@@ -416,7 +470,8 @@ public class Maker extends User implements Initializable {
             fxmlSelectedAnswerPreReqBox.getItems().add(fxmlStatName3.getText());
         }
 
-        //TODO: Change all Question and Answer cstats.
+        //TODO: Change all Question and Answer cstats for removed Stat.
+
         fxmlSelectedQuestionSideEffectBox.getItems().add( "None");
         fxmlSelectedAnswerPreReqBox.getItems().add( "None");
 
@@ -434,15 +489,26 @@ public class Maker extends User implements Initializable {
         return (String) stats.getStats().toArray()[i];
     }
 
-
+    /**
+     * Returns Current number of used questions. That means all created questions minus deleted questions
+     * @return current number of used questions.
+     */
     public int currentNumOfQuestions() {
         return questions.size();
     }
 
+    /**
+     * Returns current number of used answers.
+     * @return Current number of used answers.
+     */
     public int currentNumOfAnswers() {
         return answers.size();
     }
 
+    /**
+     * Any question that doesn't have an answer is an ending. This method returns number of Questions that doesn't have any answer.
+     * @return number of different endings.
+     */
     public int numOfDifferentEndings() {
         int endings = 0;
         for (int i = 0; i < createdQuestionNum; ++i) {
@@ -455,15 +521,26 @@ public class Maker extends User implements Initializable {
         return endings;
     }
 
+    /**
+     * Sets game name according to FXML variable fxmlGameName
+     */
     public void SetGameName() {
         gameName = fxmlGameName.getText();
     }
 
+    /**
+     * Returns Game Name As A String
+     * @return Game Name As A String
+     */
     public String GetGameName() {
         return gameName;
     }
 
     @Override
+    /**
+     * Initializes unchangeable variables for CharacterStat modifiers. Sets default game name "42"
+     * Clears all Character Stat Names.
+     */
     public void initialize(URL url, ResourceBundle rb) {
 
         fxmlSelectedQuestionSideEffectModifier.getItems().clear();
@@ -478,19 +555,13 @@ public class Maker extends User implements Initializable {
         fxmlSelectedAnswerPreReqBox.getItems().clear();
         fxmlSelectedAnswerPreReqBox.getItems().add("None");
 
-
-        System.out.print(fxmlSelectedAnswerText.getPrefColumnCount());
-
         fxmlGameName.setText("42");
-
-
     }
 
 
     /**
-     * Saves the created story in a file to share with players.
-     */
-    //Yaratılan oyun senaryosunu, daha sonra oynanabilmesi için dosya olarak kaydeder.
+    * Saves the created story in a file to share with players.
+    */
     public void save() throws IOException {
         //TODO: Son belirlenen formata göre kontrol edilmeli.
 
