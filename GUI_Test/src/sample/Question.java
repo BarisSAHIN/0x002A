@@ -234,6 +234,11 @@ public class Question extends Node implements Comparable {
      * @return Returns line as String.
      */
     public String toString(){
+        String retval = id + ") " + getQuestionText();
+        return retval;
+    }
+
+    public String saveFormat(){
         String ret = id+"\\)"+QuestionText;
         for(Answer k: Answers){
             ret = ret + k;
