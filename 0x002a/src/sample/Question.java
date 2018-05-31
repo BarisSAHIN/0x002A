@@ -259,7 +259,16 @@ public class Question extends Node implements Comparable {
         id = Integer.parseInt(temp[0]);
         temp = temp[1].split("|"); //3 parçaya bölmüş oldu 0.parça qtext 1.parça prereq 2.parça answers
         QuestionText = temp[0]; //qtext initledim
-        String prereqStr = temp[1]; //hashmap bilmediğim için init edemedim bu tarafı
+        String prereqStr = temp[1]; //hashmap init
+        if(prereqStr.length() != 0) {
+            String[] pre = prereqStr.split("\\^");
+            String statName = pre[2];
+            Integer value = Integer.parseInt(pre[1]);
+            Character symbol = pre[0].charAt(0);
+            Pair<Character,Integer> p = new Pair<Character,Integer>(symbol,value);
+            preRequisite = new HashMap<String, Pair<Character,Integer>>();
+            preRequisite.put(statName,p);
+        }
         String answers = temp[2]; //answersı / ile splitlicem
         String[] answer = answers.split("/"); //answer kısmını splitledim
         for(String k : answer){
