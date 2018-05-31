@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="453.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Maker">
+<AnchorPane prefHeight="453.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Maker">
     <children>
       <VBox prefHeight="453.0" prefWidth="874.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,7 +23,7 @@
                       <Button mnemonicParsing="false" onAction="#CreateNewQuestion" text="Create Question" />
                       <Button mnemonicParsing="false" onAction="#CreateNewAnswer" text="Create Answer" />
                   <Region prefHeight="31.0" prefWidth="119.0" />
-                      <Button mnemonicParsing="false" onAction="#save" text="Save" />
+                      <Button mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="80.0" text="Save" />
                   <Region prefHeight="31.0" prefWidth="151.0" />
                   <Button mnemonicParsing="false" onAction="#SetGameName" text="Change Game Name" />
                   <TextField fx:id="fxmlGameName" promptText="42" />
