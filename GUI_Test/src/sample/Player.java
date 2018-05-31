@@ -3,12 +3,8 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Pair;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -16,8 +12,9 @@ import java.util.*;
 public class Player extends User implements Initializable{
 
     private Story theStory;
-    private static final String pickedGameFile= "./saved";
+    public static String pickedGameFile= "./saved";
     Stack<Question> questions;
+
 
 
     @FXML AnchorPane fxmlQuestionAnswer;
@@ -36,7 +33,7 @@ public class Player extends User implements Initializable{
 
     public Player() throws IOException, IDNotAllowed {
         try {
-            theStory=new Story("test1.txt");
+            theStory=new Story(pickedGameFile + Welcome.filename);
             questions=new Stack<>();
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,18 +46,36 @@ public class Player extends User implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fxmlUndoButton.setVisible(false);
+        if(theStory.isEnd())
+            finish();
+        else {
+            fxmlQuestionText.setText(theStory.getFirstQuestion().getQuestionText());
+            ArrayList<Answer> firstAnswers = theStory.legalAnswers();
+            if (firstAnswers.size() >= 1) {
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            } else
+                fxmlAnswer1.setVisible(false);
 
-        fxmlQuestionText.setText(/*theStory.getFirstQuestion().getQuestionText()*/"naber");
-      /*  ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
-        if(firstAnswers.get(0)!=null)
-            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
-        if(firstAnswers.get(1)!=null)
-            fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
-        if(firstAnswers.get(2)!=null)
-            fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
-        if(firstAnswers.get(3)!=null)
-            fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
-   */ }
+            if (firstAnswers.size() >= 2) {
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            } else
+                fxmlAnswer1.setVisible(false);
+
+            if (firstAnswers.size() >= 3) {
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            } else
+                fxmlAnswer1.setVisible(false);
+
+            if (firstAnswers.size() == 4) {
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            } else
+                fxmlAnswer1.setVisible(false);
+        }
+    }
 
     public void Answered1(){
         PassToNextQuestion(1);
@@ -80,34 +95,79 @@ public class Player extends User implements Initializable{
         theStory.undo();
         if(questions.empty())
             fxmlUndoButton.setVisible(false);
-        ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
-        if(firstAnswers.get(0)!=null)
+
+        ArrayList<Answer> firstAnswers=theStory.legalAnswers();
+        if(firstAnswers.size()>=1){
             fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
-        if(firstAnswers.get(1)!=null)
-            fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
-        if(firstAnswers.get(2)!=null)
-            fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
-        if(firstAnswers.get(3)!=null)
-            fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+            fxmlAnswer1.setVisible(true);
+        }
+        else
+            fxmlAnswer1.setVisible(false);
+
+        if(firstAnswers.size()>=2){
+            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setVisible(true);
+        }
+        else
+            fxmlAnswer1.setVisible(false);
+
+        if(firstAnswers.size()>=3){
+            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setVisible(true);
+        }
+        else
+            fxmlAnswer1.setVisible(false);
+
+        if(firstAnswers.size()==4){
+            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setVisible(true);
+        }
+        else
+            fxmlAnswer1.setVisible(false);
     }
 
     public void PassToNextQuestion(int answerNum){
         fxmlPastQuestionList.getItems().add(theStory.getCurrQuestion());
         questions.push(theStory.getCurrQuestion());
         theStory.toNextQuestion(answerNum);
-        fxmlQuestionText.setText("naberaa"/*theStory.getCurrQuestion().getQuestionText()*/);
-       // ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
-        fxmlAnswer1.setText("damn"/*firstAnswers.get(0).getAnswerText()*/);
-     /*   fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
-        fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
-        fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());*/
-        fxmlUndoButton.setVisible(true);
+        if(theStory.isEnd())
+            finish();
+        else{
+            fxmlQuestionText.setText(theStory.getCurrQuestion().getQuestionText());
+            ArrayList<Answer> firstAnswers=theStory.legalAnswers();
+            if(firstAnswers.size()>=1){
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            }
+            else
+                fxmlAnswer1.setVisible(false);
+
+            if(firstAnswers.size()>=2){
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            }
+            else
+                fxmlAnswer1.setVisible(false);
+
+            if(firstAnswers.size()>=3){
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            }
+            else
+                fxmlAnswer1.setVisible(false);
+
+            if(firstAnswers.size()==4){
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            }
+            else
+                fxmlAnswer1.setVisible(false);
+            fxmlUndoButton.setVisible(true);
+        }
     }
 
-    /**
-     * Prints the text in 'last question' as result of answer path.
-     */
+
     public void finish(){
-        theStory.showQuestion();
+        theStory.getCurrQuestion().getQuestionText();
     }
 }
