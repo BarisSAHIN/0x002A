@@ -13,6 +13,7 @@ public class Story {
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
     private Question firstQuestion = null;//For flow of story
     private CStats GameChar = null;
+    private CStats GameCharCurr = null;
     private Question currQuestion = null;
     private PriortyQueueQuestion printArray = new PriortyQueueQuestion();
     private Question prevQuestion = null;
@@ -110,9 +111,19 @@ public class Story {
 
         prevQuestion=currQuestion;
         currQuestion=currQuestion.GetAnswers().get(parameter).GetNextQuestion();
-        if(!currQuestion.getPreRequisite().isEmpty())
+        GameCharCurr = GameChar;
+        if(!currQuestion.getPreRequisite().isEmpty()){
             GameChar.updateAllStats(currQuestion.getPreRequisite());
+
+        }
     }
+    /*
+    *
+    *
+    *
+    *
+    *
+    * */
     public ArrayList<Answer> legalAnswers(){
         ArrayList<Answer> result = new ArrayList<>();
         for (int i=0;i<currQuestion.GetAnswers().size();i++){
@@ -128,8 +139,15 @@ public class Story {
         }
         return result;
     }
+    /*
+    *
+    *
+    *
+    *
+    * */
     public void undo(){
         currQuestion=prevQuestion;
+        GameChar = GameCharCurr;
     }
 
     public Question getCurrQuestion() {
