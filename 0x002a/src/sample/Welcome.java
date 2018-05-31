@@ -29,8 +29,7 @@ public class Welcome implements Initializable
     private static final String pickedGame= "./saved";
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
+    public void initialize(URL location, ResourceBundle resources) {
         /**
          * String take.
          */
@@ -38,9 +37,14 @@ public class Welcome implements Initializable
         to_visible.setVisible(false);
         File folder = new File(pickedGame);
         File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; ++i)
-            if (listOfFiles[i].isFile())
-                game_list.getItems().add(listOfFiles[i].getName());
+        if (listOfFiles != null)
+        {
+            for (File temp : listOfFiles)
+                if (temp.isFile())
+                    game_list.getItems().add(temp.getName());
+        }
+        else
+            System.err.println("No such directory");
     }
 
     public void switch_visible()
