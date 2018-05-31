@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-//ÖNEMLİ NOT : UI ile ilgili metodları içermemektedir. Şu anlık sadece, yeni bir Question ve Answer yapımını sağlamaktadır.
-//Verilen Answer ve Questionlar ile bir Hashtable oluşturup, onları istenilen dosya moduna çekmedtedir.
 /**
  * This class is used by Application class to create a new story.
  * With this class you can add new questions, answers to your story and save your story for others to play.
@@ -573,9 +571,9 @@ public class Maker extends User implements Initializable {
         FileWriter fileWriter = new FileWriter(saveFile);
 
         //Cstat saving.
-        /*fileWriter.append(stats);
+        fileWriter.append(stats.toSave());
         fileWriter.flush();
-*/
+
         //Quesiton & Answer saving
         Object[] questionIDS =  questions.keySet().toArray();
         System.out.println("question ID length -> " + questionIDS.length);
