@@ -168,14 +168,13 @@ public class CStats
         return ret_val;
     }
 
-    //WILL ADD LATER
-//    /**
-//     * Oyuncu karakteri verilen ön şartı karşılayıp, bir sonraki node'a erişebiliyor mu diye kontrol eder.
-//     * Eğer gerekli ön şartları sağlıyorsa true, sağlamıyorsa false döner.
-//     * @param preRequisite Ön şart
-//     * @return  Ön şart sağlanıyorsa true, sağlanmıyorsa false
-//     */
-/*    public boolean canAccess(HashMap<String, Pair<Character, Integer>> preRequisite){
+    /**
+     * Oyuncu karakteri verilen ön şartı karşılayıp, bir sonraki node'a erişebiliyor mu diye kontrol eder.
+     * Eğer gerekli ön şartları sağlıyorsa true, sağlamıyorsa false döner.
+     * @param preRequisite Ön şart
+     * @return  Ön şart sağlanıyorsa true, sağlanmıyorsa false
+     */
+    public boolean canAccess(HashMap<String, Pair<Character, Integer>> preRequisite){
         Set<String> keyVal = preRequisite.keySet();
 
         for(String cpr : keyVal) {
@@ -198,7 +197,7 @@ public class CStats
 
         return true;
     }
-*/
+
     /**
      * Get all the stat's name with set of stats.
      * @return A set of all stat nemes.
