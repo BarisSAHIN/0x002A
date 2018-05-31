@@ -15,6 +15,7 @@ public class Story {
     private CStats GameChar = null;
     private Question currQuestion = null;
     private PriortyQueueQuestion printArray = new PriortyQueueQuestion();
+    private Question prevQuestion = null;
 
     public Story(String fileName) throws IOException, IDNotAllowed {
         QuestionSearchTree = new BinarySearchTree<>();
@@ -114,6 +115,14 @@ public class Story {
 
     public void addQuestion(){
 
+    }
+    public void toNextQuestion(int parameter){
+        prevQuestion=currQuestion;
+        currQuestion=currQuestion.GetAnswers().get(parameter).GetNextQuestion();
+    }
+
+    public void undo(){
+        currQuestion=prevQuestion;
     }
 
     public Question getCurrQuestion() {

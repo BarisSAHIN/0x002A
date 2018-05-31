@@ -50,8 +50,8 @@ public class Player extends User implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         fxmlUndoButton.setVisible(false);
 
-        fxmlQuestionText.setText(theStory.getFirstQuestion().getQuestionText());
-        ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
+        fxmlQuestionText.setText(/*theStory.getFirstQuestion().getQuestionText()*/"naber");
+      /*  ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
         if(firstAnswers.get(0)!=null)
             fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
         if(firstAnswers.get(1)!=null)
@@ -60,7 +60,7 @@ public class Player extends User implements Initializable{
             fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
         if(firstAnswers.get(3)!=null)
             fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
-    }
+   */ }
 
     public void Answered1(){
         PassToNextQuestion(1);
@@ -77,21 +77,30 @@ public class Player extends User implements Initializable{
 
     public void undoQuestion(){
         fxmlPastQuestionList.getItems().remove(questions.pop());
-
+        theStory.undo();
         if(questions.empty())
             fxmlUndoButton.setVisible(false);
+        ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
+        if(firstAnswers.get(0)!=null)
+            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+        if(firstAnswers.get(1)!=null)
+            fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+        if(firstAnswers.get(2)!=null)
+            fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+        if(firstAnswers.get(3)!=null)
+            fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
     }
 
     public void PassToNextQuestion(int answerNum){
         fxmlPastQuestionList.getItems().add(theStory.getCurrQuestion());
         questions.push(theStory.getCurrQuestion());
         theStory.toNextQuestion(answerNum);
-        fxmlQuestionText.setText(theStory.getCurrQuestion().getQuestionText());
-        ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
-        fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
-        fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+        fxmlQuestionText.setText("naberaa"/*theStory.getCurrQuestion().getQuestionText()*/);
+       // ArrayList<Answer> firstAnswers=theStory.getFirstQuestion().GetAnswers();
+        fxmlAnswer1.setText("damn"/*firstAnswers.get(0).getAnswerText()*/);
+     /*   fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
         fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
-        fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+        fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());*/
         fxmlUndoButton.setVisible(true);
     }
 
