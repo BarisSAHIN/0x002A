@@ -18,7 +18,7 @@
     <children>
       <VBox prefHeight="453.0" prefWidth="874.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="31.0" prefWidth="859.0" spacing="10.0">
+            <HBox spacing="10.0">
                <children>
                       <Button mnemonicParsing="false" onAction="#CreateNewQuestion" text="Create Question" />
                       <Button mnemonicParsing="false" onAction="#CreateNewAnswer" text="Create Answer" />
@@ -32,7 +32,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-              <SplitPane dividerPositions="0.25418060200668896, 0.5083612040133779, 0.7591973244147158">
+              <SplitPane dividerPositions="0.25418060200668896, 0.5083612040133779, 0.7591973244147158" prefWidth="853.0">
                   <items>
                       <AnchorPane fx:id="questionListPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                           <children>
@@ -151,7 +151,7 @@
                                       <Font name="System Bold" size="12.0" />
                                   </font>
                               </Label>
-                              <HBox prefHeight="21.0" prefWidth="203.0" spacing="2.0">
+                              <HBox spacing="2.0">
                                  <children>
                                     <ChoiceBox fx:id="fxmlSelectedQuestionSideEffectBox" prefHeight="25.0" prefWidth="69.0" />
                                     <ChoiceBox fx:id="fxmlSelectedQuestionSideEffectModifier" prefHeight="25.0" prefWidth="35.0" />
