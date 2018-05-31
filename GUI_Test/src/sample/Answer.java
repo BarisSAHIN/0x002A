@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Answer extends Node {
 
     private static final String SPLITTER = "\\*";
-    private static final String STATSPLITER = "\\-";
+    private static final String STATSPLITER = "\\^";
     private Question next;
     int destinationID;
     String answerText;

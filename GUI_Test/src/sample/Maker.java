@@ -367,8 +367,8 @@ public class Maker extends User implements Initializable {
             answers.put(newA.getId(), newA);
             selectedQuestion.AddAnswer(newA);
             answersListView.getItems().add(newA);
+            fxmlSelectedQuestionAnswerNum.setText(Integer.toString(selectedQuestion.Answers.size()));
         }
-        fxmlSelectedQuestionAnswerNum.setText(Integer.toString(selectedQuestion.Answers.size()));
         answersListView.refresh();
         questionsListView.refresh();
     }
@@ -581,7 +581,7 @@ public class Maker extends User implements Initializable {
         System.out.println("question ID length -> " + questionIDS.length);
         for (Object i : questionIDS) {
             System.out.println(" Save i -> " + i);
-            fileWriter.append(questions.get(questionIDS[(Integer)i-1]).toString());
+            fileWriter.append(questions.get(questionIDS[(Integer)i-1]).saveFormat());
             fileWriter.append("\n");
             fileWriter.flush();
         }
