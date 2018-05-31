@@ -1,10 +1,14 @@
 package sample;
 
+import javafx.fxml.Initializable;
+
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class Player extends User {
+public class Player extends User implements Initializable{
 
     private Story theStory;
     private static final String pickedGame= "./saved";
@@ -61,5 +65,10 @@ public class Player extends User {
      */
     public void finish(){
         theStory.showQuestion();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
