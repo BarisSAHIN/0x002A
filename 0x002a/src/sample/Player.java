@@ -57,7 +57,7 @@ public class Player extends User implements Initializable{
     public void giveAnswer(){
         System.out.println("Your Answer: ");
         Scanner scanner = new Scanner(System.in);
-        theStory.isAnswerLegal(scanner.nextLine());
+        //theStory.isAnswerLegal(scanner.nextLine());
     }
 
     /**
