@@ -41,9 +41,9 @@ public class CStats
         status = new HashMap<>();
         String[] array = input.split("<");
         array = array[1].split(">");
-        if(!array[1].isEmpty())
+        if(!array[0].isEmpty())
         {
-            array = array[1].split(",");
+            array = array[0].split(",");
             for (String parser : array)
                 status.put(parser.split(":")[0], Integer.valueOf(parser.split(":")[1]));
         }
@@ -218,7 +218,7 @@ public class CStats
         {
             Set<String> keyV = status.keySet();
             for(String outp : keyV)
-                ret_val += outp + ": " + status.get(outp).toString();
+                ret_val += "{" + outp + ": " + status.get(outp).toString() + "}";
         }
         return ret_val;
     }
