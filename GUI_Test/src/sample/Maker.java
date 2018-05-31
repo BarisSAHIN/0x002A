@@ -26,35 +26,35 @@ public class Maker extends User implements Initializable {
     /**
      * HashMap of Question objects. Stores all created questions excluding deleted ones.
      */
-    HashMap<Integer, Question> questions;
+    private HashMap<Integer, Question> questions;
     /**
      * HashMap of Answer objects. Stores all created answers excluding deleted ones.
      */
-    HashMap<Integer, Answer> answers;
+    private HashMap<Integer, Answer> answers;
     /**
      * Character Stats for the game. Max 3 stats allowed.
      */
-    CStats stats;
+    private CStats stats;
     /**
      * Selected Question via GUI.
      */
-    Question selectedQuestion;
+    private Question selectedQuestion;
     /**
      * Selected Answer Object via GUI
      */
-    Answer selectedAnswer;
+    private Answer selectedAnswer;
     /**
      * Stores created games name.
      */
-    String gameName = "42";
+    private String gameName = "42";
     /**
      * Counts all created Questions for creating ID.
      */
-    int createdQuestionNum;
+    private int createdQuestionNum;
     /**
      * Counts all created Answers for creating ID.
      */
-    int createdAnswerNum;
+    private int createdAnswerNum;
 
     //FXML Variables
 
@@ -173,6 +173,11 @@ public class Maker extends User implements Initializable {
     @FXML TextField fxmlGameName;
 
     /**
+     * Used on printing information about maker process to GUI.
+     */
+    @FXML Label fxmlInformationBox;
+
+    /**
      * No Param Constructor. Creates a starting point for maker.
      */
     public Maker() {
@@ -210,7 +215,6 @@ public class Maker extends User implements Initializable {
                 Pair<Character,Integer> newPair = new Pair<Character,Integer>(fxmlSelectedQuestionSideEffectModifier.getValue().toString().charAt(0), Integer.parseInt(fxmlSelectedQuestionSideEffectValue.getText().toString()) );
                 newSide.put(fxmlSelectedQuestionSideEffectBox.getValue().toString(),newPair);
                 selectedQuestion.setPreRequisite(newSide);
-                System.out.println(selectedQuestion.preRequisite);
             }else{
                 fxmlSelectedQuestionSideEffectValue.setText("");
                 fxmlSelectedQuestionSideEffectModifier.setValue("None");
@@ -222,6 +226,9 @@ public class Maker extends User implements Initializable {
             answersListView.refresh();
             selectedQuestionPanel.requestLayout();
             selectedAnswerPanel.requestLayout();
+
+            fxmlInformationBox.setText("Question " + selectedQuestion.getId() + "successfully updated.");
+
         }
     }
 
@@ -235,6 +242,8 @@ public class Maker extends User implements Initializable {
         questions.put(newQ.getId(), newQ);
         newQ.Answers.clear();
         questionsListView.getItems().add(newQ);
+
+        fxmlInformationBox.setText("Question " + id + " successfully created.");
     }
 
     /**
@@ -307,10 +316,14 @@ public class Maker extends User implements Initializable {
     public void DeleteQuestion() {
         if (selectedQuestion != null) {
             RemoveAllAnswers();
+            Integer id = selectedQuestion.getId();
             questionsListView.getItems().remove(selectedQuestion);
             questions.remove(selectedQuestion.getId());
             //TODO check for answers goin for that question ?
             selectedQuestion = null;
+
+            fxmlInformationBox.setText("Question " + id + "successfully deleted.");
+
         }
 
         //SelectedQuestion Update for null
@@ -339,13 +352,15 @@ public class Maker extends User implements Initializable {
                 Pair<Character,Integer> newPair = new Pair<Character,Integer>(fxmlSelectedAnswerPreReqModifier.getValue().toString().charAt(0), Integer.parseInt(fxmlSelectedAnswerPreReqValue.getText().toString()) );
                 newSide.put(fxmlSelectedAnswerPreReqBox.getValue().toString(),newPair);
                 selectedAnswer.setStatsToBeChanged(newSide);
-                System.out.println(selectedAnswer.statsToBeChanged);
             }else{
                 fxmlSelectedAnswerPreReqValue.setText("");
                 fxmlSelectedAnswerPreReqModifier.setValue("None");
                 fxmlSelectedAnswerPreReqBox.setValue("None");
                 selectedAnswer.statsToBeChanged = new HashMap<>();
             }
+
+            fxmlInformationBox.setText("Question " + selectedQuestion.getId() + " Answer ID:" + selectedAnswer.getId() + "successfully updated.");
+
         }
         questionsListView.refresh();
         answersListView.refresh();
@@ -413,11 +428,18 @@ public class Maker extends User implements Initializable {
      * @post selectedAnswer becomes null
      */
     public void DeleteAnswer() {
-        selectedQuestion.Answers.remove(selectedAnswer);
-        answers.remove(selectedAnswer.id);
-        answersListView.getItems().remove(selectedAnswer);
-        answersListView.refresh();
-        selectedAnswer = null;
+        if(selectedAnswer != null){
+            selectedQuestion.Answers.remove(selectedAnswer);
+            Integer id = selectedAnswer.getId();
+            answers.remove(selectedAnswer.id);
+            answersListView.getItems().remove(selectedAnswer);
+            answersListView.refresh();
+            selectedAnswer = null;
+
+            fxmlInformationBox.setText("Question " + selectedQuestion.getId() + " Answer ID: " + id + " successfully deleted.");
+
+        }
+
     }
 
     /**
@@ -449,7 +471,6 @@ public class Maker extends User implements Initializable {
         fxmlSelectedQuestionSideEffectBox.getItems().clear();
         fxmlSelectedAnswerPreReqBox.getItems().clear();
 
-        System.out.println(fxmlStatName1.getText().isEmpty());
         if(!fxmlStatName1.getText().isEmpty()){
             stats.addParam(fxmlStatName1.getText(),Integer.parseInt(fxmlStatDefault1.getText()) );
             fxmlSelectedQuestionSideEffectBox.getItems().add(fxmlStatName1.getText());
@@ -470,10 +491,12 @@ public class Maker extends User implements Initializable {
 
         //TODO: Change all Question and Answer cstats for removed Stat.
 
+        fxmlSelectedAnswerPreReqBox.setValue("None");
+        fxmlSelectedQuestionSideEffectBox.setValue("None");
         fxmlSelectedQuestionSideEffectBox.getItems().add( "None");
         fxmlSelectedAnswerPreReqBox.getItems().add( "None");
 
-
+        fxmlInformationBox.setText("Character Stats successfully updated.");
 
     }
 
@@ -524,6 +547,9 @@ public class Maker extends User implements Initializable {
      */
     public void SetGameName() {
         gameName = fxmlGameName.getText();
+
+        fxmlInformationBox.setText("Game Name Successfully changed to " + gameName);
+
     }
 
     /**
@@ -563,7 +589,7 @@ public class Maker extends User implements Initializable {
     public void save() throws IOException {
         //TODO: Son belirlenen formata göre kontrol edilmeli.
 
-        File saveFile = new File(gameName + ".txt");
+        File saveFile = new File("/saved/"+ gameName + ".txt");
 
         saveFile.delete();
         saveFile.createNewFile();
@@ -571,7 +597,7 @@ public class Maker extends User implements Initializable {
         FileWriter fileWriter = new FileWriter(saveFile);
 
         //Cstat saving.
-        fileWriter.append(stats.toSave());
+        fileWriter.append(stats.toSave() + "\n");
         fileWriter.flush();
 
         //Quesiton & Answer saving
@@ -583,6 +609,8 @@ public class Maker extends User implements Initializable {
             fileWriter.append("\n");
             fileWriter.flush();
         }
+        fileWriter.flush();
 
+        fxmlInformationBox.setText(gameName + " successfully saved");
     }
 }

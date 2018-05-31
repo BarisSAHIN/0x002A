@@ -4,6 +4,7 @@ import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  *      This class is needed for game's/application's Questions.
@@ -239,14 +240,28 @@ public class Question extends Node implements Comparable {
     }
 
     public String saveFormat(){
-        String ret = id+"\\)"+QuestionText;
+        String ret = id+"\\)"+QuestionText + "\\|";
+        if(preRequisite.isEmpty()){
+           ret += "\\|" ;
+        }
+        else{
+            Set<String> keyV = preRequisite.keySet();
+            for(String outp : keyV){
+                String statName = outp;
+                Character symbol = (preRequisite.get(statName)).getKey();
+                Integer value = (preRequisite.get(statName)).getValue();
+                ret += symbol + "\\^" + value + "\\^" + statName + "\\^";
+                ret += "\\|";
+            }
+        }
         for(Answer k: Answers){
-            ret = ret + k;
+            ret += k.saveFormat();
             ret += "/";
         }
         ret += ".";
         return ret;
     }
+
 
     /**
      *  Parses the line with specific characters in order to init Question's data. Line format is:
@@ -256,10 +271,21 @@ public class Question extends Node implements Comparable {
     private void parseLine(String line){
         String[] temp = line.split("\\)");
         id = Integer.parseInt(temp[0]);
-        temp = temp[1].split("-");
-        QuestionText = temp[0];
-        temp = temp[1].split("/");
-        for(String k : temp){
+        temp = temp[1].split("|"); //3 parçaya bölmüş oldu 0.parça qtext 1.parça prereq 2.parça answers
+        QuestionText = temp[0]; //qtext initledim
+        String prereqStr = temp[1]; //hashmap init
+        if(prereqStr.length() != 0) {
+            String[] pre = prereqStr.split("\\^");
+            String statName = pre[2];
+            Integer value = Integer.parseInt(pre[1]);
+            Character symbol = pre[0].charAt(0);
+            Pair<Character,Integer> p = new Pair<Character,Integer>(symbol,value);
+            preRequisite = new HashMap<String, Pair<Character,Integer>>();
+            preRequisite.put(statName,p);
+        }
+        String answers = temp[2]; //answersı / ile splitlicem
+        String[] answer = answers.split("/"); //answer kısmını splitledim
+        for(String k : answer){
             Answers.add(new Answer(k));
         }
     }
