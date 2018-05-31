@@ -13,6 +13,7 @@ public class Story {
     private BinarySearchTree<Question> QuestionSearchTree = null;//For binary search tree
     private Question firstQuestion = null;//For flow of story
     private CStats GameChar = null;
+    private CStats GameCharCurr = null;
     private Question currQuestion = null;
     private PriortyQueueQuestion printArray = new PriortyQueueQuestion();
     private Question prevQuestion = null;
@@ -28,12 +29,17 @@ public class Story {
         FileReader readStory = new FileReader("./saved/"+fileName);
         String bufferString;
         boolean firstFlag = true;
-
+        boolean cstatFlag = true;
         StringBuilder parsedString = new StringBuilder();
 
         BufferedReader readerStory = new BufferedReader(readStory);
 
         while((bufferString = readerStory.readLine()) != null){
+            if(cstatFlag){
+                GameChar = new CStats(bufferString);
+                cstatFlag = false;
+            }
+            else{
             parsedString.append(bufferString);
             if(bufferString.contains("(")){
                 bufferString = parsedString.toString();
@@ -48,6 +54,7 @@ public class Story {
             }
             else
                 parsedString.append("\n");
+            }
         }
         connector(firstQuestion);
 
@@ -61,20 +68,16 @@ public class Story {
         int i = 0;
         if(answers.isEmpty())
             return;
-        /*if(!answers.get(0).hasNextQuestion())
-            return;*/
+        if(!answers.get(0).hasNextQuestion())
+            return;
             while(i<answers.size()){
-          /*  Integer  a = connection.GetAnswers().get(i).nextQuestionID;
+            Integer  a = connection.GetAnswers().get(i).destinationID;
             Question searchQuestion = new Question(a);
             answers.get(i).setNextQuestion(QuestionSearchTree.search(searchQuestion));
-            connector(answers.get(i).GetNextQuestion());*/
+            connector(answers.get(i).GetNextQuestion());
             ++i;
         }
         connection.setAnswers(answers);
-    }
-
-    public void saveStory(){
-
     }
 
     public boolean isEnd(){
@@ -88,18 +91,8 @@ public class Story {
     public void showQuestionAndAnswer(){
         currQuestion.showQuestionAndAnswer();
     }
-    public boolean isAnswerLegal(String Answer){
-        boolean flag=false;
-        ArrayList<Answer> t =  currQuestion.GetAnswers();
-        if(t != null)
-        for(int i=0;i<currQuestion.GetAnswers().size();i++){
-            if((i+1)==Integer.parseInt(Answer)){
-                currQuestion = currQuestion.GetAnswers().get(i).GetNextQuestion();
-                flag = true;
-            }
-        }
-        return flag;
-    }
+
+
 
 
     // SOON
@@ -113,16 +106,48 @@ public class Story {
 //    }
 
 
-    public void addQuestion(){
 
-    }
     public void toNextQuestion(int parameter){
+
         prevQuestion=currQuestion;
         currQuestion=currQuestion.GetAnswers().get(parameter).GetNextQuestion();
-    }
+        GameCharCurr = GameChar;
+        if(!currQuestion.getPreRequisite().isEmpty()){
+            GameChar.updateAllStats(currQuestion.getPreRequisite());
 
+        }
+    }
+    /*
+    *
+    *
+    *
+    *
+    *
+    * */
+    public ArrayList<Answer> legalAnswers(){
+        ArrayList<Answer> result = new ArrayList<>();
+        for (int i=0;i<currQuestion.GetAnswers().size();i++){
+            if(!currQuestion.GetAnswers().get(i).getStatsToBeChanged().isEmpty()){
+                if(GameChar.canAccess(currQuestion.GetAnswers().get(i).getStatsToBeChanged()))
+                    result.add(currQuestion.GetAnswers().get(i));
+                else;
+
+            }
+            else{
+                result.add(currQuestion.GetAnswers().get(i));
+            }
+        }
+        return result;
+    }
+    /*
+    *
+    *
+    *
+    *
+    * */
     public void undo(){
         currQuestion=prevQuestion;
+        GameChar = GameCharCurr;
     }
 
     public Question getCurrQuestion() {
@@ -162,13 +187,8 @@ public class Story {
             }
         }
     }
-    public void printmf(){
-        ArrayList<Question> printThis = null;
-        while(!printArray.isEmpty()){
-            printThis = printArray.givePriorty();
-            for(int i=0;i<printThis.size();i++)
-                printThis.get(i).showQuestionAndAnswer();
-            System.out.println("-----------------------------------");
-        }
+
+    public CStats getGameChar() {
+        return GameChar;
     }
 }
