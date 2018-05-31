@@ -257,10 +257,12 @@ public class Question extends Node implements Comparable {
     private void parseLine(String line){
         String[] temp = line.split("\\)");
         id = Integer.parseInt(temp[0]);
-        temp = temp[1].split("-");
-        QuestionText = temp[0];
-        temp = temp[1].split("/");
-        for(String k : temp){
+        temp = temp[1].split("|"); //3 parçaya bölmüş oldu 0.parça qtext 1.parça prereq 2.parça answers
+        QuestionText = temp[0]; //qtext initledim
+        String prereqStr = temp[1]; //hashmap bilmediğim için init edemedim bu tarafı
+        String answers = temp[2]; //answersı / ile splitlicem
+        String[] answer = answers.split("/"); //answer kısmını splitledim
+        for(String k : answer){
             Answers.add(new Answer(k));
         }
     }

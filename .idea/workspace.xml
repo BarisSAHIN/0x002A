@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2dfa053-f9b4-451d-9431-d3a6ffe4e021" name="Default" comment="Story update">
-      <change beforePath="$PROJECT_DIR$/.idea/0x002A.iml" afterPath="$PROJECT_DIR$/.idea/0x002A.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/0x002a/src/sample/Story.java" afterPath="$PROJECT_DIR$/0x002a/src/sample/Story.java" />
+      <change beforePath="$PROJECT_DIR$/0x002a/src/sample/Question.java" afterPath="$PROJECT_DIR$/0x002a/src/sample/Question.java" />
+      <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/IDNotAllowed.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/IDNotAllowed.class" />
+      <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Question.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Question.class" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Main.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Main.java" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Player.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Player.java" />
+      <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Question.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Question.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,20 +19,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Welcome.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Welcome.java">
+      <file leaf-file-name="Question.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Question.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="41" column="41" lean-forward="true" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+            <state relative-caret-position="141">
+              <caret line="257" column="38" lean-forward="false" selection-start-line="257" selection-start-column="38" selection-end-line="257" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Story.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Story.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="126">
               <caret line="17" column="41" lean-forward="false" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
               <folding>
                 <element signature="e#3884#3885#0" expanded="true" />
@@ -67,7 +69,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/0x002a/src/sample/Question.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Answer.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/BinarySearchTree.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Application.java" />
@@ -76,6 +77,7 @@
         <option value="$PROJECT_DIR$/GUI_Test/src/sample/Player.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Welcome.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Story.java" />
+        <option value="$PROJECT_DIR$/0x002a/src/sample/Question.java" />
       </list>
     </option>
   </component>
@@ -89,9 +91,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="1014" />
-    <option name="height" value="1088" />
+    <option name="x" value="-405" />
+    <option name="y" value="-11" />
+    <option name="width" value="1750" />
+    <option name="height" value="970" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -133,6 +136,14 @@
               <item name="0x002a" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="0x002A" type="462c0819:PsiDirectoryNode" />
+              <item name="0x002a" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="Question.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
@@ -413,7 +424,7 @@
       <workItem from="1526721809974" duration="18000" />
       <workItem from="1527694383692" duration="5221000" />
       <workItem from="1527759843312" duration="10455000" />
-      <workItem from="1527798860755" duration="1936000" />
+      <workItem from="1527798860755" duration="3010000" />
     </task>
     <task id="LOCAL-00001" summary="Application update">
       <created>1524414525570</created>
@@ -471,11 +482,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527799054556</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Story update">
+      <created>1527800823705</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1527800823705</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46153000" />
+    <option name="totallyTimeSpent" value="47227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -519,10 +537,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Application update" />
-    <MESSAGE value="Story update" />
     <MESSAGE value="Küçük düzeltmeler" />
     <MESSAGE value="player gui konuldu GUI teste (tamamlanmamış)" />
-    <option name="LAST_COMMIT_MESSAGE" value="player gui konuldu GUI teste (tamamlanmamış)" />
+    <MESSAGE value="Story update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Story update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -694,14 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Question.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="223" column="5" lean-forward="false" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,12 +932,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="126">
           <caret line="17" column="41" lean-forward="false" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3925#3926#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="257" column="38" lean-forward="false" selection-start-line="257" selection-start-column="38" selection-end-line="257" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
