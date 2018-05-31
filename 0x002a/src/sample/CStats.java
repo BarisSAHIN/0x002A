@@ -94,7 +94,7 @@ public class CStats
     /**
      * Updating a stat with given info.
      * @param name updating field's name.
-     * @param opt updating with witch operation, +, -, *, /, %.
+     * @param opt updating with witch operation, +, -, *, /, %, =.
      * @param number updating the field with this parameter.
      * @return if operation made or not.
      */
@@ -129,9 +129,12 @@ public class CStats
                 case '%':
                     status.put(input.getKey(), status.get(input.getKey()) % input.getValue().getValue());
                     break;
-                default:
-                    ret_val = false;
+                case '=':
+                    status.put(input.getKey(),  input.getValue().getValue());
                     break;
+                default:
+                ret_val = false;
+                break;
             }
         else
             ret_val = false;
