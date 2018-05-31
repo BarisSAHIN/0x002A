@@ -587,30 +587,42 @@ public class Maker extends User implements Initializable {
     * Saves the created story in a file to share with players.
     */
     public void save() throws IOException {
-        //TODO: Son belirlenen formata göre kontrol edilmeli.
 
-        File saveFile = new File("/saved/"+ gameName + ".txt");
+        File saveFile = new File("./saved/"+ gameName + ".txt");
+        File theDir = new File("saved");
 
-        saveFile.delete();
-        saveFile.createNewFile();
+        boolean created = true;
 
-        FileWriter fileWriter = new FileWriter(saveFile);
-
-        //Cstat saving.
-        fileWriter.append(stats.toSave() + "\n");
-        fileWriter.flush();
-
-        //Quesiton & Answer saving
-        Object[] questionIDS =  questions.keySet().toArray();
-        System.out.println("question ID length -> " + questionIDS.length);
-        for (Object i : questionIDS) {
-            System.out.println(" Save i -> " + i);
-            fileWriter.append(questions.get(questionIDS[(Integer)i-1]).saveFormat());
-            fileWriter.append("\n");
-            fileWriter.flush();
+        if(!theDir.exists()){
+            try{
+                theDir.mkdir();
+            }
+            catch(SecurityException e){
+                fxmlInformationBox.setText("Failed to Create savedDirectory. Save action is failed. Contact the creators");
+                created = false;
+            }
         }
-        fileWriter.flush();
+        if(created){
+            saveFile.delete();
+            saveFile.createNewFile();
 
-        fxmlInformationBox.setText(gameName + " successfully saved");
+            FileWriter fileWriter = new FileWriter(saveFile);
+
+            //Cstat saving.
+            fileWriter.append(stats.toSave() + "\n");
+            fileWriter.flush();
+
+            //Quesiton & Answer saving
+            Object[] questionIDS =  questions.keySet().toArray();
+            for (Object i : questionIDS) {
+                fileWriter.append(questions.get(questionIDS[(Integer)i-1]).saveFormat());
+                fileWriter.append("\n");
+                fileWriter.flush();
+            }
+            fileWriter.flush();
+
+            fxmlInformationBox.setText(gameName + " successfully saved");
+        }
+
     }
 }
