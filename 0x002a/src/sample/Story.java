@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 
 public class Story {
@@ -12,6 +14,7 @@ public class Story {
     private Question firstQuestion = null;//For flow of story
     private CStats GameChar = null;
     private Question currQuestion = null;
+    private PriortyQueueQuestion printArray = new PriortyQueueQuestion();
 
     public Story(String fileName) throws IOException, IDNotAllowed {
         QuestionSearchTree = new BinarySearchTree<>();
@@ -124,5 +127,39 @@ public class Story {
     public Question getByID(int ıd) throws IDNotAllowed {
         Question searchQuestion = new Question(ıd);
         return QuestionSearchTree.search(searchQuestion);
+    }
+
+    private void initializePrint(){
+        ArrayList<Question> Queue=new ArrayList<>();
+        int i=1;
+        Question current = null;
+        if(firstQuestion!=null){
+            Queue.add(firstQuestion);
+            printArray.add(firstQuestion,i);
+            i++;
+            while(Queue.size()!=0){
+                current = Queue.get(0);
+                current.setVisited(true);
+                if(current.GetAnswers()!=null){
+                    for (int j=0;j<current.GetAnswers().size();j++){
+                        if(!current.isVisited()) {
+                            printArray.add(current.GetAnswers().get(j).GetNextQuestion(), i);
+                            Queue.add(current.GetAnswers().get(j).GetNextQuestion());
+                        }
+                    }
+                }
+                i++;
+                Queue.remove(0);
+            }
+        }
+    }
+    public void printmf(){
+        ArrayList<Question> printThis = null;
+        while(!printArray.isEmpty()){
+            printThis = printArray.givePriorty();
+            for(int i=0;i<printThis.size();i++)
+                printThis.get(i).showQuestionAndAnswer();
+            System.out.println("-----------------------------------");
+        }
     }
 }
