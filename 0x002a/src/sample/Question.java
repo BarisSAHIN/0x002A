@@ -17,11 +17,17 @@ public class Question extends Node implements Comparable {
      *  Each question has a unique ID. ID is stored as integer.
      */
     private int id;
+    private boolean visited=false;
     /**
      *  Each question has Answers in itself. Answers are stored as ArrayList, size can be
      *   0,1,2,3 or 4.
      */
     protected ArrayList<Answer> Answers;
+
+    public String getQuestionText() {
+        return QuestionText;
+    }
+
     /**
      *  Question text to be showed to User. Text is stored as String.
      */
@@ -209,7 +215,7 @@ public class Question extends Node implements Comparable {
         System.out.println(QuestionText);
         for(int i=0; i < Answers.size(); ++i){
             System.out.printf("\t%d) ", i+1);
-         //   Answers.get(i).showAnswer();
+            //   Answers.get(i).showAnswer();
         }
     }
 
@@ -229,6 +235,11 @@ public class Question extends Node implements Comparable {
      * @return Returns line as String.
      */
     public String toString(){
+        String retval = id + ") " + getQuestionText();
+        return retval;
+    }
+
+    public String saveFormat(){
         String ret = id+"\\)"+QuestionText;
         for(Answer k: Answers){
             ret = ret + k;
@@ -252,6 +263,14 @@ public class Question extends Node implements Comparable {
         for(String k : temp){
             Answers.add(new Answer(k));
         }
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public boolean isVisited() {
+        return visited;
     }
 }
 

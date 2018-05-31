@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Answer extends Node {
 
     private static final String SPLITTER = "\\*";
-    private static final String STATSPLITER = "\\-";
+    private static final String STATSPLITER = "\\^";
     private Question next;
     int destinationID;
     String answerText;
@@ -25,7 +25,7 @@ public class Answer extends Node {
      * @param id Answers ID
      * @param _ownerID ID of question that owns this answer
      */
-     Answer(int id, int _ownerID){
+    Answer(int id, int _ownerID){
         answerText = "Put Your Answer Text Here.";
         ownerID = _ownerID;
         this.id = id;
