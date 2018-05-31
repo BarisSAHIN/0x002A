@@ -18,6 +18,7 @@ public class Question extends Node implements Comparable {
      *  Each question has a unique ID. ID is stored as integer.
      */
     private int id;
+    private boolean visited=false;
     /**
      *  Each question has Answers in itself. Answers are stored as ArrayList, size can be
      *   0,1,2,3 or 4.
@@ -289,6 +290,14 @@ public class Question extends Node implements Comparable {
         for(String k : answer){
             Answers.add(new Answer(k));
         }
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public boolean isVisited() {
+        return visited;
     }
 }
 
