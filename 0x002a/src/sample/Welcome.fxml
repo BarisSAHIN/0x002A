@@ -14,7 +14,7 @@
    <children>
       <VBox fx:id="welcome" layoutX="543.0" layoutY="149.0" prefHeight="214.0" prefWidth="153.0">
          <children>
-            <Label prefHeight="51.0" prefWidth="143.0" text="  0x002a">
+            <Label prefHeight="51.0" prefWidth="143.0" text=" 0x002a">
                <VBox.margin>
                   <Insets left="5.0" top="10.0" />
                </VBox.margin>
@@ -34,7 +34,7 @@
             </Button>
          </children>
       </VBox>
-      <BorderPane fx:id="to_visible" layoutX="457.0" layoutY="110.0" prefHeight="380.0" prefWidth="326.0">
+      <BorderPane fx:id="to_visible" layoutX="457.0" layoutY="110.0" prefHeight="380.0" prefWidth="326.0" visible="false">
          <top>
             <Label prefHeight="16.0" prefWidth="256.0" text="Senaryo listesi" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <padding>
@@ -52,7 +52,7 @@
             <HBox prefHeight="21.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="select" mnemonicParsing="false" prefHeight="26.0" prefWidth="174.0" text="Select" />
-                  <Button fx:id="reset" mnemonicParsing="false" onAction="#switch_visible" prefHeight="26.0" prefWidth="176.0" text="Reset" />
+                  <Button fx:id="reset" mnemonicParsing="false" onAction="#switch_visible" prefHeight="26.0" prefWidth="176.0" text="Back" />
                </children>
             </HBox>
          </bottom>
