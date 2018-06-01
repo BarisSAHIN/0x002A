@@ -38,7 +38,7 @@ public class Player extends User implements Initializable{
 
     public Player() throws IOException, IDNotAllowed {
         try {
-            theStory=new Story("42.txt"/*pickedGameFile + Welcome.filename*/);
+            theStory=new Story(pickedGameFile + Welcome.filename);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IDNotAllowed ıdNotAllowed) {
