@@ -25,7 +25,11 @@ public class Story {
         currQuestion=firstQuestion;
         undoQues=new Stack<>();
     }
-
+    /**
+     * Verilen dosyadan hikayeyi okur ve yapılandırır
+     *
+     * @param fileName Hikayeyi icinde tutan dosyanın ismi
+     * */
     public void initializeStory(String fileName) throws IOException, IDNotAllowed {
 
         FileReader readStory = new FileReader(fileName);
@@ -42,7 +46,6 @@ public class Story {
                 cstatFlag = false;
             }
             else{
-                System.out.printf("%s\n", bufferString);
                 Question localCurrQuestion = new Question(bufferString);
                 if(!firstFlag)
                 {
@@ -66,6 +69,11 @@ public class Story {
 
         return;
     }
+    /**
+     * Dosyadan okunan soruları birbirine baglar
+     *
+     *
+     * */
     private void connector() throws IDNotAllowed {
         for(int i = 0;i<QuestionCount;i++){
             Question searchThis = new Question(i);
@@ -85,17 +93,32 @@ public class Story {
         Question searchThis = new Question(4);
 
     }
-
+    /**
+     * @return Suanki sorunun bir son olup olmadigini dondurur
+     *
+     * */
     public boolean isEnd(){
         if(currQuestion!=null)
             return currQuestion.isEnd();
         return true;
     }
+    /**
+     *
+     * Suanki sorunun metnini terminale bastirir
+     *
+     * */
     public void showQuestion(){
 
         currQuestion.showQuestion();
 
     }
+
+
+    /**
+     *
+     * Suanki sorunun metnini ve cevap metinlerini terminale bastirir
+     *
+     * */
     public void showQuestionAndAnswer(){
         currQuestion.showQuestionAndAnswer();
     }
@@ -103,18 +126,11 @@ public class Story {
 
 
 
-    // SOON
-//    /**
-//     * Oyun içerisinde soruların erişim için ön şartları olabiliyor. Bu ön şartların karşılanıp karşılanmadığını kontrol eden method
-//     * @param currQuestion Test edilecek soru objesi
-//     * @return  Erişilebiliyorsa True, erişilemiyorsa False
-//     */
-//    public boolean isQuestionReachable(Question currQuestion){
-//       return  GameChar.canAccess(currQuestion.getPreRequisite());
-//    }
-
-
-
+    /**
+     * Verilen cevap parametresine gore suanki soruyu gunceller
+     *
+     * @param parameter Gidilmek istenen soruyu tutan cevap
+     * */
     public void toNextQuestion(int parameter){
         undoQues.push(currQuestion);
         currQuestion=currQuestion.GetAnswers().get(parameter-1).GetNextQuestion();
@@ -123,12 +139,12 @@ public class Story {
             GameChar.updateAllStats(currQuestion.getPreRequisite());
         }
     }
-    /*
+    /**
      *
      *
+     *Karakter ozelliklerinin gidebildigi cevaplari bir ArrayList<Answer></> halinde dondurur
      *
-     *
-     *
+     *@return Gidilebilecek cevaplar
      * */
     public ArrayList<Answer> legalAnswers(){
         ArrayList<Answer> result = new ArrayList<>();
@@ -145,9 +161,9 @@ public class Story {
         }
         return result;
     }
-    /*
+    /**
      *
-     *
+     *Bir onceki hamleye doner
      *
      *
      * */
@@ -156,20 +172,36 @@ public class Story {
         GameChar = GameCharCurr;
         return currQuestion;
     }
-
+    /**
+     * @return Suanki soruyu dondurur
+     *
+     * */
     public Question getCurrQuestion() {
         return currQuestion;
     }
-
+    /**
+     * @return ilk soruyu dondurur
+     *
+     * */
     public Question getFirstQuestion() {
         return firstQuestion;
     }
 
+    /**
+     *
+     * Ikılı arama agacindan istenen id ye ait soruyu dondurur
+     *
+     * */
     public Question getByID(int ıd) throws IDNotAllowed {
         Question searchQuestion = new Question(ıd);
         return QuestionSearchTree.search(searchQuestion);
     }
 
+    /**
+     *
+     * Oncelige gore bastirmak icin oncelikli listeyi doldurur
+     *
+     * */
     private void initializePrint(){
         ArrayList<Question> Queue=new ArrayList<>();
         int i=1;
@@ -194,11 +226,21 @@ public class Story {
             }
         }
     }
-
+    /**
+     *
+     * @return Karakteri dondurur
+     *
+     * */
     public CStats getGameChar() {
         return GameChar;
     }
 
+
+    /**
+     *
+     * Geri alinabilecek hamle olup olmadigina bakar
+     *
+     * */
     public boolean isUndoStackEmpty(){
         return undoQues.isEmpty();
     }

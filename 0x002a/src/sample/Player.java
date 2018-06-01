@@ -12,11 +12,17 @@ import java.net.URL;
 import java.util.*;
 
 /**
- *
+ * This class is for making possible to play a game that created by 0x002A engine.
+ * Implements Initializable interface for create a GUI.
  */
 public class Player extends User implements Initializable{
-
+    /**
+     * Story will created by a save data choice from Welcome screen.
+     */
     private Story theStory;
+    /**
+     * Save directory location.
+     */
     public static String pickedGameFile= "saved/";
 
     @FXML AnchorPane fxmlQuestionAnswer;
@@ -36,6 +42,12 @@ public class Player extends User implements Initializable{
     @FXML VBox fxmlVBox;
     @FXML AnchorPane fxmlGeneralPane;
 
+
+    /**
+     * Constructor, creates a new Story by filename choice from welcome screen.
+     * @throws IOException if there is no such file
+     * @throws IDNotAllowed if question can' t be created
+     */
     public Player() throws IOException, IDNotAllowed {
         try {
             theStory=new Story(pickedGameFile + Welcome.filename);
@@ -47,6 +59,9 @@ public class Player extends User implements Initializable{
     }
 
 
+    /**
+     * Creates a new frame for playing game in GUI.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fxmlFinishPane.setVisible(false);
@@ -82,20 +97,39 @@ public class Player extends User implements Initializable{
         }
     }
 
+    /**
+     * Choose the 1st answer
+     */
     public void Answered1(){
         PassToNextQuestion(1);
     }
+
+    /**
+     * Choose the 2nd answer
+     */
     public void Answered2(){
         PassToNextQuestion(2);
     }
+
+    /**
+     * Choose the 3th answer.
+     */
     public void Answered3(){
         PassToNextQuestion(3);
     }
+
+    /**
+     * Choose the 4th answer.
+     */
     public void Answered4(){
         PassToNextQuestion(4);
     }
 
 
+    /**
+     * Take the selected answer and update the story by the answer.
+     * @param answerNum selected answer number.
+     */
     public void PassToNextQuestion(int answerNum){
         fxmlPastQuestionList.getItems().add(theStory.getCurrQuestion());
         theStory.toNextQuestion(answerNum);
@@ -131,6 +165,9 @@ public class Player extends User implements Initializable{
         fxmlUndoButton.setVisible(true);
     }
 
+    /**
+     * Return the last question and restore the story.
+     */
     public void undoQuestion(){
         fxmlPastQuestionList.getItems().remove(theStory.undo());
 
@@ -164,6 +201,9 @@ public class Player extends User implements Initializable{
     }
 
 
+    /**
+     * End the story and show last question without answers.
+     */
     public void finish(){
         fxmlPlayPane.setVisible(false);
         fxmlFinishPane.setVisible(true);
