@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,13 +29,15 @@ public class Player extends User implements Initializable{
     @FXML Button fxmlAnswer2;
     @FXML Button fxmlAnswer3;
     @FXML Button fxmlAnswer4;
-
     @FXML ListView<Question> fxmlPastQuestionList;
-
+    @FXML SplitPane fxmlPlayPane;
+    @FXML Pane fxmlFinishPane;
+    @FXML Label fxmlFinishLabel;
+    @FXML VBox fxmlVBox;
 
     public Player() throws IOException, IDNotAllowed {
         try {
-            theStory=new Story(pickedGameFile + Welcome.filename);
+            theStory=new Story("42.txt"/*pickedGameFile + Welcome.filename*/);
             questions=new Stack<>();
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,12 +49,14 @@ public class Player extends User implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fxmlFinishPane.setVisible(false);
         fxmlUndoButton.setVisible(false);
         if(theStory.isEnd())
             finish();
         else {
             fxmlQuestionText.setText(theStory.getFirstQuestion().getQuestionText());
             ArrayList<Answer> firstAnswers = theStory.legalAnswers();
+            System.out.println(firstAnswers.get(0).getAnswerText());
             if (firstAnswers.size() >= 1) {
                 fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
                 fxmlAnswer1.setVisible(true);
@@ -58,23 +64,27 @@ public class Player extends User implements Initializable{
                 fxmlAnswer1.setVisible(false);
 
             if (firstAnswers.size() >= 2) {
-                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setText(firstAnswers.get(1).getAnswerText());
                 fxmlAnswer1.setVisible(true);
             } else
                 fxmlAnswer1.setVisible(false);
 
             if (firstAnswers.size() >= 3) {
-                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setText(firstAnswers.get(2).getAnswerText());
                 fxmlAnswer1.setVisible(true);
             } else
                 fxmlAnswer1.setVisible(false);
 
             if (firstAnswers.size() == 4) {
-                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setText(firstAnswers.get(3).getAnswerText());
                 fxmlAnswer1.setVisible(true);
             } else
                 fxmlAnswer1.setVisible(false);
         }
+        fxmlVBox.requestLayout();
+        fxmlQuestionAnswer.requestLayout();
+        fxmlPlayPane.requestLayout();
+        fxml
     }
 
     public void Answered1(){
@@ -105,21 +115,21 @@ public class Player extends User implements Initializable{
             fxmlAnswer1.setVisible(false);
 
         if(firstAnswers.size()>=2){
-            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setText(firstAnswers.get(1).getAnswerText());
             fxmlAnswer1.setVisible(true);
         }
         else
             fxmlAnswer1.setVisible(false);
 
         if(firstAnswers.size()>=3){
-            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setText(firstAnswers.get(2).getAnswerText());
             fxmlAnswer1.setVisible(true);
         }
         else
             fxmlAnswer1.setVisible(false);
 
         if(firstAnswers.size()==4){
-            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setText(firstAnswers.get(3).getAnswerText());
             fxmlAnswer1.setVisible(true);
         }
         else
@@ -143,21 +153,21 @@ public class Player extends User implements Initializable{
                 fxmlAnswer1.setVisible(false);
 
             if(firstAnswers.size()>=2){
-                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setText(firstAnswers.get(1).getAnswerText());
                 fxmlAnswer1.setVisible(true);
             }
             else
                 fxmlAnswer1.setVisible(false);
 
             if(firstAnswers.size()>=3){
-                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setText(firstAnswers.get(2).getAnswerText());
                 fxmlAnswer1.setVisible(true);
             }
             else
                 fxmlAnswer1.setVisible(false);
 
             if(firstAnswers.size()==4){
-                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setText(firstAnswers.get(3).getAnswerText());
                 fxmlAnswer1.setVisible(true);
             }
             else
@@ -168,6 +178,8 @@ public class Player extends User implements Initializable{
 
 
     public void finish(){
-        theStory.getCurrQuestion().getQuestionText();
+        fxmlPlayPane.setVisible(false);
+        fxmlFinishPane.setVisible(true);
+        fxmlFinishLabel.setText(/*theStory.getCurrQuestion().getQuestionText() + "\n" + theStory.getGameChar().toString()*/"asasasasasasasasasas");
     }
 }

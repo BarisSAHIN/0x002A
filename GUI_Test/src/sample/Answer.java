@@ -43,6 +43,7 @@ public class Answer extends Node {
      * It's parse to string.After initialize answerText and nextQuestionID.
      */
     Answer(String input){
+        System.out.println("ans---"+input);
         String[] tokens = input.split(SPLITTER );
         answerText = tokens[0];
         destinationID = Integer.parseInt(tokens[1]);

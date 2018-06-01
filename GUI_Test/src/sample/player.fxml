@@ -9,14 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="453.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Player">
    <children>
-      <SplitPane dividerPositions="0.7496087636932708" prefHeight="453.0" prefWidth="859.0">
+      <SplitPane fx:id="fxmlPlayPane" dividerPositions="0.7496087636932708" prefHeight="453.0" prefWidth="859.0">
         <items>
           <AnchorPane fx:id="fxmlQuestionAnswer" minHeight="0.0" minWidth="0.0">
                <children>
-                  <VBox prefHeight="453.0" prefWidth="638.0">
+                  <VBox fx:id="fxmlVBox" prefHeight="453.0" prefWidth="638.0">
                      <children>
                         <Label fx:id="fxmlQuestionText" alignment="CENTER" prefHeight="262.0" prefWidth="638.0" text="Label">
                            <font>
@@ -63,6 +62,13 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <Pane prefHeight="453.0" prefWidth="859.0" />
+      <Pane fx:id="fxmlFinishPane" prefHeight="453.0" prefWidth="859.0">
+         <children>
+            <Label fx:id="fxmlFinishLabel" alignment="CENTER" layoutX="129.0" layoutY="59.0" prefHeight="336.0" prefWidth="602.0" text="Label">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children></Pane>
    </children>
 </AnchorPane>

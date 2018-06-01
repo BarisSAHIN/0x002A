@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="453.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Maker">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Maker">
     <children>
       <VBox prefHeight="453.0" prefWidth="874.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,7 +32,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-              <SplitPane dividerPositions="0.25418060200668896, 0.5083612040133779, 0.7591973244147158" prefWidth="853.0">
+              <SplitPane dividerPositions="0.25418060200668896, 0.5083612040133779, 0.7591973244147158" prefHeight="600.0" prefWidth="853.0">
                   <items>
                       <AnchorPane fx:id="questionListPanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                           <children>
@@ -43,7 +43,7 @@
                                             <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
-                                      <ListView fx:id="questionsListView" onMouseClicked="#QuestionListButtonPushed" prefHeight="375.0" prefWidth="215.0" />
+                                      <ListView fx:id="questionsListView" onMouseClicked="#QuestionListButtonPushed" prefHeight="488.0" prefWidth="290.0" />
                                   </children>
                               </VBox>
                           </children>
@@ -57,7 +57,7 @@
                                             <Font name="System Bold" size="16.0" />
                                         </font>
                                     </Label>
-                              <ListView fx:id="answersListView" onMouseClicked="#AnswerListButtonPressed" prefHeight="121.0" prefWidth="203.0" />
+                              <ListView fx:id="answersListView" onMouseClicked="#AnswerListButtonPressed" prefHeight="233.0" prefWidth="286.0" />
                               <VBox alignment="CENTER" prefHeight="235.0" prefWidth="195.0" spacing="5.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="17.0" prefWidth="214.0" text="Character Stats">
@@ -135,7 +135,7 @@
                                  </children>
                               </HBox>
                               <Label text="Question Text : " />
-                              <TextArea fx:id="fxmlSelectedQuestionText" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                              <TextArea fx:id="fxmlSelectedQuestionText" prefHeight="290.0" prefWidth="283.0" wrapText="true" />
                               <HBox prefHeight="28.0" prefWidth="215.0">
                                  <children>
                                     <Label text="Num Of Answers : ">
@@ -188,7 +188,7 @@
                                  </children>
                               </HBox>
                               <Label text="Answer Text :" />
-                              <TextArea fx:id="fxmlSelectedAnswerText" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                              <TextArea fx:id="fxmlSelectedAnswerText" prefHeight="290.0" prefWidth="273.0" wrapText="true" />
                               <HBox prefHeight="28.0" prefWidth="215.0">
                                  <children>
                                     <Label text="Goes To : ">
@@ -219,6 +219,11 @@
                       </AnchorPane>
                   </items>
               </SplitPane>
+            <Label fx:id="fxmlInformationBox">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
     </children>
