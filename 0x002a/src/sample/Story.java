@@ -199,4 +199,8 @@ public class Story {
     public CStats getGameChar() {
         return GameChar;
     }
+
+    public boolean isUndoStackEmpty(){
+        return undoQues.isEmpty();
+    }
 }
