@@ -48,7 +48,6 @@ public class Story {
                 cstatFlag = false;
             }
             else{
-                System.out.printf("%s\n", bufferString);
                 Question localCurrQuestion = new Question(bufferString);
                 if(!firstFlag)
                 {
