@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Stack;
 
 
@@ -74,13 +72,14 @@ public class Story {
             Question temp = null;
             temp = QuestionSearchTree.search(searchThis);
             if(temp!=null){
-                for(int j=0;j<temp.GetAnswers().size();j++){
-                    searchThis = new Question(temp.GetAnswers().get(j).destinationID);
-                    Question temp2 = QuestionSearchTree.search(searchThis);
-                    if(temp2!=null){
-                        temp.GetAnswers().get(j).setNextQuestion(temp2);
+                if(temp.GetAnswers() != null)
+                    for(int j=0;j<temp.GetAnswers().size();j++){
+                        searchThis = new Question(temp.GetAnswers().get(j).destinationID);
+                        Question temp2 = QuestionSearchTree.search(searchThis);
+                        if(temp2!=null){
+                            temp.GetAnswers().get(j).setNextQuestion(temp2);
+                        }
                     }
-                }
             }
         }
         Question searchThis = new Question(4);

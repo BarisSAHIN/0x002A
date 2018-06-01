@@ -1,8 +1,8 @@
 package sample;
 
 import javafx.util.Pair;
+
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Set;
 
 /**

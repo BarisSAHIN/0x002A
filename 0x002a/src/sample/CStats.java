@@ -40,7 +40,7 @@ public class CStats
     {
         status = new HashMap<>();
         String[] array = input.split("<");
-        array = array[1].split(">");
+        array = array[0].split(">");
         if(!array[0].isEmpty())
         {
             array = array[0].split(",");

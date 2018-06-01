@@ -26,7 +26,7 @@ public class Welcome implements Initializable
     @FXML
     private javafx.scene.control.ListView<String> game_list;
 
-    private static final String pickedGame= "./saved";
+    private static final String pickedGame= "./saved/";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,6 +54,7 @@ public class Welcome implements Initializable
     }
 
     public void File_selected() throws IOException {
+        System.out.println(game_list.getSelectionModel().getSelectedItem());
         filename = game_list.getSelectionModel().getSelectedItem();
         AnchorPane pane = FXMLLoader.load(getClass().getResource("player.fxml"));
         back_ground.getChildren().setAll(pane);
