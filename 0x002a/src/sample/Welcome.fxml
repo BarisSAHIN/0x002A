@@ -34,12 +34,15 @@
             </Button>
          </children>
       </VBox>
-      <BorderPane fx:id="to_visible" layoutX="267.0" layoutY="37.0" prefHeight="380.0" prefWidth="326.0" visible="false">
+      <BorderPane fx:id="to_visible" layoutX="457.0" layoutY="110.0" prefHeight="380.0" prefWidth="326.0">
          <top>
             <Label prefHeight="16.0" prefWidth="256.0" text="Senaryo listesi" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <padding>
                   <Insets left="70.0" />
                </padding>
+               <font>
+                  <Font size="21.0" />
+               </font>
             </Label>
          </top>
          <center>

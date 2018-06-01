@@ -50,6 +50,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Answer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Answer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1575">
+              <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Story.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -168,6 +178,12 @@
               <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
               <item name="0x002A" type="462c0819:PsiDirectoryNode" />
               <item name="0x002a" type="462c0819:PsiDirectoryNode" />
+              <item name="saved" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="0x002A" type="462c0819:PsiDirectoryNode" />
+              <item name="0x002a" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -181,9 +197,14 @@
               <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
               <item name="0x002A" type="462c0819:PsiDirectoryNode" />
               <item name="0x002a" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
+              <item name="0x002A" type="462c0819:PsiDirectoryNode" />
+              <item name="0x002a" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="Question.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="0x002A" type="b2602c69:ProjectViewProjectNode" />
@@ -354,7 +375,7 @@
       <workItem from="1527798860755" duration="3010000" />
       <workItem from="1527804517301" duration="629000" />
       <workItem from="1527805206278" duration="2904000" />
-      <workItem from="1527815690048" duration="276000" />
+      <workItem from="1527815690048" duration="1384000" />
     </task>
     <task id="LOCAL-00001" summary="Application update">
       <created>1524414525570</created>
@@ -440,11 +461,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527807704584</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="menü guı size">
+      <created>1527815988100</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1527815988100</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51036000" />
+    <option name="totallyTimeSpent" value="52144000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -495,21 +523,14 @@
     <MESSAGE value="Story update&#10;CStats &quot;=&quot; update" />
     <MESSAGE value="question saveformat" />
     <MESSAGE value="playerdaki hata yoruma alındı" />
-    <option name="LAST_COMMIT_MESSAGE" value="playerdaki hata yoruma alındı" />
+    <MESSAGE value="menü guı size" />
+    <option name="LAST_COMMIT_MESSAGE" value="menü guı size" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Story.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
@@ -772,13 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Answer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GUI_Test/src/sample/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
@@ -865,6 +879,22 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Answer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1575">
+          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/0x002a/saved/test1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Welcome.fxml">
