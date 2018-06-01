@@ -243,7 +243,7 @@ public class Question extends Node implements Comparable {
     public String saveFormat(){
         String ret = id+"~%"+QuestionText + "~&";
         if(preRequisite.isEmpty()){
-           ret += "~&" ;
+            ret += "~&" ;
         }
         else{
             Set<String> keyV = preRequisite.keySet();

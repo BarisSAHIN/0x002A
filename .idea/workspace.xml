@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a2dfa053-f9b4-451d-9431-d3a6ffe4e021" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/0x002a/saved/test" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/0x002a/saved/test1" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/0x002a/src/sample/Question.java" afterPath="$PROJECT_DIR$/0x002a/src/sample/Question.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,17 +14,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Question.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Question.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Question.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6027">
-              <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="540">
+              <caret line="317" column="0" lean-forward="true" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+              <folding>
+                <element signature="e#774#775#0" expanded="true" />
+                <element signature="e#809#810#0" expanded="true" />
+                <element signature="e#4745#4746#0" expanded="true" />
+                <element signature="e#4775#4776#0" expanded="true" />
+                <element signature="e#4861#4862#0" expanded="true" />
+                <element signature="e#4893#4894#0" expanded="true" />
+                <element signature="e#5070#5071#0" expanded="true" />
+                <element signature="e#5097#5098#0" expanded="true" />
+                <element signature="e#5273#5274#0" expanded="true" />
+                <element signature="e#5308#5309#0" expanded="true" />
+                <element signature="e#6031#6032#0" expanded="true" />
+                <element signature="e#6079#6080#0" expanded="true" />
+                <element signature="e#6614#6615#0" expanded="true" />
+                <element signature="e#6678#6679#0" expanded="true" />
+                <element signature="e#8730#8749#0" expanded="true" />
+                <element signature="e#9162#9163#0" expanded="true" />
+                <element signature="e#9200#9201#0" expanded="true" />
+                <element signature="e#9234#9235#0" expanded="true" />
+                <element signature="e#9264#9265#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="player.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="player.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/0x002a/src/sample/player.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1554">
@@ -181,12 +200,12 @@
         <option value="$PROJECT_DIR$/GUI_Test/src/sample/player.fxml" />
         <option value="$PROJECT_DIR$/GUI_Test/src/sample/Player.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Welcome.java" />
-        <option value="$PROJECT_DIR$/0x002a/src/sample/Question.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Welcome.fxml" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Application.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Story.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/Player.java" />
         <option value="$PROJECT_DIR$/0x002a/src/sample/player.fxml" />
+        <option value="$PROJECT_DIR$/0x002a/src/sample/Question.java" />
       </list>
     </option>
   </component>
@@ -544,11 +563,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527824064162</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="GUI">
+      <created>1527824157397</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1527824157397</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53236000" />
+    <option name="totallyTimeSpent" value="53320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -1016,14 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Question.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6027">
-          <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -1062,6 +1080,34 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/0x002a/src/sample/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="317" column="0" lean-forward="true" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+          <folding>
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+            <element signature="e#4745#4746#0" expanded="true" />
+            <element signature="e#4775#4776#0" expanded="true" />
+            <element signature="e#4861#4862#0" expanded="true" />
+            <element signature="e#4893#4894#0" expanded="true" />
+            <element signature="e#5070#5071#0" expanded="true" />
+            <element signature="e#5097#5098#0" expanded="true" />
+            <element signature="e#5273#5274#0" expanded="true" />
+            <element signature="e#5308#5309#0" expanded="true" />
+            <element signature="e#6031#6032#0" expanded="true" />
+            <element signature="e#6079#6080#0" expanded="true" />
+            <element signature="e#6614#6615#0" expanded="true" />
+            <element signature="e#6678#6679#0" expanded="true" />
+            <element signature="e#8730#8749#0" expanded="true" />
+            <element signature="e#9162#9163#0" expanded="true" />
+            <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#9234#9235#0" expanded="true" />
+            <element signature="e#9264#9265#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
