@@ -271,26 +271,15 @@ public class Question extends Node implements Comparable {
      */
     private void parseLine(String line){
         String[] temp = line.split("~%");
-
-        for(String str : temp){
-            System.out.println("Parsed -> " + str);
-        }
-
         id = Integer.parseInt(temp[0]);
         temp = temp[1].split("~&"); //3 parçaya bölmüş oldu 0.parça qtext 1.parça prereq 2.parça answers
-
-        for(String str : temp){
-            System.out.println("Pipe Parse -> " + str);
-        }
         QuestionText = temp[0]; //qtext initledim
-        System.out.println("TEMP LENGTH" + temp.length);
         if(temp.length == 1){
             preRequisite = new HashMap<>();
             Answers = null;
             return;
         }
 
-        System.out.println("temp[2]"+temp[2]);
         String prereqStr = temp[1]; //hashmap init
         if(prereqStr.length() != 0) {
             String[] pre = prereqStr.split("~-");

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2dfa053-f9b4-451d-9431-d3a6ffe4e021" name="Default" comment="question doğru">
+    <list default="true" id="a2dfa053-f9b4-451d-9431-d3a6ffe4e021" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/GUI_Test/42.txt" afterPath="$PROJECT_DIR$/GUI_Test/42.txt" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Answer.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Answer.class" />
-      <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/CStats.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/CStats.class" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/IDNotAllowed.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/IDNotAllowed.class" />
-      <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Maker.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Maker.class" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Question.class" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/Question.class" />
-      <change beforePath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/maker.fxml" afterPath="$PROJECT_DIR$/GUI_Test/out/production/GUI_Test/sample/maker.fxml" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Answer.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Answer.java" />
-      <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/CStats.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/CStats.java" />
-      <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Main.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Main.java" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Player.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Player.java" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/Question.java" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/Question.java" />
       <change beforePath="$PROJECT_DIR$/GUI_Test/src/sample/player.fxml" afterPath="$PROJECT_DIR$/GUI_Test/src/sample/player.fxml" />
@@ -475,7 +469,7 @@
       <workItem from="1527759843312" duration="10455000" />
       <workItem from="1527798860755" duration="3010000" />
       <workItem from="1527804517301" duration="629000" />
-      <workItem from="1527805206278" duration="6567000" />
+      <workItem from="1527805206278" duration="7977000" />
     </task>
     <task id="LOCAL-00001" summary="Application update">
       <created>1524414525570</created>
@@ -575,11 +569,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527808426726</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="her şeyi">
+      <created>1527817538405</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1527817538405</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54423000" />
+    <option name="totallyTimeSpent" value="55833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -631,7 +632,8 @@
     <MESSAGE value="playerdaki hata yoruma alındı" />
     <MESSAGE value="question doğru" />
     <MESSAGE value="player" />
-    <option name="LAST_COMMIT_MESSAGE" value="player" />
+    <MESSAGE value="her şeyi" />
+    <option name="LAST_COMMIT_MESSAGE" value="her şeyi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

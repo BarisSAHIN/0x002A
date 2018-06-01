@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="453.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Player">
+<AnchorPane fx:id="fxmlGeneralPane" prefHeight="453.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Player">
    <children>
       <SplitPane fx:id="fxmlPlayPane" dividerPositions="0.7496087636932708" prefHeight="453.0" prefWidth="859.0">
         <items>

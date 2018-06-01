@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+/**
+ *
+ */
 public class Player extends User implements Initializable{
 
     private Story theStory;
@@ -34,10 +37,11 @@ public class Player extends User implements Initializable{
     @FXML Pane fxmlFinishPane;
     @FXML Label fxmlFinishLabel;
     @FXML VBox fxmlVBox;
+    @FXML AnchorPane fxmlGeneralPane;
 
     public Player() throws IOException, IDNotAllowed {
         try {
-            theStory=new Story("42.txt"/*pickedGameFile + Welcome.filename*/);
+            theStory=new Story(pickedGameFile + Welcome.filename);
             questions=new Stack<>();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +60,6 @@ public class Player extends User implements Initializable{
         else {
             fxmlQuestionText.setText(theStory.getFirstQuestion().getQuestionText());
             ArrayList<Answer> firstAnswers = theStory.legalAnswers();
-            System.out.println(firstAnswers.get(0).getAnswerText());
             if (firstAnswers.size() >= 1) {
                 fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
                 fxmlAnswer1.setVisible(true);
@@ -64,27 +67,23 @@ public class Player extends User implements Initializable{
                 fxmlAnswer1.setVisible(false);
 
             if (firstAnswers.size() >= 2) {
-                fxmlAnswer1.setText(firstAnswers.get(1).getAnswerText());
-                fxmlAnswer1.setVisible(true);
+                fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+                fxmlAnswer2.setVisible(true);
             } else
-                fxmlAnswer1.setVisible(false);
+                fxmlAnswer2.setVisible(false);
 
             if (firstAnswers.size() >= 3) {
-                fxmlAnswer1.setText(firstAnswers.get(2).getAnswerText());
-                fxmlAnswer1.setVisible(true);
+                fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+                fxmlAnswer3.setVisible(true);
             } else
-                fxmlAnswer1.setVisible(false);
+                fxmlAnswer3.setVisible(false);
 
             if (firstAnswers.size() == 4) {
-                fxmlAnswer1.setText(firstAnswers.get(3).getAnswerText());
-                fxmlAnswer1.setVisible(true);
+                fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+                fxmlAnswer4.setVisible(true);
             } else
-                fxmlAnswer1.setVisible(false);
+                fxmlAnswer4.setVisible(false);
         }
-        fxmlVBox.requestLayout();
-        fxmlQuestionAnswer.requestLayout();
-        fxmlPlayPane.requestLayout();
-        fxml
     }
 
     public void Answered1(){
@@ -100,41 +99,6 @@ public class Player extends User implements Initializable{
         PassToNextQuestion(4);
     }
 
-    public void undoQuestion(){
-        fxmlPastQuestionList.getItems().remove(questions.pop());
-        theStory.undo();
-        if(questions.empty())
-            fxmlUndoButton.setVisible(false);
-
-        ArrayList<Answer> firstAnswers=theStory.legalAnswers();
-        if(firstAnswers.size()>=1){
-            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
-            fxmlAnswer1.setVisible(true);
-        }
-        else
-            fxmlAnswer1.setVisible(false);
-
-        if(firstAnswers.size()>=2){
-            fxmlAnswer1.setText(firstAnswers.get(1).getAnswerText());
-            fxmlAnswer1.setVisible(true);
-        }
-        else
-            fxmlAnswer1.setVisible(false);
-
-        if(firstAnswers.size()>=3){
-            fxmlAnswer1.setText(firstAnswers.get(2).getAnswerText());
-            fxmlAnswer1.setVisible(true);
-        }
-        else
-            fxmlAnswer1.setVisible(false);
-
-        if(firstAnswers.size()==4){
-            fxmlAnswer1.setText(firstAnswers.get(3).getAnswerText());
-            fxmlAnswer1.setVisible(true);
-        }
-        else
-            fxmlAnswer1.setVisible(false);
-    }
 
     public void PassToNextQuestion(int answerNum){
         fxmlPastQuestionList.getItems().add(theStory.getCurrQuestion());
@@ -145,41 +109,68 @@ public class Player extends User implements Initializable{
         else{
             fxmlQuestionText.setText(theStory.getCurrQuestion().getQuestionText());
             ArrayList<Answer> firstAnswers=theStory.legalAnswers();
-            if(firstAnswers.size()>=1){
+            if (firstAnswers.size() >= 1) {
                 fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
                 fxmlAnswer1.setVisible(true);
-            }
-            else
+            } else
                 fxmlAnswer1.setVisible(false);
 
-            if(firstAnswers.size()>=2){
-                fxmlAnswer1.setText(firstAnswers.get(1).getAnswerText());
-                fxmlAnswer1.setVisible(true);
-            }
-            else
-                fxmlAnswer1.setVisible(false);
+            if (firstAnswers.size() >= 2) {
+                fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+                fxmlAnswer2.setVisible(true);
+            } else
+                fxmlAnswer2.setVisible(false);
 
-            if(firstAnswers.size()>=3){
-                fxmlAnswer1.setText(firstAnswers.get(2).getAnswerText());
-                fxmlAnswer1.setVisible(true);
-            }
-            else
-                fxmlAnswer1.setVisible(false);
+            if (firstAnswers.size() >= 3) {
+                fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+                fxmlAnswer3.setVisible(true);
+            } else
+                fxmlAnswer3.setVisible(false);
 
-            if(firstAnswers.size()==4){
-                fxmlAnswer1.setText(firstAnswers.get(3).getAnswerText());
-                fxmlAnswer1.setVisible(true);
-            }
-            else
-                fxmlAnswer1.setVisible(false);
-            fxmlUndoButton.setVisible(true);
+            if (firstAnswers.size() == 4) {
+                fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+                fxmlAnswer4.setVisible(true);
+            } else
+                fxmlAnswer4.setVisible(false);
         }
+    }
+
+    public void undoQuestion(){
+        fxmlPastQuestionList.getItems().remove(theStory.undo());
+
+        if(questions.empty())
+            fxmlUndoButton.setVisible(false);
+
+        ArrayList<Answer> firstAnswers=theStory.legalAnswers();
+        if (firstAnswers.size() >= 1) {
+            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setVisible(true);
+        } else
+            fxmlAnswer1.setVisible(false);
+
+        if (firstAnswers.size() >= 2) {
+            fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+            fxmlAnswer2.setVisible(true);
+        } else
+            fxmlAnswer2.setVisible(false);
+
+        if (firstAnswers.size() >= 3) {
+            fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+            fxmlAnswer3.setVisible(true);
+        } else
+            fxmlAnswer3.setVisible(false);
+
+        if (firstAnswers.size() == 4) {
+            fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+            fxmlAnswer4.setVisible(true);
+        } else
+            fxmlAnswer4.setVisible(false);
     }
 
 
     public void finish(){
         fxmlPlayPane.setVisible(false);
         fxmlFinishPane.setVisible(true);
-        fxmlFinishLabel.setText(/*theStory.getCurrQuestion().getQuestionText() + "\n" + theStory.getGameChar().toString()*/"asasasasasasasasasas");
+        fxmlFinishLabel.setText(theStory.getCurrQuestion().getQuestionText() + "\n" + theStory.getGameChar().toString());
     }
 }
