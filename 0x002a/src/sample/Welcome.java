@@ -53,9 +53,11 @@ public class Welcome implements Initializable
         to_visible.setVisible(!welcome.isVisible());
     }
 
-    public void File_selected()
-    {
+    public void File_selected() throws IOException {
         filename = game_list.getSelectionModel().getSelectedItem();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("player.fxml"));
+        back_ground.getChildren().setAll(pane);
+
     }
 
     public void maker_clicked() throws IOException

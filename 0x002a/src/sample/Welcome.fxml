@@ -46,12 +46,12 @@
             </Label>
          </top>
          <center>
-            <ListView fx:id="game_list" onMouseClicked="#File_selected" prefHeight="309.0" prefWidth="256.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="game_list" prefHeight="309.0" prefWidth="256.0" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
             <HBox prefHeight="21.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="select" mnemonicParsing="false" prefHeight="26.0" prefWidth="174.0" text="Select" />
+                  <Button fx:id="select" mnemonicParsing="false" onMouseClicked="#File_selected" prefHeight="26.0" prefWidth="174.0" text="Select" />
                   <Button fx:id="reset" mnemonicParsing="false" onAction="#switch_visible" prefHeight="26.0" prefWidth="176.0" text="Back" />
                </children>
             </HBox>

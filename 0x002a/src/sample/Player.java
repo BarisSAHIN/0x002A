@@ -17,7 +17,7 @@ import java.util.*;
 public class Player extends User implements Initializable{
 
     private Story theStory;
-    public static String pickedGameFile= "./saved";
+    public static String pickedGameFile= "saved/";
 
     @FXML AnchorPane fxmlQuestionAnswer;
 
