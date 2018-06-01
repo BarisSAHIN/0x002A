@@ -54,7 +54,6 @@ public class Welcome implements Initializable
     }
 
     public void File_selected() throws IOException {
-        System.out.println(game_list.getSelectionModel().getSelectedItem());
         filename = game_list.getSelectionModel().getSelectedItem();
         AnchorPane pane = FXMLLoader.load(getClass().getResource("player.fxml"));
         back_ground.getChildren().setAll(pane);
