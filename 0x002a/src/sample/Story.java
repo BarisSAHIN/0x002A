@@ -84,8 +84,6 @@ public class Story {
             }
         }
         Question searchThis = new Question(4);
-        System.out.println("This: " + QuestionSearchTree.search(searchThis).GetAnswers().size());
-        System.out.println("This 2: " + QuestionCount);
 
     }
 
@@ -119,12 +117,9 @@ public class Story {
 
 
     public void toNextQuestion(int parameter){
-        System.out.println("---------- "+parameter);
         undoQues.push(currQuestion);
         currQuestion=currQuestion.GetAnswers().get(parameter-1).GetNextQuestion();
         GameCharCurr = GameChar;
-        if (currQuestion==null)
-            System.out.println(parameter+ "heleley");
         if(!currQuestion.getPreRequisite().isEmpty()){
             GameChar.updateAllStats(currQuestion.getPreRequisite());
         }
