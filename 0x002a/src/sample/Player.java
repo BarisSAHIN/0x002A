@@ -1,21 +1,44 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
+/**
+ *
+ */
 public class Player extends User implements Initializable{
 
     private Story theStory;
-    private static final String pickedGame= "./saved";
+    public static String pickedGameFile= "saved/";
+
+    @FXML AnchorPane fxmlQuestionAnswer;
+
+    @FXML Label fxmlQuestionText;
+
+    @FXML Button fxmlUndoButton;
+
+    @FXML Button fxmlAnswer1;
+    @FXML Button fxmlAnswer2;
+    @FXML Button fxmlAnswer3;
+    @FXML Button fxmlAnswer4;
+    @FXML ListView<Question> fxmlPastQuestionList;
+    @FXML SplitPane fxmlPlayPane;
+    @FXML Pane fxmlFinishPane;
+    @FXML Label fxmlFinishLabel;
+    @FXML VBox fxmlVBox;
+    @FXML AnchorPane fxmlGeneralPane;
 
     public Player() throws IOException, IDNotAllowed {
         try {
-            theStory=new Story(pickGame());
+            theStory=new Story(pickedGameFile + Welcome.filename);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IDNotAllowed ıdNotAllowed) {
@@ -23,52 +46,127 @@ public class Player extends User implements Initializable{
         }
     }
 
-    /**
-     * The main function that follows from first question to last question -answer by answer- till questions end.
-     */
-    public void play(){
-        while(!theStory.isEnd()) {
-            theStory.showQuestionAndAnswer();   //soru-cevapların basılması
-            giveAnswer();       //playerın cevabını ekrandan okuma ve storynin sonraki soruya geçişi
-        }
-        System.out.println("!!!");
-        finish();   //ulaşılan sonun ekrana basılması
-    }
-
-    /**
-     * Prints saved game files at "saved" directory and gets the picked file name.
-     */
-    private String pickGame(){
-        System.out.println("Saved games: ");
-        File folder = new File(pickedGame);
-        File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; ++i) {
-            if (listOfFiles[i].isFile())
-                System.out.printf("\t%s\n", listOfFiles[i].getName());
-        }
-        System.out.println("Enter game file name you want to play: ");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-   }
-
-    /**
-     * Gets answer from terminal till the answer is legal.
-     */
-    public void giveAnswer(){
-        System.out.println("Your Answer: ");
-        Scanner scanner = new Scanner(System.in);
-        theStory.isAnswerLegal(scanner.nextLine());
-    }
-
-    /**
-     * Prints the text in 'last question' as result of answer path.
-     */
-    public void finish(){
-        theStory.showQuestion();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fxmlFinishPane.setVisible(false);
+        fxmlUndoButton.setVisible(false);
+        if(theStory.isEnd())
+            finish();
+        else {
+            fxmlQuestionText.setText(theStory.getFirstQuestion().getQuestionText());
+            ArrayList<Answer> firstAnswers = theStory.legalAnswers();
+            if (firstAnswers.size() >= 1) {
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            } else
+                fxmlAnswer1.setVisible(false);
 
+            if (firstAnswers.size() >= 2) {
+                fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+                fxmlAnswer2.setVisible(true);
+            } else
+                fxmlAnswer2.setVisible(false);
+
+            if (firstAnswers.size() >= 3) {
+                fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+                fxmlAnswer3.setVisible(true);
+            } else
+                fxmlAnswer3.setVisible(false);
+
+            if (firstAnswers.size() == 4) {
+                fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+                fxmlAnswer4.setVisible(true);
+            } else
+                fxmlAnswer4.setVisible(false);
+        }
+    }
+
+    public void Answered1(){
+        PassToNextQuestion(1);
+    }
+    public void Answered2(){
+        PassToNextQuestion(2);
+    }
+    public void Answered3(){
+        PassToNextQuestion(3);
+    }
+    public void Answered4(){
+        PassToNextQuestion(4);
+    }
+
+
+    public void PassToNextQuestion(int answerNum){
+        fxmlPastQuestionList.getItems().add(theStory.getCurrQuestion());
+        theStory.toNextQuestion(answerNum);
+        if(theStory.isEnd())
+            finish();
+        else{
+            fxmlQuestionText.setText(theStory.getCurrQuestion().getQuestionText());
+            ArrayList<Answer> firstAnswers=theStory.legalAnswers();
+            if (firstAnswers.size() >= 1) {
+                fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+                fxmlAnswer1.setVisible(true);
+            } else
+                fxmlAnswer1.setVisible(false);
+
+            if (firstAnswers.size() >= 2) {
+                fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+                fxmlAnswer2.setVisible(true);
+            } else
+                fxmlAnswer2.setVisible(false);
+
+            if (firstAnswers.size() >= 3) {
+                fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+                fxmlAnswer3.setVisible(true);
+            } else
+                fxmlAnswer3.setVisible(false);
+
+            if (firstAnswers.size() == 4) {
+                fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+                fxmlAnswer4.setVisible(true);
+            } else
+                fxmlAnswer4.setVisible(false);
+        }
+        fxmlUndoButton.setVisible(true);
+    }
+
+    public void undoQuestion(){
+        fxmlPastQuestionList.getItems().remove(theStory.undo());
+
+        if(theStory.isUndoStackEmpty())
+            fxmlUndoButton.setVisible(false);
+
+        ArrayList<Answer> firstAnswers=theStory.legalAnswers();
+        if (firstAnswers.size() >= 1) {
+            fxmlAnswer1.setText(firstAnswers.get(0).getAnswerText());
+            fxmlAnswer1.setVisible(true);
+        } else
+            fxmlAnswer1.setVisible(false);
+
+        if (firstAnswers.size() >= 2) {
+            fxmlAnswer2.setText(firstAnswers.get(1).getAnswerText());
+            fxmlAnswer2.setVisible(true);
+        } else
+            fxmlAnswer2.setVisible(false);
+
+        if (firstAnswers.size() >= 3) {
+            fxmlAnswer3.setText(firstAnswers.get(2).getAnswerText());
+            fxmlAnswer3.setVisible(true);
+        } else
+            fxmlAnswer3.setVisible(false);
+
+        if (firstAnswers.size() == 4) {
+            fxmlAnswer4.setText(firstAnswers.get(3).getAnswerText());
+            fxmlAnswer4.setVisible(true);
+        } else
+            fxmlAnswer4.setVisible(false);
+    }
+
+
+    public void finish(){
+        fxmlPlayPane.setVisible(false);
+        fxmlFinishPane.setVisible(true);
+        fxmlFinishLabel.setText(theStory.getCurrQuestion().getQuestionText() + "\n" + theStory.getGameChar().toString());
     }
 }

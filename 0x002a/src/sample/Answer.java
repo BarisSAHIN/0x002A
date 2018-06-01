@@ -3,6 +3,7 @@ package sample;
 import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *  Answer class extended from Node.
@@ -11,13 +12,35 @@ import java.util.Scanner;
  */
 public class Answer extends Node {
 
-    private static final String SPLITTER = "\\*";
-    private static final String STATSPLITER = "\\^";
+    /**
+     * Splitters for saving and loading Answer objects.
+     */
+    private static final String SPLITTER = "##";
+    private static final String STATSPLITER = "%%";
+
+    /**
+     * Target Question object. Used in Player.
+     */
     private Question next;
+    /**
+     * Target Question objects ID. Used in maker.
+     */
     int destinationID;
+    /**
+     * Contains answers text.
+     */
     String answerText;
+    /**
+     * Answers prerequisite for continuing to next question.
+     */
     HashMap<String, Pair<Character, Integer>> statsToBeChanged;
+    /**
+     * Question ID of this answers owner.
+     */
     int ownerID;
+    /**
+     * Answers ID. Used in Maker
+     */
     int id;
 
     /**
@@ -36,16 +59,17 @@ public class Answer extends Node {
     }
 
     /**
-     * Constructor with parameter.
-     * @param input type is string.
-     * It's parse to string.After initialize answerText and nextQuestionID.
+     * Constructor with parameter. Takes a string to load Answers from file.
+     * @param input String that contains all of answers data.
      */
     Answer(String input){
         String[] tokens = input.split(SPLITTER );
         answerText = tokens[0];
         destinationID = Integer.parseInt(tokens[1]);
-        if(tokens[2].length() != 0){ //has preRequisite
-            String[] pre = tokens[2].split(STATSPLITER);
+        if(tokens.length != 2){ //has preRequisite
+            String prereqSplit = tokens[2];
+            String[] pre = prereqSplit.split(STATSPLITER);
+
             String statName = pre[2];
             Integer value = Integer.parseInt(pre[1]);
             Character symbol = pre[0].charAt(0);
@@ -53,7 +77,7 @@ public class Answer extends Node {
             statsToBeChanged = new HashMap<String, Pair<Character,Integer>>();
             statsToBeChanged.put(statName,p);
         }else{
-            statsToBeChanged = null;
+            statsToBeChanged = new HashMap<>();
         }
     }
 
@@ -149,27 +173,36 @@ public class Answer extends Node {
         this.id = id;
     }
 
+    /**
+     * Converts this Answer object to a string format to be used in save method in Maker.
+     * @return a string that contains all of answers information.
+     */
     public String saveFormat(){
         String save = "";
         save = answerText + SPLITTER + destinationID + SPLITTER;
-        if(statsToBeChanged == null){
+        if(statsToBeChanged.isEmpty()){
             save += SPLITTER;
         }else{
-            String statName = (String)statsToBeChanged.keySet().toArray()[0];
-            Character symbol = (statsToBeChanged.get(statName)).getKey();
-            Integer value = (statsToBeChanged.get(statName)).getValue();
-            save += symbol + STATSPLITER + value + STATSPLITER + statName + STATSPLITER;
+            Set<String> keyV = statsToBeChanged.keySet();
+            for(String outp : keyV){
+                String statName = outp;
+                Character symbol = (statsToBeChanged.get(statName)).getKey();
+                Integer value = (statsToBeChanged.get(statName)).getValue();
+                save += symbol + STATSPLITER + value + STATSPLITER + statName + STATSPLITER;
+            }
         }
+
+        save += SPLITTER;
 
         return save;
     }
 
     /**
-     * Override toString method.
-     * @return answerText string variable.
+     *  Returns answerText and destinationID in a string.
+     * @return A string that contains answerText string variable and its destinationID.
      */
     @Override
     public String toString() {
-        return " " + answerText + " ";
+        return " " + answerText + "\n->" + destinationID ;
     }
 }

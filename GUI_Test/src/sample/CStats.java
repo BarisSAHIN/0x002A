@@ -41,9 +41,9 @@ public class CStats
         status = new HashMap<>();
         String[] array = input.split("<");
         array = array[1].split(">");
-        if(!array[1].isEmpty())
+        if(!array[0].isEmpty())
         {
-            array = array[1].split(",");
+            array = array[0].split(",");
             for (String parser : array)
                 status.put(parser.split(":")[0], Integer.valueOf(parser.split(":")[1]));
         }
@@ -94,7 +94,7 @@ public class CStats
     /**
      * Updating a stat with given info.
      * @param name updating field's name.
-     * @param opt updating with witch operation, +, -, *, /, %.
+     * @param opt updating with witch operation, +, -, *, /, %, =.
      * @param number updating the field with this parameter.
      * @return if operation made or not.
      */
@@ -128,6 +128,9 @@ public class CStats
                     break;
                 case '%':
                     status.put(input.getKey(), status.get(input.getKey()) % input.getValue().getValue());
+                    break;
+                case '=':
+                    status.put(input.getKey(),  input.getValue().getValue());
                     break;
                 default:
                     ret_val = false;
@@ -168,14 +171,13 @@ public class CStats
         return ret_val;
     }
 
-    //WILL ADD LATER
-//    /**
-//     * Oyuncu karakteri verilen ön şartı karşılayıp, bir sonraki node'a erişebiliyor mu diye kontrol eder.
-//     * Eğer gerekli ön şartları sağlıyorsa true, sağlamıyorsa false döner.
-//     * @param preRequisite Ön şart
-//     * @return  Ön şart sağlanıyorsa true, sağlanmıyorsa false
-//     */
-/*    public boolean canAccess(HashMap<String, Pair<Character, Integer>> preRequisite){
+    /**
+     * Oyuncu karakteri verilen ön şartı karşılayıp, bir sonraki node'a erişebiliyor mu diye kontrol eder.
+     * Eğer gerekli ön şartları sağlıyorsa true, sağlamıyorsa false döner.
+     * @param preRequisite Ön şart
+     * @return  Ön şart sağlanıyorsa true, sağlanmıyorsa false
+     */
+    public boolean canAccess(HashMap<String, Pair<Character, Integer>> preRequisite){
         Set<String> keyVal = preRequisite.keySet();
 
         for(String cpr : keyVal) {
@@ -198,7 +200,7 @@ public class CStats
 
         return true;
     }
-*/
+
     /**
      * Get all the stat's name with set of stats.
      * @return A set of all stat nemes.
@@ -219,7 +221,7 @@ public class CStats
         {
             Set<String> keyV = status.keySet();
             for(String outp : keyV)
-                ret_val += outp + ": " + status.get(outp).toString();
+                ret_val += "{" + outp + ": " + status.get(outp).toString() + "}";
         }
         return ret_val;
     }
