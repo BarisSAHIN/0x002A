@@ -1,10 +1,13 @@
 package sample;
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 
 public class Story {
@@ -16,17 +19,18 @@ public class Story {
     private CStats GameCharCurr = null;
     private Question currQuestion = null;
     private PriortyQueueQuestion printArray = new PriortyQueueQuestion();
-    private Question prevQuestion = null;
-
+    private Stack<Question> undoQues;
+    private int QuestionCount = 0;
     public Story(String fileName) throws IOException, IDNotAllowed {
         QuestionSearchTree = new BinarySearchTree<>();
         initializeStory(fileName);
         currQuestion=firstQuestion;
+        undoQues=new Stack<>();
     }
 
     public void initializeStory(String fileName) throws IOException, IDNotAllowed {
 
-        FileReader readStory = new FileReader("./saved/"+fileName);
+        FileReader readStory = new FileReader(fileName);
         String bufferString;
         boolean firstFlag = true;
         boolean cstatFlag = true;
@@ -40,48 +44,55 @@ public class Story {
                 cstatFlag = false;
             }
             else{
-            parsedString.append(bufferString);
-            if(bufferString.contains("(")){
-                bufferString = parsedString.toString();
-                Question localCurrQuestion = new Question(bufferString.split("\\(")[0]);
-                parsedString = new StringBuilder();
+                System.out.printf("%s\n", bufferString);
+                Question localCurrQuestion = new Question(bufferString);
                 if(!firstFlag)
-                QuestionSearchTree.add(localCurrQuestion);
+                {
+                    QuestionSearchTree.add(localCurrQuestion);
+                    ++QuestionCount;
+                }
                 else{
+                    ++QuestionCount;
+                    QuestionSearchTree.add(localCurrQuestion);
                     firstQuestion = localCurrQuestion;
                     firstFlag=false;
                 }
+
             }
-            else
-                parsedString.append("\n");
-            }
+
+
         }
-        connector(firstQuestion);
+        connector();
 
 
 
         return;
     }
-    private void connector(Question connection) throws IDNotAllowed {
-        if(connection == null) return;
-        ArrayList<Answer> answers= connection.GetAnswers();
-        int i = 0;
-        if(answers.isEmpty())
-            return;
-        if(!answers.get(0).hasNextQuestion())
-            return;
-            while(i<answers.size()){
-            Integer  a = connection.GetAnswers().get(i).destinationID;
-            Question searchQuestion = new Question(a);
-            answers.get(i).setNextQuestion(QuestionSearchTree.search(searchQuestion));
-            connector(answers.get(i).GetNextQuestion());
-            ++i;
+    private void connector() throws IDNotAllowed {
+        for(int i = 0;i<QuestionCount;i++){
+            Question searchThis = new Question(i);
+            Question temp = null;
+            temp = QuestionSearchTree.search(searchThis);
+            if(temp!=null){
+                for(int j=0;j<temp.GetAnswers().size();j++){
+                    searchThis = new Question(temp.GetAnswers().get(j).destinationID);
+                    Question temp2 = QuestionSearchTree.search(searchThis);
+                    if(temp2!=null){
+                        temp.GetAnswers().get(j).setNextQuestion(temp2);
+                    }
+                }
+            }
         }
-        connection.setAnswers(answers);
+        Question searchThis = new Question(4);
+        System.out.println("This: " + QuestionSearchTree.search(searchThis).GetAnswers().size());
+        System.out.println("This 2: " + QuestionCount);
+
     }
 
     public boolean isEnd(){
-        return currQuestion.isEnd();
+        if(currQuestion!=null)
+            return currQuestion.isEnd();
+        return true;
     }
     public void showQuestion(){
 
@@ -108,22 +119,23 @@ public class Story {
 
 
     public void toNextQuestion(int parameter){
-
-        prevQuestion=currQuestion;
-        currQuestion=currQuestion.GetAnswers().get(parameter).GetNextQuestion();
+        System.out.println("---------- "+parameter);
+        undoQues.push(currQuestion);
+        currQuestion=currQuestion.GetAnswers().get(parameter-1).GetNextQuestion();
         GameCharCurr = GameChar;
+        if (currQuestion==null)
+            System.out.println(parameter+ "heleley");
         if(!currQuestion.getPreRequisite().isEmpty()){
             GameChar.updateAllStats(currQuestion.getPreRequisite());
-
         }
     }
     /*
-    *
-    *
-    *
-    *
-    *
-    * */
+     *
+     *
+     *
+     *
+     *
+     * */
     public ArrayList<Answer> legalAnswers(){
         ArrayList<Answer> result = new ArrayList<>();
         for (int i=0;i<currQuestion.GetAnswers().size();i++){
@@ -140,14 +152,15 @@ public class Story {
         return result;
     }
     /*
-    *
-    *
-    *
-    *
-    * */
-    public void undo(){
-        currQuestion=prevQuestion;
+     *
+     *
+     *
+     *
+     * */
+    public Question undo(){
+        currQuestion=undoQues.pop();
         GameChar = GameCharCurr;
+        return currQuestion;
     }
 
     public Question getCurrQuestion() {
