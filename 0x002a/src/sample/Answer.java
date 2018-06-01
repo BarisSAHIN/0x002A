@@ -12,14 +12,35 @@ import java.util.Set;
  */
 public class Answer extends Node {
 
+    /**
+     * Splitters for saving and loading Answer objects.
+     */
     private static final String SPLITTER = "##";
     private static final String STATSPLITER = "%%";
 
+    /**
+     * Target Question object. Used in Player.
+     */
     private Question next;
+    /**
+     * Target Question objects ID. Used in maker.
+     */
     int destinationID;
+    /**
+     * Contains answers text.
+     */
     String answerText;
+    /**
+     * Answers prerequisite for continuing to next question.
+     */
     HashMap<String, Pair<Character, Integer>> statsToBeChanged;
+    /**
+     * Question ID of this answers owner.
+     */
     int ownerID;
+    /**
+     * Answers ID. Used in Maker
+     */
     int id;
 
     /**
@@ -38,9 +59,8 @@ public class Answer extends Node {
     }
 
     /**
-     * Constructor with parameter.
-     * @param input type is string.
-     * It's parse to string.After initialize answerText and nextQuestionID.
+     * Constructor with parameter. Takes a string to load Answers from file.
+     * @param input String that contains all of answers data.
      */
     Answer(String input){
         String[] tokens = input.split(SPLITTER );
@@ -153,6 +173,10 @@ public class Answer extends Node {
         this.id = id;
     }
 
+    /**
+     * Converts this Answer object to a string format to be used in save method in Maker.
+     * @return a string that contains all of answers information.
+     */
     public String saveFormat(){
         String save = "";
         save = answerText + SPLITTER + destinationID + SPLITTER;
@@ -174,8 +198,8 @@ public class Answer extends Node {
     }
 
     /**
-     * Override toString method.
-     * @return answerText string variable.
+     *  Returns answerText and destinationID in a string.
+     * @return A string that contains answerText string variable and its destinationID.
      */
     @Override
     public String toString() {
