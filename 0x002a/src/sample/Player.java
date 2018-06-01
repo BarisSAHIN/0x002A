@@ -18,9 +18,6 @@ public class Player extends User implements Initializable{
 
     private Story theStory;
     public static String pickedGameFile= "saved/";
-    Stack<Question> questions;
-
-
 
     @FXML AnchorPane fxmlQuestionAnswer;
 
@@ -42,7 +39,6 @@ public class Player extends User implements Initializable{
     public Player() throws IOException, IDNotAllowed {
         try {
             theStory=new Story(pickedGameFile + Welcome.filename);
-            questions=new Stack<>();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IDNotAllowed ıdNotAllowed) {
@@ -102,7 +98,6 @@ public class Player extends User implements Initializable{
 
     public void PassToNextQuestion(int answerNum){
         fxmlPastQuestionList.getItems().add(theStory.getCurrQuestion());
-        questions.push(theStory.getCurrQuestion());
         theStory.toNextQuestion(answerNum);
         if(theStory.isEnd())
             finish();
@@ -133,12 +128,13 @@ public class Player extends User implements Initializable{
             } else
                 fxmlAnswer4.setVisible(false);
         }
+        fxmlUndoButton.setVisible(true);
     }
 
     public void undoQuestion(){
         fxmlPastQuestionList.getItems().remove(theStory.undo());
 
-        if(questions.empty())
+        if(theStory.isUndoStackEmpty())
             fxmlUndoButton.setVisible(false);
 
         ArrayList<Answer> firstAnswers=theStory.legalAnswers();
